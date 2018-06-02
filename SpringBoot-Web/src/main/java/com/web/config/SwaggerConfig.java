@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableSwagger2
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.jpa"})
+@ComponentScan(basePackages = {"com"})
 public class SwaggerConfig {
 
     @Bean

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/girl?characterEncoding=UTF-8
+    username: root
+    password: 123qWE
+  jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true

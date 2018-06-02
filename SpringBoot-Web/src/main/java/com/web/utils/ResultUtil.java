@@ -1,7 +1,7 @@
 package com.web.utils;
 
 
-import com.common.enums.ExceptionCode;
+import com.web.enums.ExceptionCode;
 import com.web.model.ResultModel;
 
 /**

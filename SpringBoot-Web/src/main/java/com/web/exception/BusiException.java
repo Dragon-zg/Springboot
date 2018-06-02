@@ -1,7 +1,7 @@
-package com.common.exception;
+package com.web.exception;
 
 
-import com.common.enums.ExceptionCode;
+import com.web.enums.ExceptionCode;
 
 /**
  * @Description: 自定义业务异常

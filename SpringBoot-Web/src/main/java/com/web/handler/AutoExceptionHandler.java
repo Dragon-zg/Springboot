@@ -1,7 +1,6 @@
 package com.web.handler;
 
-import com.common.enums.ExceptionCode;
-import com.common.exception.BusiException;
+import com.web.enums.ExceptionCode;
 import com.web.model.ResultModel;
 import com.web.utils.ResultUtil;
 import org.slf4j.Logger;
@@ -9,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.web.exception.BusiException;
 
 /**
  * @Description: 当controller抛出异常时, 自动捕获异常并返回相应错误码及信息

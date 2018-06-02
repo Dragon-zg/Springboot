@@ -36,6 +36,11 @@
             <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>com.dragon.org</groupId>
+            <artifactId>SpringBoot-Common-Utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

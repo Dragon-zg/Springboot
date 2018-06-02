@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 //JPA注解,@Entity意味这个是数据库的一张表,
 @Entity
-@Table(name ="girl", schema = "girl")
+@Table(name ="girl", schema = "test")
 public class Girl {
     //@Id id字段,自增
     private Integer id;

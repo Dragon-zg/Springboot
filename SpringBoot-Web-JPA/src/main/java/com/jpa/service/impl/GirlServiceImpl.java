@@ -37,6 +37,7 @@ public class GirlServiceImpl implements GirlService {
      * @param id
      * @return
      */
+    @Override
     public void deleteGirl(Integer id) throws Exception {
         Girl queryGirl = findById(id);
         if (null == queryGirl) {
@@ -52,6 +53,7 @@ public class GirlServiceImpl implements GirlService {
      * @param girl
      * @throws Exception
      */
+    @Override
     public Girl updateGirl(Girl girl) throws Exception {
         Girl queryGirl = findById(girl.getId());
         if (null == queryGirl) {
@@ -67,6 +69,7 @@ public class GirlServiceImpl implements GirlService {
      * @param id
      * @return
      */
+    @Override
     public Girl findById(Integer id) throws Exception {
         return girlRespository.findOne(id);
     }
@@ -76,6 +79,7 @@ public class GirlServiceImpl implements GirlService {
      *
      * @return
      */
+    @Override
     public List<Girl> getGirlList() throws Exception {
         return girlRespository.findAll();
     }
@@ -86,6 +90,7 @@ public class GirlServiceImpl implements GirlService {
      * @param id
      * @return
      */
+    @Override
     public Integer getAgeById(Integer id) throws Exception {
         Girl queryGirl = findById(id);
         if (null == queryGirl) {

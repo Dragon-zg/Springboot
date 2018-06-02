@@ -1,4 +1,4 @@
-package com.web.enums;
+package com.common.enums;
 
 /**
  * @Description: 异常编码枚举类

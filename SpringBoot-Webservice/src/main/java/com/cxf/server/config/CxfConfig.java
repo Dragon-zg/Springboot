@@ -3,7 +3,9 @@ package com.cxf.server.config;
 import com.cxf.server.service.UserService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
+import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,18 @@ public class CxfConfig {
 
     @Autowired
     private UserService userService;
+
+    /** 
+     * @Description 设置cxfServlet根路径
+     * @Author Dragon-zg 
+     * @Date 2018/6/3 15:59
+     * @Param []  
+     * @return org.springframework.boot.web.servlet.ServletRegistrationBean  
+     */  
+    @Bean
+    public ServletRegistrationBean dispatcherServlet() {
+        return new ServletRegistrationBean(new CXFServlet(), "/*");
+    }
 
     @Bean
     public Endpoint endpoint() {

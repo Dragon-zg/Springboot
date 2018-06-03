@@ -11,5 +11,12 @@
 
     <artifactId>SpringBoot-Webservice</artifactId>
 
-
+    <dependencies>
+        <!-- 使用cxf -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+    </dependencies>
 </project>

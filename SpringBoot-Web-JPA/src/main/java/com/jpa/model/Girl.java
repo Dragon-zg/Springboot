@@ -1,5 +1,7 @@
 package com.jpa.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 /**
@@ -10,11 +12,13 @@ import javax.persistence.*;
 @Entity
 @Table(name ="girl", schema = "test")
 public class Girl {
-    //@Id id字段,自增
+    @ApiModelProperty("主键ID")
     private Integer id;
 
+    @ApiModelProperty("")
     private String cupSize;
 
+    @ApiModelProperty("年纪")
     private Integer age;
 
     @Id

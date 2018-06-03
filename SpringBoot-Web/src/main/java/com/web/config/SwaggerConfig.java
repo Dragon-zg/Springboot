@@ -2,9 +2,7 @@ package com.web.config;
 
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -18,8 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Author: Dragon-zg
  */
 @EnableSwagger2
-@EnableWebMvc
-@ComponentScan(basePackages = {"com"})
+@Configuration
 public class SwaggerConfig {
 
     @Bean
@@ -33,12 +30,12 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("对外开放接口API 文档")
+                .title("对外开放接口API文档")
                 .description("HTTP对外开放接口")
                 .version("1.0.0")
-                .termsOfServiceUrl("http://xxx.xxx.com")
+                .termsOfServiceUrl("http://www.dragon.com")
                 .license("LICENSE")
-                .licenseUrl("http://xxx.xxx.com")
+                .licenseUrl("http://www.dragon.com")
                 .build();
     }
 

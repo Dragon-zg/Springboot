@@ -9,7 +9,7 @@ import javax.jws.soap.SOAPBinding;
 /**
  * @Description:
  * @Date: 2018-06-03 15:05
- * @Author: Qiang.Wang
+ * @Author: Dragon-zg
  */
 @WebService(targetNamespace = "http://service.server.cxf.com")
 @SOAPBinding(style= SOAPBinding.Style.RPC)

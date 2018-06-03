@@ -14,7 +14,7 @@ import javax.xml.ws.Endpoint;
 /**
  * @Description: CXF 配置类
  * @Date: 2018-06-03 14:45
- * @Author: Qiang.Wang
+ * @Author: Dragon-zg
  */
 @Component
 public class CxfConfig {

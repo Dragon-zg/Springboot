@@ -1,6 +1,7 @@
-package com.jpa.model;
+package com.jpa.model.oneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jpa.model.base.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -29,8 +30,21 @@ public class Employee extends BaseModel {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date birthday;
 
+    private Department department;
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="department_id", columnDefinition = "int(11) comment 'department id 外键'")
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     @Id
-    @Column(name = "id", columnDefinition = "int(11) not null auto_increment comment '主键ID'")
+    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

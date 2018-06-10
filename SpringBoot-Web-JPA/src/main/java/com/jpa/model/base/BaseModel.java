@@ -1,4 +1,4 @@
-package com.jpa.model;
+package com.jpa.model.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -67,7 +67,7 @@ public class BaseModel implements Serializable {
     }
 
     @Basic
-    @Column(name = "update_time", columnDefinition = "timestamp default null comment '更新时间'")
+    @Column(name = "update_time", columnDefinition = "timestamp comment '更新时间'")
     public Date getUpdateTime() {
         return updateTime;
     }

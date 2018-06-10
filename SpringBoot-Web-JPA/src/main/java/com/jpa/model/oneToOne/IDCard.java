@@ -22,7 +22,7 @@ public class IDCard {
 
     private Person person;
 
-    @OneToOne(mappedBy = "idcard", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "idcard", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Person getPerson() {
         return person;
     }

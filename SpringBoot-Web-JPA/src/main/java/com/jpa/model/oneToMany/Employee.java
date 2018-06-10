@@ -1,7 +1,7 @@
 package com.jpa.model.oneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jpa.model.base.BaseModel;
+import com.jpa.model.base.AbstractEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,7 +16,7 @@ import java.util.Date;
 @ApiModel("员工表")
 @Entity
 @Table(name = "jpa_employee", schema = "test")
-public class Employee extends BaseModel {
+public class Employee extends AbstractEntity {
     @ApiModelProperty("主键ID")
     private Integer id;
 

@@ -1,7 +1,7 @@
 package com.jpa.model.oneToMany;
 
 import com.google.common.collect.Lists;
-import com.jpa.model.base.BaseModel;
+import com.jpa.model.base.AbstractEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @ApiModel("部门表")
 @Entity
 @Table(name = "jpa_department", schema = "test")
-public class Department extends BaseModel {
+public class Department extends AbstractEntity {
     @ApiModelProperty("主键ID")
     private Integer id;
 

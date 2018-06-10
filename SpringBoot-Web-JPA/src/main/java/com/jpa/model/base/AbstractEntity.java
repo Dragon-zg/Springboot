@@ -17,7 +17,7 @@ import java.util.Date;
  */
 @ApiModel("实体基础属性类")
 @MappedSuperclass
-public class BaseModel implements Serializable {
+public class AbstractEntity implements Serializable {
 
     @ApiModelProperty("创建人")
     private String createUser;
@@ -47,7 +47,7 @@ public class BaseModel implements Serializable {
     }
 
     @Basic
-    @Column(name = "create_time", columnDefinition = "timestamp default current_timestamp comment '创建时间'")
+    @Column(name = "create_time", columnDefinition = "datetime default current_timestamp comment '创建时间'")
     public Date getCreateTime() {
         return createTime;
     }
@@ -67,7 +67,7 @@ public class BaseModel implements Serializable {
     }
 
     @Basic
-    @Column(name = "update_time", columnDefinition = "timestamp comment '更新时间'")
+    @Column(name = "update_time", columnDefinition = "datetime default null comment '更新时间'")
     public Date getUpdateTime() {
         return updateTime;
     }

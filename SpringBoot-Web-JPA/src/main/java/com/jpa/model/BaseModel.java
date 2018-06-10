@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ import java.util.Date;
  * @Author: Dragon-zg
  */
 @ApiModel("实体基础属性类")
+@MappedSuperclass
 public class BaseModel implements Serializable {
 
     @ApiModelProperty("创建人")
@@ -45,7 +47,7 @@ public class BaseModel implements Serializable {
     }
 
     @Basic
-    @Column(name = "create_time", columnDefinition = "comment '创建时间'")
+    @Column(name = "create_time", columnDefinition = "timestamp default current_timestamp comment '创建时间'")
     public Date getCreateTime() {
         return createTime;
     }
@@ -65,7 +67,7 @@ public class BaseModel implements Serializable {
     }
 
     @Basic
-    @Column(name = "update_time", columnDefinition = "comment '更新时间'")
+    @Column(name = "update_time", columnDefinition = "timestamp default null comment '更新时间'")
     public Date getUpdateTime() {
         return updateTime;
     }

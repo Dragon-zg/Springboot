@@ -32,8 +32,8 @@ public class Employee extends BaseModel {
 
     private Department department;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="department_id", columnDefinition = "int(11) comment 'department id 外键'")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id", referencedColumnName = "id", columnDefinition = "int(11) comment 'department id 外键'", insertable = false, updatable = false)
     public Department getDepartment() {
         return department;
     }

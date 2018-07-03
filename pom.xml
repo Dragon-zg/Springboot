@@ -19,6 +19,7 @@
     <properties>
         <cxf.version>3.2.1</cxf.version>
         <swagger.version>2.7.0</swagger.version>
+        <lang3.version>3.7</lang3.version>
         <springboot.version>1.5.9.RELEASE</springboot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -33,6 +34,19 @@
     </parent>
 
     <dependencies>
+        <!-- springboot相关依赖包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- commons-lang3包 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+        </dependency>
         <!-- 测试相关依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <!--<property name="LOG_HOME" value="c:/log" />-->
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 按照每天生成日志文件 -->
+
+    <logger name="com.jpa" level="DEBUG" additivity="true"/>
+    <Logger name="antlr" level="warn" additivity="true"/>
+    <Logger name="com.alibaba" level="warn" additivity="true"/>
+    <Logger name="com.alibaba.druid" level="debug" additivity="true"/>
+    <Logger name="com.alibaba.druid.filter.logging.Slf4jLogFilter" level="debug" additivity="true"/>
+    <Logger name="com.mysql" level="warn" additivity="true"/>
+    <Logger name="javax" level="warn" additivity="true"/>
+    <Logger name="java.sql" level="warn" additivity="true"/>
+    <Logger name="net.sf" level="warn" additivity="true"/>
+    <Logger name="com.fasterxml" level="warn" additivity="true"/>
+    <Logger name="com.google" level="warn" additivity="true"/>
+    <Logger name="org.antlr" level="warn" additivity="true"/>
+    <Logger name="org.apache" level="warn" additivity="true"/>
+    <Logger name="org.aspectj" level="warn" additivity="true"/>
+    <Logger name="org.dom4j" level="debug" additivity="true"/>
+    <Logger name="org.eclipse" level="warn" additivity="true"/>
+    <Logger name="org.hibernate" level="warn" additivity="true"/>
+    <Logger name="org.javassist" level="warn" additivity="true"/>
+    <Logger name="org.jboss" level="warn" additivity="true"/>
+    <Logger name="org.ow2" level="warn" additivity="true"/>
+    <Logger name="org.slf4j" level="warn" additivity="true"/>
+    <Logger name="org.springframework" level="warn" additivity="true"/>
+    <Logger name="org.springframework.web" level="debug" additivity="true"/>
+    <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="true"/>
+    <Logger name="springfox" level="warn" additivity="true"/>
+    <Logger name="druid.sql" level="debug" additivity="true"/>
+
+    <!-- 日志输出级别 -->
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="FILE" />-->
+    </root>
+
+    <!--日志异步到数据库 -->
+</configuration>

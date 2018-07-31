@@ -17,6 +17,7 @@
     </modules>
 
     <properties>
+        <joda.version>2.10</joda.version>
         <cxf.version>3.2.1</cxf.version>
         <swagger.version>2.6.0</swagger.version>
         <lang3.version>3.7</lang3.version>

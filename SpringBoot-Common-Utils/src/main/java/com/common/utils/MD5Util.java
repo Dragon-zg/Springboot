@@ -17,6 +17,8 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5Util {
 
+    private final static Logger logger = LoggerFactory.getLogger(MD5Util.class);
+
     public MD5Util() {
     }
 
@@ -51,14 +53,13 @@ public class MD5Util {
     }
 
     public synchronized static final String getMD5Str(String str) { //md5加密
-        Logger log = LoggerFactory.getLogger(MD5Util.class);
         MessageDigest messageDigest = null;
         try {
             messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.reset();
             messageDigest.update(str.getBytes());
         } catch (NoSuchAlgorithmException e) {
-            log.error("md5 error:" + e.getMessage(), e);
+            logger.error("md5 error:" + e.getMessage(), e);
         }
         byte[] byteArray = messageDigest.digest();
         StringBuffer md5StrBuff = new StringBuffer();

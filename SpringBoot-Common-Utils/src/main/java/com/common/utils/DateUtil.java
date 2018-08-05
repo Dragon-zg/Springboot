@@ -42,6 +42,14 @@ public class DateUtil {
     }
 
     /**
+     * 获取当前时间 Str类型
+     * @return java.lang.String
+     */  
+    public static String getNowStr(String format) {
+        return DateTime.now().toString(format);
+    }
+
+    /**
      * 格式化指定日期
      * @param format
      * @param dateTime

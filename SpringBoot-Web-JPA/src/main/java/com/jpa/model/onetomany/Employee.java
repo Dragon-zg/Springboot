@@ -1,4 +1,4 @@
-package com.jpa.model.oneToMany;
+package com.jpa.model.onetomany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jpa.model.base.AbstractEntity;

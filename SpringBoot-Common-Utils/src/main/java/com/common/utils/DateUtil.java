@@ -1,5 +1,6 @@
 package com.common.utils;
 
+import com.common.enums.DateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
@@ -17,23 +18,6 @@ public class DateUtil {
     private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
     /**
-     *  yyyy-MM-dd HH:mm:ss
-     */
-    public static final String FORMAT_DATE_TIME_DEFAULT="yyyy-MM-dd HH:mm:ss";
-    /**
-     *  yyyy-MM-dd
-     */
-    public static final String FORMAT_DATE_FOR_DAY="yyyy-MM-dd";
-    /**
-     *  yyyy年MM月dd日 HH时mm分ss秒
-     */
-    public static final String FORMAT_DATE_TIME_CH="yyyy年MM月dd日 HH时mm分ss秒";
-    /**
-     *  yyyy年MM月dd日
-     */
-    public static final String FORMAT_DATE_CH="yyyy年MM月dd日";
-
-    /**
      * 获取当前时间
      * @return
      */
@@ -45,8 +29,8 @@ public class DateUtil {
      * 获取当前时间 Str类型
      * @return java.lang.String
      */  
-    public static String getNowStr(String format) {
-        return DateTime.now().toString(format);
+    public static String getNowStr(DateFormat dateFormat) {
+        return DateTime.now().toString(dateFormat.getFormat());
     }
 
     /**
@@ -55,8 +39,8 @@ public class DateUtil {
      * @param dateTime
      * @return
      */
-    public static String formatDate(String format, Date date) {
-        return new DateTime(date).toString(format);
+    public static String formatDate(DateFormat dateFormat, Date date) {
+        return new DateTime(date).toString(dateFormat.getFormat());
     }
 
     /**
@@ -65,10 +49,10 @@ public class DateUtil {
      * @param dateStr
      * @return
      */
-    public static Date parseDate(String format, String dateStr) {
+    public static Date parseDate(DateFormat dateFormat, String dateStr) {
         DateTime dateTime = null;
         try {
-            dateTime = DateTimeFormat.forPattern(format).parseDateTime(dateStr);
+            dateTime = DateTimeFormat.forPattern(dateFormat.getFormat()).parseDateTime(dateStr);
         } catch (Exception e) {
             logger.error("格式转化异常: ", e);
         }

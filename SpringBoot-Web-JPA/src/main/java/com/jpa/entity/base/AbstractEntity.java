@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,21 +18,21 @@ import java.util.Date;
 public class AbstractEntity implements Serializable {
 
     @ApiModelProperty("创建人")
-    private String createUser;
+    protected String createUser;
 
     @ApiModelProperty("创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date createTime;
+    protected Date createTime;
 
     @ApiModelProperty("更新人")
-    private String updateUser;
+    protected String updateUser;
 
     @ApiModelProperty("更新时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date updateTime;
+    protected Date updateTime;
 
     @ApiModelProperty("删除标识符")
-    private Boolean deleteFlag;
+    protected Boolean deleteFlag;
 
     @Basic
     @Column(name = "create_user", columnDefinition = "varchar(20) not null comment '创建人'")
@@ -46,7 +44,7 @@ public class AbstractEntity implements Serializable {
         this.createUser = createUser;
     }
 
-    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time", columnDefinition = "datetime default current_timestamp comment '创建时间'")
     public Date getCreateTime() {
         return createTime;
@@ -66,7 +64,7 @@ public class AbstractEntity implements Serializable {
         this.updateUser = updateUser;
     }
 
-    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_time", columnDefinition = "datetime default null comment '更新时间'")
     public Date getUpdateTime() {
         return updateTime;

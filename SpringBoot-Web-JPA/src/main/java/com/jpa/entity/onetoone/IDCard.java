@@ -1,4 +1,4 @@
-package com.jpa.model.onetoone;
+package com.jpa.entity.onetoone;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

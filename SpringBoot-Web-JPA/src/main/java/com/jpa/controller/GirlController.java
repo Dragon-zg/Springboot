@@ -1,6 +1,6 @@
 package com.jpa.controller;
 
-import com.jpa.model.Girl;
+import com.jpa.entity.Girl;
 import com.jpa.properties.GirlProperties;
 import com.jpa.service.GirlService;
 import com.web.model.ResultModel;

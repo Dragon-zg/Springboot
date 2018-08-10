@@ -1,7 +1,7 @@
 package com.jpa.service;
 
 
-import com.jpa.model.Girl;
+import com.jpa.entity.Girl;
 
 import java.util.List;
 

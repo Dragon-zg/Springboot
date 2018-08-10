@@ -1,7 +1,7 @@
-package com.jpa.model.onetomany;
+package com.jpa.entity.onetomany;
 
 import com.google.common.collect.Lists;
-import com.jpa.model.base.AbstractEntity;
+import com.jpa.entity.base.AbstractEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

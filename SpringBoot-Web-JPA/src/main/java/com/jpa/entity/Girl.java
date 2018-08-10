@@ -1,4 +1,4 @@
-package com.jpa.model;
+package com.jpa.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 

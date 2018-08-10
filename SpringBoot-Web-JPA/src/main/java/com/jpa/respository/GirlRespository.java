@@ -1,6 +1,6 @@
 package com.jpa.respository;
 
-import com.jpa.model.Girl;
+import com.jpa.entity.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;

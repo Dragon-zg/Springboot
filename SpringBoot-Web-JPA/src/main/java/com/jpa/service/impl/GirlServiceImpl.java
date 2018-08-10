@@ -1,6 +1,6 @@
 package com.jpa.service.impl;
 
-import com.jpa.model.Girl;
+import com.jpa.entity.Girl;
 import com.jpa.respository.GirlRespository;
 import com.jpa.service.GirlService;
 import com.web.enums.ExceptionCode;

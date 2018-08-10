@@ -1,4 +1,4 @@
-package com.jpa.model.base;
+package com.jpa.entity.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;

@@ -22,6 +22,7 @@ public class Girl {
     private Integer age;
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;

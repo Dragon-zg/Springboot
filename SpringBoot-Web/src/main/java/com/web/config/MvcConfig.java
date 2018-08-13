@@ -12,6 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -21,6 +22,7 @@ import java.util.Locale;
 
 /**
  * MVC基础配置
+ *
  * @author Dragon-zg
  * @date 2018/8/13 16:53
  */
@@ -34,11 +36,26 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     private final Environment environment;
 
-
+    /**
+     * 拦截器配置
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if (environment.acceptsProfiles(Profiles.DEVELOPMENT, Profiles.PRODUCTION)) {
         }
+    }
+
+    /**
+     * 跨域CORS配置<br/>
+     * 或者使用@CrossOrigin(origins = "*")注解
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        super.addCorsMappings(registry);
+        registry.addMapping("/cors/**")
+                .allowedHeaders("*")
+                .allowedMethods("*")
+                .allowedOrigins("*");
     }
 
     @Bean

@@ -58,12 +58,22 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 .allowedOrigins("*");
     }
 
+    /**
+     * 自定义多语言处理实现类
+     */
     @Bean
     public MessageSource messageSource() {
         MessageSource messageSource = new I18nMessageResource();
         return messageSource;
     }
 
+    /**
+     * 多语言使用的转换器,此处使用cookie<br/>
+     * AcceptHeaderLocaleResolver:其实没有任何具体实现，是通过浏览器头部的语言信息来进行多语言选择<br/>
+     * FixedLocaleResolver:设置固定的语言信息，这样整个系统的语言是一成不变的，用处不大<br/>
+     * CookieLocaleResolver:将语言信息设置到Cookie中，这样整个系统就可以获得语言信息<br/>
+     * SessionLocaleResolver：与CookieLocaleResolver类似将语言信息放到Session中，这样整个系统就可以从Session中获得语言信息
+     */
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver localeResolver = new CookieLocaleResolver();

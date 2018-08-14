@@ -5,7 +5,8 @@ import com.web.enums.ExceptionCode;
 import com.web.model.ResultModel;
 
 /**
- * @Description: 相应结果工具类
+ * 相应结果工具类
+ * @author Dragon-zg
  * @Date: 2017-12-16 20:41
  */
 public class ResultUtil {

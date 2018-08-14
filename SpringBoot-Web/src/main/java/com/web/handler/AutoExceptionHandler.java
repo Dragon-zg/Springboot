@@ -35,6 +35,7 @@ public class AutoExceptionHandler {
     @ResponseBody
     public ResponseEntity<ResultModel<?>> handleBusiException(BusiException e) {
         //若属于业务异常,则抛出相关编码信息
+        logger.debug(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.OK).body(ResultUtil.error(e.getCode(), e.getMessage()));
     }
 }

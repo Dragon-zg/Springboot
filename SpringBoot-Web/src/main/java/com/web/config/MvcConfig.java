@@ -4,6 +4,7 @@ import com.web.i18n.I18nMessageResource;
 import com.web.utils.Profiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
+import javax.servlet.MultipartConfigElement;
 import java.util.Locale;
 
 /**
@@ -37,12 +39,43 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     private final Environment environment;
 
     /**
+     * 静态资源处理
+     */
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        //静态资源可访问
+        configurer.enable();
+    }
+
+    /**
      * 拦截器配置
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if (environment.acceptsProfiles(Profiles.DEVELOPMENT, Profiles.PRODUCTION)) {
+            //添加拦截器
         }
+    }
+
+    /**
+     * 打印请求相关日志信息
+     */
+    @Profile({Profiles.DEVELOPMENT})
+    @Bean
+    public CommonsRequestLoggingFilter logFilter() {
+        CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+        //是否打印请求参数
+        filter.setIncludeQueryString(true);
+        //是否打印client、session、user
+        filter.setIncludeClientInfo(false);
+        //是否打印headers
+        filter.setIncludeHeaders(false);
+        //先判断request的content的长度，如果超过设置maxPayload的长度，则按照maxPayload进行截取，如果出现异常，则payload=[unknown]
+        filter.setIncludePayload(true);
+        filter.setMaxPayloadLength(10000);
+        //指明该bean运行环境
+        filter.setEnvironment(environment);
+        return filter;
     }
 
     /**
@@ -83,33 +116,27 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * 打印请求相关日志信息
+     * 上传文件解析器使用
      */
-    @Profile({Profiles.DEVELOPMENT})
-    @Bean
-    public CommonsRequestLoggingFilter logFilter() {
-        CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
-        //是否打印请求参数
-        filter.setIncludeQueryString(true);
-        //是否打印client、session、user
-        filter.setIncludeClientInfo(false);
-        //是否打印headers
-        filter.setIncludeHeaders(false);
-        //先判断request的content的长度，如果超过设置maxPayload的长度，则按照maxPayload进行截取，如果出现异常，则payload=[unknown]
-        filter.setIncludePayload(true);
-        filter.setMaxPayloadLength(10000);
-        //指明该bean运行环境
-        filter.setEnvironment(environment);
-        return filter;
-    }
-
     @Bean
     public StandardServletMultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
+    /**
+     * 上传文件相关配置信息
+     */
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        //文件上传目录
+        //factory.setLocation();
+        //最大支持文件大小,不设置大小时使用-1L
+        factory.setMaxFileSize("50MB");
+        //最大支持请求大小,不设置大小时使用-1L
+        factory.setMaxRequestSize("50MB");
+        // 设置缓存大小
+        factory.setFileSizeThreshold("5M");
+        return factory.createMultipartConfig();
     }
 }

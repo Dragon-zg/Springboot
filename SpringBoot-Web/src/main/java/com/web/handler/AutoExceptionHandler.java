@@ -7,12 +7,8 @@ import com.web.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 当controller抛出异常时, 自动捕获异常并返回相应错误码及信息
@@ -25,17 +21,19 @@ public class AutoExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ResponseEntity<ResultModel<?>> handleException(Exception e) {
+    public ResultModel<?> handleException(Exception e) {
         logger.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultUtil.error(ExceptionCode.UNKOW_ERROR));
+        return ResultUtil.error(ExceptionCode.UNKOW_ERROR);
     }
 
     @ExceptionHandler(value = BusiException.class)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResultModel<?>> handleBusiException(BusiException e) {
+    public ResultModel<?> handleBusiException(BusiException e) {
         //若属于业务异常,则抛出相关编码信息
         logger.debug(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.OK).body(ResultUtil.error(e.getCode(), e.getMessage()));
+        return ResultUtil.error(e.getCode(), e.getMessage());
     }
 }

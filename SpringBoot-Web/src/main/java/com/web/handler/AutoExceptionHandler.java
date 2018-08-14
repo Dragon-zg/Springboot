@@ -28,7 +28,7 @@ public class AutoExceptionHandler {
     @ResponseBody
     public ResponseEntity<ResultModel<?>> handleException(Exception e) {
         logger.error(e.getMessage(), e);
-        return ResponseEntity.status(HttpStatus.OK).body(ResultUtil.error(ExceptionCode.UNKOW_ERROR));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResultUtil.error(ExceptionCode.UNKOW_ERROR));
     }
 
     @ExceptionHandler(value = BusiException.class)

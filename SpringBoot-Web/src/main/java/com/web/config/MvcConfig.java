@@ -98,6 +98,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         //先判断request的content的长度，如果超过设置maxPayload的长度，则按照maxPayload进行截取，如果出现异常，则payload=[unknown]
         filter.setIncludePayload(true);
         filter.setMaxPayloadLength(10000);
+        //指明该bean运行环境
         filter.setEnvironment(environment);
         return filter;
     }

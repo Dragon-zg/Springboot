@@ -82,16 +82,23 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return localeResolver;
     }
 
-    @Profile({Profiles.DEVELOPMENT, Profiles.PRODUCTION})
+    /**
+     * 打印请求相关日志信息
+     */
+    @Profile({Profiles.DEVELOPMENT})
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+        //是否打印请求参数
         filter.setIncludeQueryString(true);
-        filter.setIncludePayload(true);
-        filter.setEnvironment(environment);
-        filter.setMaxPayloadLength(10000);
+        //是否打印client、session、user
+        filter.setIncludeClientInfo(false);
+        //是否打印headers
         filter.setIncludeHeaders(false);
-        filter.setAfterMessagePrefix("REQUEST : ");
+        //先判断request的content的长度，如果超过设置maxPayload的长度，则按照maxPayload进行截取，如果出现异常，则payload=[unknown]
+        filter.setIncludePayload(true);
+        filter.setMaxPayloadLength(10000);
+        filter.setEnvironment(environment);
         return filter;
     }
 

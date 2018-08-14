@@ -27,4 +27,10 @@ public class ResultUtil {
         result.setMsg(msg);
         return result;
     }
+    public static ResultModel error(ExceptionCode exceptionCode) {
+        ResultModel result = new ResultModel();
+        result.setCode(exceptionCode.getCode());
+        result.setMsg(exceptionCode.getMsg());
+        return result;
+    }
 }

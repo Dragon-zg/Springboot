@@ -136,7 +136,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         //最大支持请求大小,不设置大小时使用-1L
         factory.setMaxRequestSize("50MB");
         // 设置缓存大小
-        factory.setFileSizeThreshold("5M");
+        factory.setFileSizeThreshold(0);
         return factory.createMultipartConfig();
     }
 }

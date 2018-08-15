@@ -3,20 +3,25 @@ package com.web.config.serializer;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+import com.web.model.ResultModel;
 import com.web.utils.JsonUtils;
 import org.springframework.data.domain.Page;
 
 import java.io.IOException;
 
 /**
- *
+ * 分页返回值处理器
  * @Author Dragon-zg
  * @Date 2018/8/15 13:15
  **/
-public class JsonPageSerializer extends JsonSerializer<Page> {
+public class JsonPageSerializer extends JsonSerializer<ResultModel<Page>> {
 
     @Override
-    public void serialize(Page page, JsonGenerator jsonGen, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(ResultModel<Page> resultModel, JsonGenerator jsonGen, SerializerProvider serializerProvider) throws IOException {
+        Page page = resultModel.getData();
+        if (null == page) {
+            return;
+        }
         jsonGen.writeStartObject();
         jsonGen.writeFieldName("size");
         jsonGen.writeNumber(page.getSize());

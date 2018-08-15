@@ -1,7 +1,6 @@
 package com.web.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.web.config.serializer.JsonPageSerializer;
 import com.web.i18n.I18nMessageResource;
 import com.web.utils.Profiles;
 import org.slf4j.Logger;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
-import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -60,12 +58,17 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         super.addArgumentResolvers(argumentResolvers);
     }
 
+    /**
+     * 处理返回的json
+     */
     @Bean
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         return new Jackson2ObjectMapperBuilder()
                 .failOnUnknownProperties(false)
-                .serializationInclusion(JsonInclude.Include.NON_EMPTY)
-                .serializerByType(Page.class, new JsonPageSerializer());
+                //清除EMPTY的字段
+                .serializationInclusion(JsonInclude.Include.NON_EMPTY);
+                //分页json处理
+//                .serializerByType(ResultModel.class, new JsonPageSerializer());
     }
 
     /**

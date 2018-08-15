@@ -1,5 +1,7 @@
 package com.web.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.web.config.serializer.JsonPageSerializer;
 import com.web.i18n.I18nMessageResource;
 import com.web.utils.Profiles;
 import org.slf4j.Logger;
@@ -10,7 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.data.web.SortHandlerMethodArgumentResolver;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -20,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 import javax.servlet.MultipartConfigElement;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -37,6 +45,28 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     private final Environment environment;
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        logger.info("addArgumentResolvers: sortArgumentResolver, pageableArgumentResolver");
+        SortHandlerMethodArgumentResolver sortArgumentResolver = new SortHandlerMethodArgumentResolver();
+        sortArgumentResolver.setPropertyDelimiter(",");
+        argumentResolvers.add(sortArgumentResolver);
+        PageableHandlerMethodArgumentResolver pageableArgumentResolver = new PageableHandlerMethodArgumentResolver(sortArgumentResolver);
+        pageableArgumentResolver.setPageParameterName("page");
+        pageableArgumentResolver.setSizeParameterName("size");
+        pageableArgumentResolver.setOneIndexedParameters(true);
+        argumentResolvers.add(pageableArgumentResolver);
+        super.addArgumentResolvers(argumentResolvers);
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        return new Jackson2ObjectMapperBuilder()
+                .failOnUnknownProperties(false)
+                .serializationInclusion(JsonInclude.Include.NON_EMPTY)
+                .serializerByType(Page.class, new JsonPageSerializer());
+    }
 
     /**
      * 静态资源处理

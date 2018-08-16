@@ -44,15 +44,20 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     private final Environment environment;
 
+    /**
+     * 添加请求参数解析器
+     */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        logger.info("addArgumentResolvers: sortArgumentResolver, pageableArgumentResolver");
+        //转换请求中的Sort参数
         SortHandlerMethodArgumentResolver sortArgumentResolver = new SortHandlerMethodArgumentResolver();
         sortArgumentResolver.setPropertyDelimiter(",");
         argumentResolvers.add(sortArgumentResolver);
+        //转换请求中的Pageable参数
         PageableHandlerMethodArgumentResolver pageableArgumentResolver = new PageableHandlerMethodArgumentResolver(sortArgumentResolver);
         pageableArgumentResolver.setPageParameterName("page");
         pageableArgumentResolver.setSizeParameterName("size");
+        //页的序号从1开始，缺省是fals
         pageableArgumentResolver.setOneIndexedParameters(true);
         argumentResolvers.add(pageableArgumentResolver);
         super.addArgumentResolvers(argumentResolvers);

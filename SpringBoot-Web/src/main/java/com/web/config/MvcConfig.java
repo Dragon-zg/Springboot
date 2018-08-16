@@ -64,6 +64,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         return new Jackson2ObjectMapperBuilder()
+                //遇到未知属性不做处理
                 .failOnUnknownProperties(false)
                 //清除EMPTY的字段
                 .serializationInclusion(JsonInclude.Include.NON_EMPTY);

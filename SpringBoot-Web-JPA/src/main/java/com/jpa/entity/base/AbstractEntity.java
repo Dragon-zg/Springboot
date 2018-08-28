@@ -1,6 +1,7 @@
 package com.jpa.entity.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jpa.entity.listener.PersistenceListener;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -15,6 +16,7 @@ import java.util.Date;
  */
 @ApiModel("实体基础属性类")
 @MappedSuperclass
+@EntityListeners({PersistenceListener.class})
 public class AbstractEntity implements Serializable {
 
     @ApiModelProperty("创建人")

@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.config.env;
 
 /**
  * 环境常量

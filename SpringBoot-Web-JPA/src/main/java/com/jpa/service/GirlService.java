@@ -2,6 +2,8 @@ package com.jpa.service;
 
 
 import com.jpa.entity.Girl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -49,6 +51,11 @@ public interface GirlService {
      * @return
      */
     List<Girl> getGirlList() throws Exception;
+
+    /**
+     * 获取所有女生分页列表
+     */
+    Page<Girl> getGirlPage(Pageable pageable) throws Exception;
 
     /**
      * 根据id获取女生年纪,当年纪小于20时,则抛出相关信息

@@ -6,6 +6,8 @@ import com.jpa.service.GirlService;
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -82,6 +84,11 @@ public class GirlServiceImpl implements GirlService {
     @Override
     public List<Girl> getGirlList() throws Exception {
         return girlRespository.findAll();
+    }
+
+    @Override
+    public Page<Girl> getGirlPage(Pageable pageable) throws Exception {
+        return girlRespository.findAll(pageable);
     }
 
     /**

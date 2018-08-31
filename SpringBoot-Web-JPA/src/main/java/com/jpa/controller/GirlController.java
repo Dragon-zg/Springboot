@@ -7,6 +7,8 @@ import com.web.model.ResultModel;
 import com.web.utils.ResultUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +50,12 @@ public class GirlController {
     @GetMapping("/girls")
     public ResultModel<List<Girl>> getGirlList() throws Exception {
         return ResultUtil.success(girlService.getGirlList());
+    }
+
+    @ApiOperation("获取所有女生分页列表")
+    @GetMapping("")
+    public ResultModel<Page<Girl>> getGirlList(Pageable pageable) throws Exception {
+        return ResultUtil.success(girlService.getGirlPage(pageable));
     }
 
     /**

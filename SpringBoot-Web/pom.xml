@@ -23,16 +23,16 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${springboot.version}</version>
         </dependency>
-        <!-- swagger -->
+        <!-- springfox swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
+            <version>${springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
+            <version>${springfox.version}</version>
         </dependency>
         <!-- mysql驱动 -->
         <dependency>

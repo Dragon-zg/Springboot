@@ -19,7 +19,7 @@
     <properties>
         <joda.version>2.10</joda.version>
         <cxf.version>3.2.1</cxf.version>
-        <swagger.version>2.6.0</swagger.version>
+        <springfox.version>2.9.2</springfox.version>
         <spring.data.commons.version>1.13.13.RELEASE</spring.data.commons.version>
         <commons.lang3.version>3.7</commons.lang3.version>
         <commons.collections4.version>4.2</commons.collections4.version>

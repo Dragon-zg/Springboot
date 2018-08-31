@@ -11,7 +11,9 @@
     </appender>
     <!-- 按照每天生成日志文件 -->
 
-    <logger name="com.jpa" level="DEBUG" additivity="true"/>
+    <Logger name="com.jpa" level="DEBUG" additivity="true"/>
+    <Logger name="com.common" level="DEBUG" additivity="true"/>
+    <Logger name="com.web" level="DEBUG" additivity="true"/>
     <Logger name="antlr" level="warn" additivity="true"/>
     <Logger name="com.alibaba" level="warn" additivity="true"/>
     <Logger name="com.alibaba.druid" level="debug" additivity="true"/>

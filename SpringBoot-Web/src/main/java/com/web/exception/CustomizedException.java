@@ -4,16 +4,19 @@ package com.web.exception;
 import com.web.enums.ExceptionCode;
 
 /**
- * @Description: 自定义业务异常
+ * 自定义业务异常
+ *
+ * @Author Dragon-zg
  * @Date: 2017-12-16 20:07
  */
-public class BusiException extends RuntimeException {
+public class CustomizedException extends RuntimeException {
     private Integer code;
 
-    public BusiException(ExceptionCode exceptionCode) {
+    public CustomizedException(ExceptionCode exceptionCode) {
         super(exceptionCode.getMsg());
         this.code = exceptionCode.getCode();
     }
+
     public Integer getCode() {
         return code;
     }

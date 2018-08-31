@@ -1,7 +1,7 @@
 package com.web.utils;
 
 import com.web.enums.ExceptionCode;
-import com.web.exception.BusiException;
+import com.web.exception.CustomizedException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,18 +31,18 @@ public class UploadFileUtil {
                 String fileName = multipartFile.getOriginalFilename();
                 if (StringUtils.isBlank(fileName)) {
                     logger.warn("上传文件不存在!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FILE_UNEXIST);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FILE_UNEXIST);
                 }
                 //校验文件类型是否正确
                 if (!ValidFileRule.IMAGE_TYPE.contains(multipartFile.getContentType())) {
                     logger.warn("上传文件类型不正确!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FORMAL_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FORMAL_ERROR);
                 }
 
                 //校验文件大小是否过大
                 if (multipartFile.getSize() > ValidFileRule.IMAGE_SIZE) {
                     logger.warn("文件大小超过限制!");
-                    throw new BusiException(ExceptionCode.UPLOAD_SIZE_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_SIZE_ERROR);
                 }
             }
         });
@@ -63,22 +63,22 @@ public class UploadFileUtil {
                 String fileName = multipartFile.getOriginalFilename();
                 if (StringUtils.isBlank(fileName)) {
                     logger.warn("上传文件不存在!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FILE_UNEXIST);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FILE_UNEXIST);
                 }
                 //校验文件类型是否正确
                 if (!ValidFileRule.COMPRESS_TYPE.contains(multipartFile.getContentType())) {
                     logger.warn("上传文件类型不正确!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FORMAL_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FORMAL_ERROR);
                 }
 
                 if (!fileName.matches(".*\\.zip") && !fileName.matches(".*\\.rar")) {
-                    throw new BusiException(ExceptionCode.UPLOAD_FORMAL_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FORMAL_ERROR);
                 }
 
                 //校验文件大小是否过大
                 if (multipartFile.getSize() > ValidFileRule.COMPRESS_SIZE) {
                     logger.warn("文件大小超过限制!");
-                    throw new BusiException(ExceptionCode.UPLOAD_SIZE_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_SIZE_ERROR);
                 }
             }
         });
@@ -99,12 +99,12 @@ public class UploadFileUtil {
                 String fileName = multipartFile.getOriginalFilename();
                 if (StringUtils.isBlank(fileName)) {
                     logger.warn("上传文件不存在!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FILE_UNEXIST);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FILE_UNEXIST);
                 }
                 //校验文件类型是否正确
                 if (!ValidFileRule.EXCEL_TYPE.contains(multipartFile.getContentType())) {
                     logger.warn("上传文件类型不正确!");
-                    throw new BusiException(ExceptionCode.UPLOAD_FORMAL_ERROR);
+                    throw new CustomizedException(ExceptionCode.UPLOAD_FORMAL_ERROR);
                 }
             }
         });

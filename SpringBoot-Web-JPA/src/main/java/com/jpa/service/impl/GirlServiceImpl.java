@@ -4,14 +4,14 @@ import com.jpa.entity.Girl;
 import com.jpa.respository.GirlRespository;
 import com.jpa.service.GirlService;
 import com.web.enums.ExceptionCode;
-import com.web.exception.BusiException;
+import com.web.exception.CustomizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * @Description:
+ * @Author Dragon-zg
  * @Date: 2017-12-16 19:38
  */
 @Service
@@ -41,7 +41,7 @@ public class GirlServiceImpl implements GirlService {
     public void deleteGirl(Integer id) throws Exception {
         Girl queryGirl = findById(id);
         if (null == queryGirl) {
-            throw new BusiException(ExceptionCode.NOT_EXIST_GIRL);
+            throw new CustomizedException(ExceptionCode.NOT_EXIST_GIRL);
         }else{
             girlRespository.delete(id);
         }
@@ -57,7 +57,7 @@ public class GirlServiceImpl implements GirlService {
     public Girl updateGirl(Girl girl) throws Exception {
         Girl queryGirl = findById(girl.getId());
         if (null == queryGirl) {
-            throw new BusiException(ExceptionCode.NOT_EXIST_GIRL);
+            throw new CustomizedException(ExceptionCode.NOT_EXIST_GIRL);
         }else{
            return girlRespository.save(girl);
         }
@@ -94,9 +94,9 @@ public class GirlServiceImpl implements GirlService {
     public Integer getAgeById(Integer id) throws Exception {
         Girl queryGirl = findById(id);
         if (null == queryGirl) {
-            throw new BusiException(ExceptionCode.NOT_EXIST_GIRL);
+            throw new CustomizedException(ExceptionCode.NOT_EXIST_GIRL);
         }else if(queryGirl.getAge() < 20){
-            throw new BusiException(ExceptionCode.SMALL_GIRL);
+            throw new CustomizedException(ExceptionCode.SMALL_GIRL);
         }else{
             return queryGirl.getAge();
         }

@@ -8,7 +8,6 @@ import javax.persistence.*;
  * @Description:
  * @Date: 2017-12-16 19:53
  */
-//JPA注解,@Entity意味这个是数据库的一张表,
 @Entity
 @Table(name ="girl", schema = "test")
 public class Girl {

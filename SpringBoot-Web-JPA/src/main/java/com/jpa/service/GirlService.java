@@ -6,7 +6,7 @@ import com.jpa.entity.Girl;
 import java.util.List;
 
 /**
- * @Description:
+ * @Author Dragon-zg
  * @Date: 2017-12-16 19:37
  */
 public interface GirlService {

@@ -1,7 +1,7 @@
 package com.web.handler;
 
 import com.web.enums.ExceptionCode;
-import com.web.exception.BusiException;
+import com.web.exception.CustomizedException;
 import com.web.model.ResultModel;
 import com.web.utils.ResultUtil;
 import org.slf4j.Logger;
@@ -28,10 +28,10 @@ public class AutoExceptionHandler {
         return ResultUtil.error(ExceptionCode.UNKOW_ERROR);
     }
 
-    @ExceptionHandler(value = BusiException.class)
+    @ExceptionHandler(value = CustomizedException.class)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public ResultModel<?> handleBusiException(BusiException e) {
+    public ResultModel<?> handleBusiException(CustomizedException e) {
         //若属于业务异常,则抛出相关编码信息
         logger.debug(e.getMessage(), e);
         return ResultUtil.error(e.getCode(), e.getMessage());

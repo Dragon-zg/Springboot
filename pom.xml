@@ -45,18 +45,6 @@
             <version>${springboot.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- commons-lang3包 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons.lang3.version}</version>
-        </dependency>
-       <!-- commons-collections4包 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>${commons.collections4.version}</version>
-        </dependency>
         <!-- 测试相关依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,11 +52,11 @@
             <version>${springboot.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- 日志相关依赖包-->
+        <!-- 项目之间的依赖 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-            <version>${springboot.version}</version>
+            <groupId>com.dragon.org</groupId>
+            <artifactId>SpringBoot-Common-Utils</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

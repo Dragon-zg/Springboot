@@ -51,12 +51,6 @@
             <artifactId>spring-data-commons</artifactId>
             <version>${spring.data.commons.version}</version>
         </dependency>
-        <!-- 项目之间的依赖 -->
-        <dependency>
-            <groupId>com.dragon.org</groupId>
-            <artifactId>SpringBoot-Common-Utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

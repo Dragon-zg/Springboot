@@ -12,28 +12,11 @@
     <artifactId>SpringBoot-Webservice</artifactId>
 
     <dependencies>
-        <!-- web项目相关依赖包 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!-- 使用cxf -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
             <version>${cxf.version}</version>
-        </dependency>
-        <!-- mysql驱动 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- 项目之间的依赖 -->
-        <dependency>
-            <groupId>com.dragon.org</groupId>
-            <artifactId>SpringBoot-Common-Utils</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

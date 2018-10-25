@@ -3,6 +3,7 @@ package com.web.config;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.web.config.env.Profiles;
 import com.web.i18n.I18nMessageResource;
+import com.web.interceptor.IpInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
@@ -92,7 +93,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if (environment.acceptsProfiles(Profiles.DEVELOPMENT, Profiles.PRODUCTION)) {
-            //添加拦截器
+            //IP访问限制拦截器
+            registry.addInterceptor(new IpInterceptor()).addPathPatterns("/api/**");
         }
     }
 

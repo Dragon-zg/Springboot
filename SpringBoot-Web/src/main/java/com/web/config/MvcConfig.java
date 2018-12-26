@@ -1,5 +1,6 @@
 package com.web.config;
 
+import com.common.enums.DateFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.web.config.env.Profiles;
 import com.web.i18n.I18nMessageResource;
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import javax.servlet.MultipartConfigElement;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * MVC基础配置
@@ -58,7 +60,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         PageableHandlerMethodArgumentResolver pageableArgumentResolver = new PageableHandlerMethodArgumentResolver(sortArgumentResolver);
         pageableArgumentResolver.setPageParameterName("page");
         pageableArgumentResolver.setSizeParameterName("size");
-        //页的序号从1开始，缺省是fals
+        //页的序号从1开始，缺省是false
         pageableArgumentResolver.setOneIndexedParameters(true);
         argumentResolvers.add(pageableArgumentResolver);
         super.addArgumentResolvers(argumentResolvers);
@@ -72,10 +74,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return new Jackson2ObjectMapperBuilder()
                 //遇到未知属性不做处理
                 .failOnUnknownProperties(false)
+                //时间使用中国时区
+                .timeZone(TimeZone.getTimeZone("GMT+8"))
+                .simpleDateFormat(DateFormat.DEFAULT_TIME.getFormat())
                 //清除EMPTY的字段
                 .serializationInclusion(JsonInclude.Include.NON_EMPTY);
-                //分页json处理
-//                .serializerByType(ResultModel.class, new JsonPageSerializer());
     }
 
     /**

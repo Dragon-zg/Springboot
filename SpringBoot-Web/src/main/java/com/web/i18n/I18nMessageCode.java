@@ -13,7 +13,11 @@ public interface I18nMessageCode {
     /**
      * 操作成功
      */
-    String JAVA_SYSTEM_SUCCESS = "java.system.success";
+    String JAVA_OPERATION_SUCCESS = "java.operation.success";
+    /**
+     * 操作失败
+     */
+    String JAVA_OPERATION_ERROR = "java.operation.error";
     /**
      * 请求参数错误
      */

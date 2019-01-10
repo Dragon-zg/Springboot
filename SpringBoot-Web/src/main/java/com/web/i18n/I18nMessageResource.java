@@ -28,9 +28,9 @@ public class I18nMessageResource extends AbstractMessageSource implements Resour
         String message = StringUtils.EMPTY;
         //英文
         if (StringUtils.equals(locale.getLanguage(), Locale.ENGLISH.getLanguage())) {
-
+            message = "这是英文";
         } else {//默认中文
-
+            message = "这是中文";
         }
         MessageFormat messageFormat = new MessageFormat(message, locale);
         return messageFormat;

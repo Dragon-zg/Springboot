@@ -5,6 +5,7 @@ import com.jpa.properties.GirlProperties;
 import com.jpa.service.GirlService;
 import com.web.model.ResultModel;
 import com.web.utils.ResultUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import java.util.List;
  * @Author Dragon-zg
  * @Date: 2017-12-16 19:39
  */
+@Api(value = "girlController", tags = "demo")
 @RestController
 @RequestMapping("/girlController")
 public class GirlController {

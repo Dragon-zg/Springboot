@@ -1,4 +1,4 @@
-package com.common.constants;
+package com.web.constants;
 
 /**
  * properties文件前缀常量类

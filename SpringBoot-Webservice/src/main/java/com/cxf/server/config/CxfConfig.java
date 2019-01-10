@@ -1,5 +1,8 @@
 package com.cxf.server.config;
 
+import com.cxf.server.interceptor.ArtifactOutInterceptor;
+import com.cxf.server.interceptor.PostInvokeInterceptor;
+import com.cxf.server.interceptor.PreInvokeInterceptor;
 import com.cxf.server.service.UserService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.xml.ws.Endpoint;
 
 /**
- * @Description: CXF 配置类
+ * CXF 配置类
  * @Date: 2018-06-03 14:45
  * @Author: Dragon-zg
  */
@@ -30,16 +33,26 @@ public class CxfConfig {
      * @Date 2018/6/3 15:59
      * @Param []  
      * @return org.springframework.boot.web.servlet.ServletRegistrationBean  
-     */  
-    @Bean
-    public ServletRegistrationBean dispatcherServlet() {
-        return new ServletRegistrationBean(new CXFServlet(), "/*");
+     */
+    @Bean(name = "cxfServlet")
+    public ServletRegistrationBean cxfServletRegistrationBean() {
+        CXFServlet servlet = new CXFServlet();
+        ServletRegistrationBean bean = new ServletRegistrationBean(servlet,"/cxf/*");
+        bean.setLoadOnStartup(1);
+        return bean;
     }
 
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, userService);
-        endpoint.publish("/cxf");//接口发布在 /cxf 目录下
+        //接口发布在 /app 目录下
+        endpoint.publish("/app");
+        //方法前置拦截器
+        endpoint.getInInterceptors().add(new PreInvokeInterceptor());
+        //方法后置拦截器
+        endpoint.getInInterceptors().add(new PostInvokeInterceptor());
+        //在流关闭之前拦截器
+        endpoint.getOutInterceptors().add(new ArtifactOutInterceptor());
         return endpoint;
     }
 }

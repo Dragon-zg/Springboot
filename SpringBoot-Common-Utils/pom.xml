@@ -30,6 +30,12 @@
             <artifactId>commons-collections4</artifactId>
             <version>${commons.collections4.version}</version>
         </dependency>
+        <!-- commons-collections4包 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
         <!-- 日志相关依赖包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -13,7 +13,7 @@ import javax.jws.WebService;
 @WebService(serviceName = "userServices",//服务名
         portName = "userPort",
         endpointInterface = "com.cxf.server.service.UserService",
-        //报名倒叙，并且和接口定义保持一致
+        //包名倒序，并且和接口定义保持一致
         targetNamespace = "http://service.server.cxf.com")
 @Component
 public class UserServicesImpl implements UserService {

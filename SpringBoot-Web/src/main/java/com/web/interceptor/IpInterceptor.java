@@ -1,5 +1,6 @@
 package com.web.interceptor;
 
+import com.common.constants.SymbolConstant;
 import com.google.common.collect.Lists;
 import com.web.annotation.IpStint;
 import com.web.constants.PrefixConstant;
@@ -45,7 +46,7 @@ public class IpInterceptor implements HandlerInterceptor {
                 //读取默认配置
                 String denyIps = PropertiesUtil.getPropertiesValue(PrefixConstant.IP_INTERCEPTION_DEFAULT_DENY);
                 if (StringUtils.isNotBlank(denyIps)) {
-                    denyIpList = Lists.newArrayList(denyIps.trim().split(","));
+                    denyIpList = Lists.newArrayList(denyIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
                 }
             } else {
                 denyIpList = Lists.newArrayList(ipFilter.denyIp());
@@ -55,7 +56,7 @@ public class IpInterceptor implements HandlerInterceptor {
                 //读取默认配置
                 String allowIps = PropertiesUtil.getPropertiesValue(PrefixConstant.IP_INTERCEPTION_DEFAULT_ALLOW);
                 if (StringUtils.isNotBlank(allowIps)) {
-                    allowIpList = Lists.newArrayList(allowIps.trim().split(","));
+                    allowIpList = Lists.newArrayList(allowIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
                 }
             } else {
                 allowIpList = Lists.newArrayList(ipFilter.allowIp());

@@ -35,8 +35,9 @@ public class DateUtil {
 
     /**
      * 格式化指定日期
-     * @param format
-     * @param dateTime
+     * @param dateFormat
+     * @param dateFormat
+     * @param date
      * @return
      */
     public static String formatDate(DateFormat dateFormat, Date date) {
@@ -45,17 +46,12 @@ public class DateUtil {
 
     /**
      * 字符串转化成日期
-     * @param format
+     * @param dateFormat
      * @param dateStr
      * @return
      */
     public static Date parseDate(DateFormat dateFormat, String dateStr) {
-        DateTime dateTime = null;
-        try {
-            dateTime = DateTimeFormat.forPattern(dateFormat.getFormat()).parseDateTime(dateStr);
-        } catch (Exception e) {
-            logger.error("格式转化异常: ", e);
-        }
+        DateTime dateTime = DateTimeFormat.forPattern(dateFormat.getFormat()).parseDateTime(dateStr);
         return dateTime.toDate();
     }
 }

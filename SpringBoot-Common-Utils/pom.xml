@@ -12,12 +12,6 @@
     <artifactId>SpringBoot-Common-Utils</artifactId>
 
     <dependencies>
-        <!-- joda-time包 -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>${joda.version}</version>
-        </dependency>
         <!-- commons-lang3包 -->
         <dependency>
             <groupId>org.apache.commons</groupId>

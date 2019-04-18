@@ -1,11 +1,13 @@
 package com.common.utils;
 
 import com.common.enums.DateFormat;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -18,40 +20,81 @@ public class DateUtil {
     private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
     /**
-     * 获取当前时间
-     * @return
+     * 系统所在时区
      */
-    public static Date getNowDate() {
-        return DateTime.now().toDate();
+    private final static ZoneId SYSTEM_ZONEID = ZoneId.systemDefault();
+
+    /**
+     * Date转换为LocalDateTime
+     *
+     * @return java.time.LocalDateTime
+     * @author Dragon-zg
+     * @date 2019/4/18 19:13
+     * @params [date]
+     */
+    public final static LocalDateTime date2LocalDateTime(Date date) {
+        LocalDateTime localDateTime = date.toInstant().atZone(SYSTEM_ZONEID).toLocalDateTime();
+        return localDateTime;
+    }
+
+    /**
+     * LocalDateTime转换为Date
+     *
+     * @return java.util.Date
+     * @author Dragon-zg
+     * @date 2019/4/18 19:14
+     * @params [localDateTime]
+     */
+    public final static Date localDateTime2Date(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(SYSTEM_ZONEID).toInstant());
+    }
+
+    /**
+     * 获取当前时间
+     *
+     * @return java.util.Date
+     * @author Dragon-zg
+     * @date 2019/4/18 19:09
+     * @params []
+     */
+    public final static Date getNowDate() {
+        return Date.from(Instant.now());
     }
 
     /**
      * 获取当前时间 Str类型
+     *
      * @return java.lang.String
-     */  
-    public static String getNowStr(DateFormat dateFormat) {
-        return DateTime.now().toString(dateFormat.getFormat());
+     * @author Dragon-zg
+     * @date 2019/4/18 19:10
+     * @params [dateFormat]
+     */
+    public final static String getNowStr(DateFormat dateFormat) {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateFormat.getFormat()));
     }
 
     /**
      * 格式化指定日期
-     * @param dateFormat
-     * @param dateFormat
-     * @param date
-     * @return
+     *
+     * @return java.lang.String
+     * @author Dragon-zg
+     * @date 2019/4/18 19:10
+     * @params [date, dateFormat]
      */
-    public static String formatDate(DateFormat dateFormat, Date date) {
-        return new DateTime(date).toString(dateFormat.getFormat());
+    public final static String formatDate(Date date, DateFormat dateFormat) {
+        return LocalDateTime.ofInstant(date.toInstant(), SYSTEM_ZONEID).format(DateTimeFormatter.ofPattern(dateFormat.getFormat()));
     }
 
     /**
      * 字符串转化成日期
-     * @param dateFormat
-     * @param dateStr
-     * @return
+     *
+     * @return java.util.Date
+     * @author Dragon-zg
+     * @date 2019/4/18 19:10
+     * @params [dateStr, dateFormat]
      */
-    public static Date parseDate(DateFormat dateFormat, String dateStr) {
-        DateTime dateTime = DateTimeFormat.forPattern(dateFormat.getFormat()).parseDateTime(dateStr);
-        return dateTime.toDate();
+    public final static Date parseDate(String dateStr, DateFormat dateFormat) {
+        LocalDateTime localDateTime = LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern(dateFormat.getFormat()));
+        return localDateTime2Date(localDateTime);
     }
 }

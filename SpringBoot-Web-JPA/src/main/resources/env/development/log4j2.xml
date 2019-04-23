@@ -2,8 +2,8 @@
 
 <configuration status="OFF">
     <Properties>
-        <Property name="LOG_HOME">${sys:user.home}/deploy/logs</Property>
-        <Property name="LOG_NAME">spring_jpa.log</Property>
+        <Property name="LOG_HOME">${sys:user.home}/deploy/springboot/logs</Property>
+        <Property name="LOG_NAME">jpa.log</Property>
         <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %M-%L - %m%n</Property>
     </Properties>
     <appenders>

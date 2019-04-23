@@ -2,8 +2,6 @@ package com.jpa.respository;
 
 import com.jpa.entity.Girl;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  * @Description JPA Dao 层
@@ -12,5 +10,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @Param
  * @return
  */
-public interface GirlRespository extends JpaRepository<Girl, Integer>, PagingAndSortingRepository<Girl, Integer> , JpaSpecificationExecutor<Girl>{
+public interface GirlRespository extends JpaRepository<Girl, Integer> {
 }

@@ -45,7 +45,7 @@ public class GirlServiceImpl implements GirlService {
         if (null == queryGirl) {
             throw new CustomizedException(ExceptionCode.NOT_EXIST_GIRL);
         }else{
-            girlRespository.delete(id);
+            girlRespository.delete(queryGirl);
         }
     }
 
@@ -73,7 +73,7 @@ public class GirlServiceImpl implements GirlService {
      */
     @Override
     public Girl findById(Integer id) throws Exception {
-        return girlRespository.findOne(id);
+        return girlRespository.findById(id).orElse(null);
     }
 
     /**

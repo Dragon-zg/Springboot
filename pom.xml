@@ -43,16 +43,16 @@
             <artifactId>spring-boot-starter</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 使用log4j2日志 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
         <!-- 测试相关依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- 日志相关依赖包-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
         <!-- commons-lang3包 -->
         <dependency>

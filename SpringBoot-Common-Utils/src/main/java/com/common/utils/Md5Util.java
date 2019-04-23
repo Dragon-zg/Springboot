@@ -1,8 +1,7 @@
 package com.common.utils;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -15,9 +14,8 @@ import java.security.NoSuchAlgorithmException;
  * @Param
  * @return
  */
+@Log4j2
 public class Md5Util {
-
-    private final static Logger logger = LoggerFactory.getLogger(Md5Util.class);
 
     public Md5Util() {
     }
@@ -59,7 +57,7 @@ public class Md5Util {
             messageDigest.reset();
             messageDigest.update(str.getBytes());
         } catch (NoSuchAlgorithmException e) {
-            logger.error("md5 error:" + e.getMessage(), e);
+            log.error("md5 error:" + e.getMessage(), e);
         }
         byte[] byteArray = messageDigest.digest();
         StringBuffer md5StrBuff = new StringBuffer();

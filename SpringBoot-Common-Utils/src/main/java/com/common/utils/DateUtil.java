@@ -1,8 +1,6 @@
 package com.common.utils;
 
 import com.common.enums.DateFormat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -16,8 +14,6 @@ import java.util.Date;
  * @Date 2018/7/31 9:03
  **/
 public class DateUtil {
-
-    private final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
     /**
      * 系统所在时区

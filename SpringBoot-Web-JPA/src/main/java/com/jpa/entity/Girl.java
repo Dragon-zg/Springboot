@@ -1,6 +1,7 @@
 package com.jpa.entity;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,9 +11,11 @@ import javax.persistence.*;
  * @Date: 2017-12-16 19:53
  */
 @Data
+@Builder
 @Entity
 @Table(name = "girl", schema = "test")
 public class Girl {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

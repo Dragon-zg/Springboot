@@ -1,11 +1,12 @@
 package com.jpa.entity.onetomany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.jpa.entity.base.AbstractEntity;
+import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,16 +18,11 @@ import java.util.Date;
  */
 @Data
 @Builder
+@ToString(callSuper = true)
 @ApiModel("员工表")
 @Entity
-@Table(name = "jpa_employee", schema = "test")
-public class Employee extends AbstractEntity {
-
-    @Id
-    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("主键ID")
-    private Integer id;
+@Table(name = "jpa_employee")
+public class Employee extends BaseEntity {
 
     @Basic
     @Column(name = "name", columnDefinition = "varchar(40) not null comment '员工姓名'")

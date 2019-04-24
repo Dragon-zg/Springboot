@@ -1,6 +1,6 @@
 package com.jpa.service;
 
-import com.jpa.dao.PersonDao;
+import com.jpa.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
 public class PersonService {
 
     @Autowired
-    private PersonDao personDao;
+    private PersonRepository personRepository;
 
 }

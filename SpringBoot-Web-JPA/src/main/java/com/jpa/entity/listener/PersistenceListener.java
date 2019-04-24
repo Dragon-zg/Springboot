@@ -1,6 +1,6 @@
 package com.jpa.entity.listener;
 
-import com.jpa.entity.base.AbstractEntity;
+import com.jpa.entity.base.BaseEntity;
 import com.web.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,27 +18,27 @@ public class PersistenceListener {
     private final static Logger logger = LoggerFactory.getLogger(PersistenceListener.class);
 
     @PrePersist
-    public void prePersist(AbstractEntity abstractEntity) {
+    public void prePersist(BaseEntity baseEntity) {
         Date now = DateUtil.getNowDate();
-        if (abstractEntity.getCreateTime() == null) {
-            abstractEntity.setCreateTime(now);
+        if (baseEntity.getCreateTime() == null) {
+            baseEntity.setCreateTime(now);
         }
-        if (abstractEntity.getUpdateTime() == null) {
-            abstractEntity.setUpdateTime(now);
+        if (baseEntity.getUpdateTime() == null) {
+            baseEntity.setUpdateTime(now);
         }
-        if (abstractEntity.getDeleteFlag() == null) {
-            abstractEntity.setDeleteFlag(false);
+        if (baseEntity.getDeleteFlag() == null) {
+            baseEntity.setDeleteFlag(false);
         }
     }
 
 
     @PreUpdate
-    public void preUpdate(AbstractEntity abstractEntity) {
-        if (abstractEntity.getUpdateTime() == null) {
-            abstractEntity.setUpdateTime(DateUtil.getNowDate());
+    public void preUpdate(BaseEntity baseEntity) {
+        if (baseEntity.getUpdateTime() == null) {
+            baseEntity.setUpdateTime(DateUtil.getNowDate());
         }
-        if (abstractEntity.getDeleteFlag() == null) {
-            abstractEntity.setDeleteFlag(false);
+        if (baseEntity.getDeleteFlag() == null) {
+            baseEntity.setDeleteFlag(false);
         }
     }
 }

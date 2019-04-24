@@ -1,9 +1,11 @@
 package com.jpa.entity.onetoone;
 
+import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -14,16 +16,11 @@ import javax.persistence.*;
  */
 @Data
 @Builder
+@ToString(callSuper = true)
 @ApiModel("中国公民实体")
 @Entity
-@Table(name = "jpa_person", schema = "test")
-public class Person {
-
-    @Id
-    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("主键ID")
-    private Integer id;
+@Table(name = "jpa_person")
+public class Person extends BaseEntity {
 
     @Basic
     @Column(name = "name", columnDefinition = "varchar(40) not null comment '公民姓名'")

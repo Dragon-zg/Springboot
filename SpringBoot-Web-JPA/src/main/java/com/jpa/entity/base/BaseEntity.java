@@ -1,6 +1,5 @@
 package com.jpa.entity.base;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jpa.entity.listener.PersistenceListener;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,28 +18,22 @@ import java.util.Date;
 @ApiModel("实体基础属性类")
 @MappedSuperclass
 @EntityListeners({PersistenceListener.class})
-public class AbstractEntity implements Serializable {
+public class BaseEntity implements Serializable {
 
-    @Basic
-    @Column(name = "create_user", columnDefinition = "varchar(20) not null comment '创建人'")
-    @ApiModelProperty("创建人")
-    protected String createUser;
+    @Id
+    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("主键ID")
+    private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time", columnDefinition = "datetime default current_timestamp comment '创建时间'")
     @ApiModelProperty("创建时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date createTime;
-
-    @Basic
-    @Column(name = "update_user", columnDefinition = "varchar(20) default null comment '更新人'")
-    @ApiModelProperty("更新人")
-    protected String updateUser;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_time", columnDefinition = "datetime default null comment '更新时间'")
     @ApiModelProperty("更新时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date updateTime;
 
     @Basic

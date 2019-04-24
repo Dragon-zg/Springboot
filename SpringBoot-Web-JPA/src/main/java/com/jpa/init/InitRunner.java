@@ -1,4 +1,4 @@
-package com.web.config;
+package com.jpa.init;
 
 import com.web.enums.DateFormat;
 import com.web.utils.DateUtil;

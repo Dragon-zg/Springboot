@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 /**
@@ -13,8 +12,8 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
  * @Author Dragon-zg
  * @Date 2018/8/15 13:18
  **/
+@Log4j2
 public class JsonUtils {
-    private final static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
 
     private static ObjectMapper objectMapper;
 
@@ -40,7 +39,7 @@ public class JsonUtils {
         try {
             return objectMapper().writeValueAsString(value);
         } catch (Exception e) {
-            logger.warn(e.getMessage(), e);
+            log.warn(e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }
@@ -53,7 +52,7 @@ public class JsonUtils {
             objectMapper.enable(MapperFeature.DEFAULT_VIEW_INCLUSION);
             return json;
         } catch (Exception e) {
-            logger.warn(e.getMessage());
+            log.warn(e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -62,7 +61,7 @@ public class JsonUtils {
         try {
             return objectMapper().readValue(json, valueType);
         } catch (Exception e) {
-            logger.warn(e.getMessage() + ", json : " + json);
+            log.warn(e.getMessage() + ", json : " + json);
             throw new RuntimeException(e);
         }
 
@@ -72,7 +71,7 @@ public class JsonUtils {
         try {
             return objectMapper().readValue(json, typeReference);
         } catch (Exception e) {
-            logger.warn(e.getMessage() + ", json : " + json);
+            log.warn(e.getMessage() + ", json : " + json);
             throw new RuntimeException(e);
         }
 
@@ -82,7 +81,7 @@ public class JsonUtils {
         try {
             return objectMapper().readValue(json, javaType);
         } catch (Exception e) {
-            logger.warn(e.getMessage() + ", json : " + json);
+            log.warn(e.getMessage() + ", json : " + json);
             throw new RuntimeException(e);
         }
     }

@@ -1,18 +1,17 @@
 package com.web.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.web.config.env.Profiles;
+import com.web.constants.EnvConstant;
 import com.web.enums.DateFormat;
 import com.web.i18n.I18nMessageResource;
 import com.web.interceptor.IpInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.core.env.Profiles;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -39,7 +38,6 @@ import java.util.TimeZone;
  */
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
-    private final static Logger logger = LoggerFactory.getLogger(MvcConfig.class);
 
     public MvcConfig(Environment environment) {
         this.environment = environment;
@@ -95,16 +93,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        if (environment.acceptsProfiles(Profiles.DEVELOPMENT, Profiles.PRODUCTION)) {
+        if (environment.acceptsProfiles(Profiles.of(EnvConstant.DEVELOPMENT, EnvConstant.PRODUCTION))) {
             //IP访问限制拦截器
-            registry.addInterceptor(new IpInterceptor()).addPathPatterns("/api/**");
+            registry.addInterceptor(new IpInterceptor(environment)).addPathPatterns("/api/**");
         }
     }
 
     /**
      * 打印请求相关日志信息
      */
-    @Profile({Profiles.DEVELOPMENT})
+    @Profile({EnvConstant.DEVELOPMENT})
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();

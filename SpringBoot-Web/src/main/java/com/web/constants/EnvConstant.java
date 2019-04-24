@@ -1,11 +1,13 @@
-package com.web.config.env;
+package com.web.constants;
 
 /**
- * 环境常量
- * @Author Dragon-zg
- * @Date 2018/8/13 16:05
- **/
-public interface Profiles {
+ * 环境常量类
+ *
+ * @author Dragon-zg
+ * @date 2018/11/7 9:39
+ */
+public interface EnvConstant {
+
     /**
      * 测试环境
      */

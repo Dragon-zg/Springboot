@@ -2,13 +2,13 @@ package com.web.interceptor;
 
 import com.google.common.collect.Lists;
 import com.web.annotation.IpStint;
-import com.web.constants.PrefixConstant;
+import com.web.constants.PropertiesKeyConstant;
 import com.web.constants.SymbolConstant;
-import com.web.utils.PropertiesUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.env.Environment;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +24,14 @@ import java.util.List;
  **/
 @Log4j2
 public class IpInterceptor implements HandlerInterceptor {
+
+    private final static String UNKNOWN = "unknown";
+
+    public IpInterceptor(Environment environment) {
+        this.environment = environment;
+    }
+
+    private final Environment environment;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -43,7 +51,10 @@ public class IpInterceptor implements HandlerInterceptor {
 
             if (ArrayUtils.isEmpty(ipFilter.denyIp())) {
                 //读取默认配置
-                String denyIps = PropertiesUtil.getPropertiesValue(PrefixConstant.IP_INTERCEPTION_DEFAULT_DENY);
+                String denyIps = environment.getProperty(PropertiesKeyConstant.IP_INTERCEPTION_DEFAULT_DENY);
+                if (log.isDebugEnabled()) {
+                    log.debug("denyIps: {}", denyIps);
+                }
                 if (StringUtils.isNotBlank(denyIps)) {
                     denyIpList = Lists.newArrayList(denyIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
                 }
@@ -53,7 +64,10 @@ public class IpInterceptor implements HandlerInterceptor {
 
             if (ArrayUtils.isEmpty(ipFilter.allowIp())) {
                 //读取默认配置
-                String allowIps = PropertiesUtil.getPropertiesValue(PrefixConstant.IP_INTERCEPTION_DEFAULT_ALLOW);
+                String allowIps = environment.getProperty(PropertiesKeyConstant.IP_INTERCEPTION_DEFAULT_ALLOW);
+                if (log.isDebugEnabled()) {
+                    log.debug("allowIps: {}", allowIps);
+                }
                 if (StringUtils.isNotBlank(allowIps)) {
                     allowIpList = Lists.newArrayList(allowIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
                 }
@@ -105,51 +119,33 @@ public class IpInterceptor implements HandlerInterceptor {
     public final static String getIpAddress(HttpServletRequest request) throws IOException {
         // 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址
         String ip = request.getHeader("X-Forwarded-For");
-        if (log.isInfoEnabled()) {
-            log.info("getIpAddress(HttpServletRequest) - X-Forwarded-For - String ip=" + ip);
-        }
 
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("Proxy-Client-IP");
-                if (log.isInfoEnabled()) {
-                    log.info("getIpAddress(HttpServletRequest) - Proxy-Client-IP - String ip=" + ip);
-                }
             }
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("WL-Proxy-Client-IP");
-                if (log.isInfoEnabled()) {
-                    log.info("getIpAddress(HttpServletRequest) - WL-Proxy-Client-IP - String ip=" + ip);
-                }
             }
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("HTTP_CLIENT_IP");
-                if (log.isInfoEnabled()) {
-                    log.info("getIpAddress(HttpServletRequest) - HTTP_CLIENT_IP - String ip=" + ip);
-                }
             }
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-                if (log.isInfoEnabled()) {
-                    log.info("getIpAddress(HttpServletRequest) - HTTP_X_FORWARDED_FOR - String ip=" + ip);
-                }
             }
-            if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
                 ip = request.getRemoteAddr();
-                if (log.isInfoEnabled()) {
-                    log.info("getIpAddress(HttpServletRequest) - getRemoteAddr - String ip=" + ip);
-                }
             }
         } else if (ip.length() > 15) {
             String[] ips = ip.split(",");
             for (int index = 0; index < ips.length; index++) {
                 String strIp = (String) ips[index];
-                if (!("unknown".equalsIgnoreCase(strIp))) {
+                if (!(UNKNOWN.equalsIgnoreCase(strIp))) {
                     ip = strIp;
                     break;
                 }
             }
         }
-        return ip;
+        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
     }
 }

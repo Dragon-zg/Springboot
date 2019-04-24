@@ -27,9 +27,6 @@ public enum ExceptionCode {
      */
     UPLOAD_SIZE_ERROR(303, "上传文件大小超过限制!"),
 
-    NOT_EXIST_GIRL(1000,"不存在该女生!"),
-    SMALL_GIRL(1001,"女生年纪过小,不允许查询!")
-
     ;
 
     private Integer code;

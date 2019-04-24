@@ -2,8 +2,7 @@ package com.jpa.init;
 
 import com.web.enums.DateFormat;
 import com.web.utils.DateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +11,14 @@ import org.springframework.stereotype.Component;
  * @author Dragon-zg
  * @date 2019/1/10 15:04
  */
+@Log4j2
 @Component
 public class InitRunner implements CommandLineRunner {
-    private final static Logger logger = LoggerFactory.getLogger(InitRunner.class);
-
 
     @Override
     public void run(String... args) throws Exception {
         //打印当前服务器时间
-        logger.info("当前项目启动时间是: {}", DateUtil.getNowStr(DateFormat.CHINA_TIME));
+        log.info("当前项目启动时间是: {}", DateUtil.getNowStr(DateFormat.CHINA_TIME));
     }
 
 }

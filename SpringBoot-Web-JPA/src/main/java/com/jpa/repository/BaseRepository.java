@@ -6,7 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 /**
  * BaseRepository
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/4/24 16:16
  */
 @NoRepositoryBean

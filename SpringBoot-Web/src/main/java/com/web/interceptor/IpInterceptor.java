@@ -1,9 +1,9 @@
 package com.web.interceptor;
 
-import com.common.constants.SymbolConstant;
 import com.google.common.collect.Lists;
 import com.web.annotation.IpStint;
 import com.web.constants.PrefixConstant;
+import com.web.constants.SymbolConstant;
 import com.web.utils.PropertiesUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;

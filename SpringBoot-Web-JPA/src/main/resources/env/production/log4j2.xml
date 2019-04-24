@@ -75,10 +75,6 @@
             <appender-ref ref="rollingDebugFile" />
             <appender-ref ref="rollingInfoFile" />
         </Logger>
-        <Logger name="com.common" level="debug" additivity="true">
-            <appender-ref ref="rollingDebugFile" />
-            <appender-ref ref="rollingInfoFile" />
-        </Logger>
         <Logger name="com.web" level="debug" additivity="true">
             <appender-ref ref="rollingDebugFile" />
             <appender-ref ref="rollingInfoFile" />

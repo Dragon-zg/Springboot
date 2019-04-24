@@ -1,8 +1,8 @@
 package com.web.config;
 
-import com.common.enums.DateFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.web.config.env.Profiles;
+import com.web.enums.DateFormat;
 import com.web.i18n.I18nMessageResource;
 import com.web.interceptor.IpInterceptor;
 import org.slf4j.Logger;

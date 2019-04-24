@@ -1,7 +1,7 @@
 package com.web.config;
 
-import com.common.enums.DateFormat;
-import com.common.utils.DateUtil;
+import com.web.enums.DateFormat;
+import com.web.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

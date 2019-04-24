@@ -1,4 +1,4 @@
-package com.common.constants;
+package com.web.constants;
 
 /**
  * 符号常量类

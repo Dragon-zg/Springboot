@@ -1,7 +1,7 @@
 package com.jpa.entity.listener;
 
-import com.common.utils.DateUtil;
 import com.jpa.entity.base.AbstractEntity;
+import com.web.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

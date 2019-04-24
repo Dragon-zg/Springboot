@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @Description 请求方法后置拦截器
- * @Author wangqiang
+ * @Author Dragon-zg
  * @Date 2018/6/5 9:28
  **/
 public class PostInvokeInterceptor extends AbstractPhaseInterceptor<Message> {

@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 学生实体
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019-03-13 22:59
  **/
 //@ApiModel("学生实体")

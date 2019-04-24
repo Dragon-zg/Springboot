@@ -16,7 +16,7 @@ import java.io.OutputStream;
 /**
  * 在流关闭之前拦截器
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/1/10 18:30
  */
 public class ArtifactOutInterceptor extends AbstractPhaseInterceptor<Message> {

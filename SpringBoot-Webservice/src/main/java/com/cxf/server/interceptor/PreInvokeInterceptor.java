@@ -11,7 +11,7 @@ import javax.ws.rs.core.Context;
 import javax.xml.ws.handler.MessageContext;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @Description: 请求方法前置拦截器
  */
 public class PreInvokeInterceptor extends AbstractPhaseInterceptor<Message> {

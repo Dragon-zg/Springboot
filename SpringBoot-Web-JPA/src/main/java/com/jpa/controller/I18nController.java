@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/1/10 16:20
  **/
 @Api(tags = "多语言国际化")
 @RestController
-@RequestMapping("/girlController")
+@RequestMapping("/api/i18n")
 public class I18nController {
 
     @ApiOperation("多语言Demo测试")
-    @GetMapping("/i18n")
+    @GetMapping("")
     public String getI18n() {
         // cookie key:language value:zh/en
         String code = "唯一code";

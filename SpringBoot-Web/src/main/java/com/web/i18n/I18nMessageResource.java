@@ -25,7 +25,7 @@ public class I18nMessageResource extends AbstractMessageSource implements Resour
 
     @Override
     protected MessageFormat resolveCode(String code, Locale locale) {
-        String message = StringUtils.EMPTY;
+        String message;
         //英文
         if (StringUtils.equals(locale.getLanguage(), Locale.ENGLISH.getLanguage())) {
             message = "这是英文";

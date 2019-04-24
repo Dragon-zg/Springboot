@@ -2,7 +2,7 @@
 
 <configuration status="OFF">
     <Properties>
-        <Property name="LOG_HOME">${sys:user.home}/deploy/springboot/logs</Property>
+        <Property name="LOG_HOME">${sys:user.home}/deploy/logs/springboot</Property>
         <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %M-%L - %m%n</Property>
     </Properties>
     <appenders>

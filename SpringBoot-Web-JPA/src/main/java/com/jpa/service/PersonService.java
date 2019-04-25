@@ -3,9 +3,13 @@ package com.jpa.service;
 import com.jpa.entity.onetoone.IDCard;
 import com.jpa.entity.onetoone.Person;
 import com.jpa.repository.PersonRepository;
+import com.web.enums.ExceptionCode;
+import com.web.exception.CustomizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * @author Dragon-zg
@@ -40,4 +44,16 @@ public class PersonService {
         personRepository.save(wangwu);
     }
 
+    /**
+     * 详情
+     *
+     * @return com.jpa.entity.onetoone.Person
+     * @author Dragon-zg
+     * @date 2019/4/25 10:56
+     * @params [id]
+     */
+    public Person detail(Long id) {
+        Optional<Person> optional = personRepository.findById(id);
+        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+    }
 }

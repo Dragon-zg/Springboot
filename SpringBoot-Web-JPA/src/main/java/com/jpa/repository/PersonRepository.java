@@ -8,5 +8,5 @@ import com.jpa.entity.onetoone.Person;
  * @author Dragon-zg
  * @date 2019/4/24 16:17
  */
-public interface PersonRepository extends BaseRepository<Person, Integer> {
+public interface PersonRepository extends BaseRepository<Person, Long> {
 }

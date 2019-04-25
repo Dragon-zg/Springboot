@@ -14,18 +14,8 @@ public enum ExceptionCode {
      * 未知错误 999999
      */
     UNKOW_ERROR(999999, "未知错误!"),
-    /**
-     * 上传文件不存在 301
-     */
-    UPLOAD_FILE_UNEXIST(301, "上传文件不存在!"),
-    /**
-     * 上传文件类型不正确 302
-     */
-    UPLOAD_FORMAL_ERROR(302, "上传文件类型不正确!"),
-    /**
-     * 上传文件大小超过限制 303
-     */
-    UPLOAD_SIZE_ERROR(303, "上传文件大小超过限制!"),
+
+    DATA_NOT_EXIST(300, "数据不存在!")
 
     ;
 

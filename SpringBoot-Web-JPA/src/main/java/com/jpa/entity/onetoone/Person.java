@@ -3,9 +3,7 @@ package com.jpa.entity.onetoone;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,8 +12,10 @@ import javax.persistence.*;
  * @Date: 2018-06-10 20:23
  * @Author: Deagon-zg
  */
-@Data
-@Builder
+@Getter
+@Builder(toBuilder=true)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @ApiModel("中国公民实体")
 @Entity

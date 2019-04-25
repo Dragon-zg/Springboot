@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,8 +14,10 @@ import java.util.Date;
  * @Date: 2018-06-03 18:11
  * @Author: Dragon-zg
  */
-@Data
-@Builder
+@Getter
+@Builder(toBuilder=true)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @ApiModel("员工表")
 @Entity

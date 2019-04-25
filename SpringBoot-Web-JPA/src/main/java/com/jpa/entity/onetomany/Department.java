@@ -1,12 +1,9 @@
 package com.jpa.entity.onetomany;
 
-import com.google.common.collect.Lists;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,8 +13,10 @@ import java.util.List;
  * @Date: 2018-06-03 18:11
  * @Author: Dragon-zg
  */
-@Data
-@Builder
+@Getter
+@Builder(toBuilder=true)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @ApiModel("部门表")
 @Entity
@@ -35,5 +34,5 @@ public class Department extends BaseEntity {
     private Integer quantity;
 
     @OneToMany(mappedBy = "department")
-    private List<Employee> employees = Lists.newArrayList();
+    private List<Employee> employees;
 }

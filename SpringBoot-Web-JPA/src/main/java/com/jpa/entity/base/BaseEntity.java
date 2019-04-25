@@ -3,7 +3,8 @@ package com.jpa.entity.base;
 import com.jpa.entity.listener.PersistenceListener;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,8 @@ import java.util.Date;
  * @Date: 2018-06-03 18:22
  * @Author: Dragon-zg
  */
-@Data
+@Getter
+@Setter
 @ApiModel("实体基础属性类")
 @MappedSuperclass
 @EntityListeners({PersistenceListener.class})

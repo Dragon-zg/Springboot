@@ -1,11 +1,10 @@
 package com.jpa.entity.onetoone;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,8 +13,10 @@ import javax.persistence.*;
  * @Date: 2018-06-10 20:25
  * @Author: Deagon-zg
  */
-@Data
-@Builder
+@Getter
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @ApiModel("身份证实体")
 @Entity
@@ -27,6 +28,7 @@ public class IDCard extends BaseEntity {
     @ApiModelProperty("身份证号码")
     private String cardno;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "idcard", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Person person;
 }

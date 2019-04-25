@@ -56,4 +56,20 @@ public class PersonService {
         Optional<Person> optional = personRepository.findById(id);
         return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
     }
+
+    /**
+     * 更新
+     *
+     * @return void
+     * @author Dragon-zg
+     * @date 2019/4/25 15:48
+     * @params [id, person]
+     */
+    public void update(Long id, final Person person) {
+        Optional<Person> optional = personRepository.findById(id);
+        Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+        update.setName(person.getName());
+        update.getIdcard().setCardno(person.getIdcard().getCardno());
+        personRepository.save(person);
+    }
 }

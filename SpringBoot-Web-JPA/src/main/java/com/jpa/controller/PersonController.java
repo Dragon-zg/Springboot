@@ -9,10 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 /**
@@ -27,7 +24,7 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @ApiOperation(value = "初始化公民数据")
+    @ApiOperation(value = "初始化")
     @GetMapping(value = {"/initPerson"})
     public void initPerson() {
         personService.initPerson();
@@ -35,7 +32,7 @@ public class PersonController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
-    public Page<Person> page(WebRequest request, Pageable pageable){
+    public Page<Person> page(WebRequest request, Pageable pageable) {
         return null;
     }
 
@@ -43,5 +40,12 @@ public class PersonController {
     @GetMapping(value = {"/{id}/detail"})
     public ResultModel<Person> detail(@PathVariable("id") Long id) {
         return ResultUtil.success(personService.detail(id));
+    }
+
+    @ApiOperation(value = "更新")
+    @PutMapping(value = {"/{id}/update"})
+    public ResultModel update(@PathVariable("id") Long id, @RequestBody Person person) {
+        personService.update(id, person);
+        return ResultUtil.success();
     }
 }

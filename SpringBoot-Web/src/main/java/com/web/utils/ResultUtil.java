@@ -6,11 +6,12 @@ import com.web.model.ResultModel;
 
 /**
  * 相应结果工具类
+ *
  * @author Dragon-zg
  * @Date: 2017-12-16 20:41
  */
 public class ResultUtil {
-    public static ResultModel success(Object object) {
+    public static <T extends Object> ResultModel<T> success(T object) {
         ResultModel result = new ResultModel();
         result.setCode(ExceptionCode.SUCCESS.getCode());
         result.setMsg(ExceptionCode.SUCCESS.getMsg());
@@ -28,6 +29,7 @@ public class ResultUtil {
         result.setMsg(msg);
         return result;
     }
+
     public static ResultModel error(ExceptionCode exceptionCode) {
         ResultModel result = new ResultModel();
         result.setCode(exceptionCode.getCode());

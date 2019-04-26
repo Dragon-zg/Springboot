@@ -40,8 +40,8 @@
         <Logger name="org.springframework" level="warn" additivity="true"/>
         <Logger name="org.springframework.web" level="debug" additivity="true"/>
         <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="true"/>
-        <Logger name="springfox" level="warn" debugadditivity="true"/>
-        <Logger name="druid.sql" level="" additivity="true"/>
+        <Logger name="springfox" level="warn" additivity="true"/>
+        <Logger name="druid.sql" level="debug" additivity="true"/>
         <Root level="debug">
             <appender-ref ref="console"/>
             <appender-ref ref="file"/>

@@ -48,4 +48,11 @@ public class PersonController {
         personService.update(id, person);
         return ResultUtil.success();
     }
+
+    @ApiOperation(value = "删除")
+    @PutMapping(value = {"/{id}/delete"})
+    public ResultModel delete(@PathVariable("id") Long id) {
+        personService.delete(id);
+        return ResultUtil.success();
+    }
 }

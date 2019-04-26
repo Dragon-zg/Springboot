@@ -65,11 +65,25 @@ public class PersonService {
      * @date 2019/4/25 15:48
      * @params [id, person]
      */
-    public void update(Long id, final Person person) {
+    public void update(final Long id, final Person person) {
         Optional<Person> optional = personRepository.findById(id);
         Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
         update.setName(person.getName());
         update.getIdcard().setCardno(person.getIdcard().getCardno());
         personRepository.save(update);
+    }
+
+    /**
+     * 删除
+     *
+     * @return void
+     * @author Dragon-zg
+     * @date 2019/4/25 15:48
+     * @params [id, person]
+     */
+    public void delete(final Long id) {
+        Optional<Person> optional = personRepository.findById(id);
+        optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+        personRepository.deleteById(id);
     }
 }

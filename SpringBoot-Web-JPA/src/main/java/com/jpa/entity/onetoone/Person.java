@@ -27,7 +27,7 @@ public class Person extends BaseEntity {
     @ApiModelProperty("公民姓名")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "idcard_id", referencedColumnName = "id", columnDefinition = "int(11) comment '身份证ID 外键'", unique = true, nullable = false)
     private IDCard idcard;
 }

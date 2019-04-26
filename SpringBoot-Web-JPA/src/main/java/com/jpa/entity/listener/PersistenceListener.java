@@ -34,9 +34,7 @@ public class PersistenceListener {
 
     @PreUpdate
     public void preUpdate(BaseEntity baseEntity) {
-        if (baseEntity.getUpdateTime() == null) {
-            baseEntity.setUpdateTime(DateUtil.getNowDate());
-        }
+        baseEntity.setUpdateTime(DateUtil.getNowDate());
         if (baseEntity.getDeleteFlag() == null) {
             baseEntity.setDeleteFlag(false);
         }

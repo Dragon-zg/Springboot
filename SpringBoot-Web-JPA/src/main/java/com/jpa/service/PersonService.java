@@ -70,6 +70,6 @@ public class PersonService {
         Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
         update.setName(person.getName());
         update.getIdcard().setCardno(person.getIdcard().getCardno());
-        personRepository.save(person);
+        personRepository.save(update);
     }
 }

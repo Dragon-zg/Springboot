@@ -29,6 +29,6 @@ public class IDCard extends BaseEntity {
     private String cardno;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "idcard", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "idcard")
     private Person person;
 }

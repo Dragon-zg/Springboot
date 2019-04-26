@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 import com.web.enums.DateFormat;
 
@@ -13,7 +13,7 @@ import java.util.Date;
  * @Author Dragon-zg
  * @Date 2018/7/31 9:03
  **/
-public class DateUtil {
+public class DateUtils {
 
     /**
      * 系统所在时区

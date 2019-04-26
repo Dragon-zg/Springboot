@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
@@ -22,7 +22,7 @@ public class JsonUtils {
             return objectMapper;
         }
         try {
-            objectMapper = SpringContextUtil.getBean(ObjectMapper.class);
+            objectMapper = SpringContextUtils.getBean(ObjectMapper.class);
         } catch (Exception e) {
             final Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
             builder.featuresToDisable(

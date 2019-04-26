@@ -3,7 +3,7 @@ package com.jpa.controller;
 import com.jpa.entity.onetoone.Person;
 import com.jpa.service.PersonService;
 import com.web.model.ResultModel;
-import com.web.utils.ResultUtil;
+import com.web.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,20 +39,20 @@ public class PersonController {
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
     public ResultModel<Person> detail(@PathVariable("id") Long id) {
-        return ResultUtil.success(personService.detail(id));
+        return ResultUtils.success(personService.detail(id));
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
     public ResultModel update(@PathVariable("id") Long id, @RequestBody Person person) {
         personService.update(id, person);
-        return ResultUtil.success();
+        return ResultUtils.success();
     }
 
     @ApiOperation(value = "删除")
     @PutMapping(value = {"/{id}/delete"})
     public ResultModel delete(@PathVariable("id") Long id) {
         personService.delete(id);
-        return ResultUtil.success();
+        return ResultUtils.success();
     }
 }

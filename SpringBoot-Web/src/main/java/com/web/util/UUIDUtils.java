@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 import java.util.UUID;
 
@@ -7,7 +7,7 @@ import java.util.UUID;
  * @Author Dragon-zg
  * @Date 2016-10-05 13:55
  */
-public class UUIDUtil {
+public class UUIDUtils {
 	/**
 	 * @Description 获取UUID
 	 * @Author Dragon-zg

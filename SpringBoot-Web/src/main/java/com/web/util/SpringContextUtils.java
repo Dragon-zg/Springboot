@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -11,7 +11,7 @@ import java.util.Map;
  * @Author Dragon-zg
  * @Date 2018/8/15 13:20
  **/
-public class SpringContextUtil {
+public class SpringContextUtils {
 
     private static ApplicationContext getContext() {
         return ContextLoader.getCurrentWebApplicationContext();

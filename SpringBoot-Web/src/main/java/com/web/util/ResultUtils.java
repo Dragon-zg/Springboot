@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 
 import com.web.enums.ExceptionCode;
@@ -10,7 +10,7 @@ import com.web.model.ResultModel;
  * @author Dragon-zg
  * @Date: 2017-12-16 20:41
  */
-public class ResultUtil {
+public class ResultUtils {
     public static <T extends Object> ResultModel<T> success(T object) {
         ResultModel result = new ResultModel();
         result.setCode(ExceptionCode.SUCCESS.getCode());

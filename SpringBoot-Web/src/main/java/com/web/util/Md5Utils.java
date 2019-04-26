@@ -1,4 +1,4 @@
-package com.web.utils;
+package com.web.util;
 
 
 import lombok.extern.log4j.Log4j2;
@@ -15,9 +15,9 @@ import java.security.NoSuchAlgorithmException;
  * @return
  */
 @Log4j2
-public class Md5Util {
+public class Md5Utils {
 
-    public Md5Util() {
+    public Md5Utils() {
     }
 
     public static final String md5(String s) {

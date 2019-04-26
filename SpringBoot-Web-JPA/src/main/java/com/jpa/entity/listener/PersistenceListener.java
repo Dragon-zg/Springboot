@@ -1,7 +1,7 @@
 package com.jpa.entity.listener;
 
 import com.jpa.entity.base.BaseEntity;
-import com.web.utils.DateUtil;
+import com.web.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ public class PersistenceListener {
 
     @PrePersist
     public void prePersist(BaseEntity baseEntity) {
-        Date now = DateUtil.getNowDate();
+        Date now = DateUtils.getNowDate();
         if (baseEntity.getCreateTime() == null) {
             baseEntity.setCreateTime(now);
         }
@@ -34,7 +34,7 @@ public class PersistenceListener {
 
     @PreUpdate
     public void preUpdate(BaseEntity baseEntity) {
-        baseEntity.setUpdateTime(DateUtil.getNowDate());
+        baseEntity.setUpdateTime(DateUtils.getNowDate());
         if (baseEntity.getDeleteFlag() == null) {
             baseEntity.setDeleteFlag(false);
         }

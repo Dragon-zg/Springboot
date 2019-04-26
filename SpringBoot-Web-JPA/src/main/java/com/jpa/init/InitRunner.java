@@ -1,7 +1,7 @@
 package com.jpa.init;
 
 import com.web.enums.DateFormat;
-import com.web.utils.DateUtil;
+import com.web.util.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class InitRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //打印当前服务器时间
-        log.info("当前项目启动时间是: {}", DateUtil.getNowStr(DateFormat.CHINA_TIME));
+        log.info("当前项目启动时间是: {}", DateUtils.getNowStr(DateFormat.CHINA_TIME));
     }
 
 }

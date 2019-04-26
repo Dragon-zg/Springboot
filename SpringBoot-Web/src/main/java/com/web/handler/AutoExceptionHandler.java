@@ -3,7 +3,7 @@ package com.web.handler;
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
 import com.web.model.ResultModel;
-import com.web.utils.ResultUtil;
+import com.web.util.ResultUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class AutoExceptionHandler {
     @ResponseBody
     public ResultModel<?> handleException(Exception e) {
         log.error(e.getMessage(), e);
-        return ResultUtil.error(ExceptionCode.UNKOW_ERROR);
+        return ResultUtils.error(ExceptionCode.UNKOW_ERROR);
     }
 
     @ExceptionHandler(value = CustomizedException.class)
@@ -33,6 +33,6 @@ public class AutoExceptionHandler {
     public ResultModel<?> handleBusiException(CustomizedException e) {
         //若属于业务异常,则抛出相关编码信息
         log.info(e.getMessage());
-        return ResultUtil.error(e.getCode(), e.getMessage());
+        return ResultUtils.error(e.getCode(), e.getMessage());
     }
 }

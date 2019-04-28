@@ -10,7 +10,6 @@
     <version>1.0</version>
 
     <modules>
-        <module>SpringBoot-Common-Utils</module>
         <module>SpringBoot-Web-JPA</module>
         <module>SpringBoot-Web</module>
         <module>SpringBoot-Webservice</module>

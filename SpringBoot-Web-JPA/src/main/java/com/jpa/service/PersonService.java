@@ -65,6 +65,7 @@ public class PersonService {
      * @date 2019/4/25 15:48
      * @params [id, person]
      */
+    @Transactional(rollbackFor = Exception.class)
     public void update(final Long id, final Person person) {
         Optional<Person> optional = personRepository.findById(id);
         Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
@@ -81,6 +82,7 @@ public class PersonService {
      * @date 2019/4/25 15:48
      * @params [id, person]
      */
+    @Transactional(rollbackFor = Exception.class)
     public void delete(final Long id) {
         Optional<Person> optional = personRepository.findById(id);
         optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));

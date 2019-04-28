@@ -5,6 +5,7 @@ import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ import javax.persistence.*;
 @ApiModel("身份证实体")
 @Entity
 @Table(name = "jpa_idcard")
+@Where(clause = "delete_flag = 0")
 public class IDCard extends BaseEntity {
 
     @Basic

@@ -25,7 +25,7 @@ public class PersonController {
     private PersonService personService;
 
     @ApiOperation(value = "初始化")
-    @GetMapping(value = {"/initPerson"})
+    @PostMapping(value = {"/initPerson"})
     public void initPerson() {
         personService.initPerson();
     }
@@ -50,7 +50,7 @@ public class PersonController {
     }
 
     @ApiOperation(value = "删除")
-    @PutMapping(value = {"/{id}/delete"})
+    @DeleteMapping(value = {"/{id}/delete"})
     public ResultModel delete(@PathVariable("id") Long id) {
         personService.delete(id);
         return ResultUtils.success();

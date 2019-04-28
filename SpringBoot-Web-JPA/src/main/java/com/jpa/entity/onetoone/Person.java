@@ -4,6 +4,7 @@ import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -20,6 +21,7 @@ import javax.persistence.*;
 @ApiModel("中国公民实体")
 @Entity
 @Table(name = "jpa_person")
+@Where(clause = "delete_flag = 0")
 public class Person extends BaseEntity {
 
     @Basic

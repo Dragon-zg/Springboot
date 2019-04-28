@@ -85,7 +85,9 @@ public class PersonService {
     @Transactional(rollbackFor = Exception.class)
     public void delete(final Long id) {
         Optional<Person> optional = personRepository.findById(id);
-        optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        personRepository.deleteById(id);
+        Person delete = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+        delete.setDeleteFlag(true);
+        delete.getIdcard().setDeleteFlag(true);
+        personRepository.save(delete);
     }
 }

@@ -1,11 +1,8 @@
 package com.web.config;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.web.constants.EnvConstant;
-import com.web.enums.DateFormat;
 import com.web.i18n.I18nMessageResource;
 import com.web.interceptor.IpInterceptor;
-import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,21 +11,16 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.SortHandlerMethodArgumentResolver;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
-import javax.servlet.MultipartConfigElement;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * MVC基础配置
@@ -62,21 +54,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         pageableArgumentResolver.setOneIndexedParameters(true);
         argumentResolvers.add(pageableArgumentResolver);
         super.addArgumentResolvers(argumentResolvers);
-    }
-
-    /**
-     * 处理返回的json
-     */
-    @Bean
-    public Jackson2ObjectMapperBuilder jacksonBuilder() {
-        return new Jackson2ObjectMapperBuilder()
-                //遇到未知属性不做处理
-                .failOnUnknownProperties(false)
-                //时间使用中国时区
-                .timeZone(TimeZone.getTimeZone("GMT+8"))
-                .simpleDateFormat(DateFormat.DEFAULT_TIME.getFormat())
-                //清除EMPTY的字段
-                .serializationInclusion(JsonInclude.Include.NON_EMPTY);
     }
 
     /**
@@ -121,19 +98,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * 跨域CORS配置<br/>
-     * 或者使用@CrossOrigin(origins = "*")注解
-     */
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
-        registry.addMapping("/cors/**")
-                .allowedHeaders("*")
-                .allowedMethods("*")
-                .allowedOrigins("*");
-    }
-
-    /**
      * 自定义多语言处理实现类
      */
     @Bean
@@ -155,30 +119,5 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         localeResolver.setDefaultLocale(Locale.CHINESE);
         localeResolver.setCookieName("language");
         return localeResolver;
-    }
-
-    /**
-     * 上传文件解析器使用
-     */
-    @Bean
-    public StandardServletMultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
-    }
-
-    /**
-     * 上传文件相关配置信息
-     */
-    @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        //文件上传目录
-        //factory.setLocation();
-        //最大支持文件大小,不设置大小时使用-1L
-        factory.setMaxFileSize("50MB");
-        //最大支持请求大小,不设置大小时使用-1L
-        factory.setMaxRequestSize("50MB");
-        // 设置缓存大小
-        factory.setFileSizeThreshold(0);
-        return factory.createMultipartConfig();
     }
 }

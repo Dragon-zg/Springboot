@@ -1,0 +1,8 @@
+${AnsiColor.BLUE}
+       __    ____     ___
+      / /   / __ \   /   |
+ __  / /   / /_/ /  / /| |
+/ /_/ /   / ____/  / ___ |
+\____/   /_/      /_/  |_|
+ ${AnsiColor.MAGENTA}
+ ::: Spring-Boot ${spring-boot.version}     ::: JPA

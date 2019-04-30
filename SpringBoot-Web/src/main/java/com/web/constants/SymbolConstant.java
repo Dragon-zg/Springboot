@@ -34,6 +34,11 @@ public interface SymbolConstant {
     String SYMBOL_EQUALS = "=";
 
     /**
+     * 下划线
+     */
+    String SYMBOL_UNDERLINE = "_";
+
+    /**
      * 左括弧
      */
     String SYMBOL_BRACKET_LEFT = "(";

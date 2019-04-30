@@ -1,6 +1,7 @@
 package com.web.util;
 
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.google.common.net.HttpHeaders;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.Validate;
@@ -9,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Http与Servlet工具类.
@@ -21,6 +23,14 @@ public class ServletUtils {
      * 常用数值定义
      */
     public static final long ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
+    /**
+     * true集合
+     */
+    private static final Set<String> TRUE_VALUES = Sets.newHashSet("true", "on", "yes");
+    /**
+     * false集合
+     */
+    private static final Set<String> FALSE_VALUES = Sets.newHashSet("false", "off", "no");
 
     /**
      * 设置客户端缓存过期时间 的Header.
@@ -63,13 +73,32 @@ public class ServletUtils {
                 String unprefixed = paramName.substring(prefix.length());
                 String[] values = request.getParameterValues(paramName);
                 if (values != null && values.length == 1) {
-                    params.put(unprefixed, values[0]);
+                    Boolean boolValue = convert(values[0]);
+                    if(boolValue == null) {
+                        params.put(unprefixed, values[0]);
+                    } else if(boolValue) {
+                        params.put(unprefixed, true);
+                    } else {
+                        params.put(unprefixed, false);
+                    }
                 } else {
                     params.put(unprefixed, values);
                 }
             }
         }
         return params;
+    }
+
+    private static Boolean convert(String source) {
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(source)) {
+            source = source.trim().toLowerCase();
+            if(TRUE_VALUES.contains(source)) {
+                return Boolean.TRUE;
+            } else if(FALSE_VALUES.contains(source)) {
+                return Boolean.FALSE;
+            }
+        }
+        return null;
     }
 
     /**

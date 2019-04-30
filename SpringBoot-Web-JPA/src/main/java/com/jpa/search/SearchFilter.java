@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  * 构造｛@link org.springframework.data.jpa.domain.Specification｝的工具类
- * @author Dragon-zg
+ * @author gelif
  * @date 2019/4/30 16:37
  **/
 public class SearchFilter {

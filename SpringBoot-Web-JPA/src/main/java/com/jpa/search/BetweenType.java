@@ -1,7 +1,7 @@
 package com.jpa.search;
 
 /**
- * @author Dragon-zg
+ * @author gelif
  * @date 2019/4/30 16:41
  **/
 public enum BetweenType {

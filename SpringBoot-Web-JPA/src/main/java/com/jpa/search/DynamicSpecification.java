@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * 动态生成specification
- * @author Dragon-zg
+ * 构造 {@link org.springframework.data.jpa.domain.Specification} 的工具类
+ * @author gelif
  * @date 2019/4/30 16:41
  **/
 @Log4j2

@@ -10,6 +10,7 @@ import com.web.model.ResultModel;
  * @author Dragon-zg
  * @Date: 2017-12-16 20:41
  */
+@SuppressWarnings("unchecked")
 public class ResultUtils {
     public static <T extends Object> ResultModel<T> success(T object) {
         ResultModel result = new ResultModel();

@@ -30,7 +30,7 @@ public class TestController {
     @IpStint
     @ApiOperation("IP拦截Demo测试")
     @GetMapping("/ipStint")
-    public ResultModel<String> ipStint() {
+    public ResultModel ipStint() {
         return ResultUtils.success();
     }
 }

@@ -9,17 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.data.web.SortHandlerMethodArgumentResolver;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -29,32 +25,13 @@ import java.util.Locale;
  * @date 2018/8/13 16:53
  */
 @Configuration
-public class MvcConfig extends WebMvcConfigurerAdapter {
+public class MvcConfig implements WebMvcConfigurer {
 
     public MvcConfig(Environment environment) {
         this.environment = environment;
     }
 
     private final Environment environment;
-
-    /**
-     * 添加请求参数解析器
-     */
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        //转换请求中的Sort参数
-        SortHandlerMethodArgumentResolver sortArgumentResolver = new SortHandlerMethodArgumentResolver();
-        sortArgumentResolver.setPropertyDelimiter(",");
-        argumentResolvers.add(sortArgumentResolver);
-        //转换请求中的Pageable参数
-        PageableHandlerMethodArgumentResolver pageableArgumentResolver = new PageableHandlerMethodArgumentResolver(sortArgumentResolver);
-        pageableArgumentResolver.setPageParameterName("page");
-        pageableArgumentResolver.setSizeParameterName("size");
-        //页的序号从1开始，缺省是false
-        pageableArgumentResolver.setOneIndexedParameters(true);
-        argumentResolvers.add(pageableArgumentResolver);
-        super.addArgumentResolvers(argumentResolvers);
-    }
 
     /**
      * 静态资源处理
@@ -79,7 +56,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     /**
      * 打印请求相关日志信息
      */
-    @Profile({EnvConstant.DEVELOPMENT})
+    @Profile({EnvConstant.DEVELOPMENT, EnvConstant.PRODUCTION})
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
@@ -92,6 +69,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         //先判断request的content的长度，如果超过设置maxPayload的长度，则按照maxPayload进行截取，如果出现异常，则payload=[unknown]
         filter.setIncludePayload(true);
         filter.setMaxPayloadLength(10000);
+        filter.setAfterMessagePrefix("REQUEST : ");
         //指明该bean运行环境
         filter.setEnvironment(environment);
         return filter;

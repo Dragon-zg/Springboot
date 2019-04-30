@@ -7,6 +7,10 @@ package com.web.enums;
  */
 public enum ExceptionCode {
     /**
+     * 错误的参数 100
+     */
+    PARAM_ERROR(100, "错误的参数!"),
+    /**
      * 操作成功 200
      */
     SUCCESS(200, "操作成功!"),

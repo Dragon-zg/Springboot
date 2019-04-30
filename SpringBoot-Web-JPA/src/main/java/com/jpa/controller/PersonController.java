@@ -4,6 +4,7 @@ import com.jpa.entity.onetoone.Person;
 import com.jpa.service.PersonService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;
+import com.web.util.ServletUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.Map;
 
 /**
  * @author Dragon-zg
@@ -33,7 +36,8 @@ public class PersonController {
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
     public Page<Person> page(WebRequest request, Pageable pageable) {
-        return null;
+        Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
+        return personService.page(searchParam, pageable);
     }
 
     @ApiOperation(value = "详情")

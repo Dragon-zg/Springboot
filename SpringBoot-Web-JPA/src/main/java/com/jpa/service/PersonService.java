@@ -3,12 +3,19 @@ package com.jpa.service;
 import com.jpa.entity.onetoone.IDCard;
 import com.jpa.entity.onetoone.Person;
 import com.jpa.repository.PersonRepository;
+import com.jpa.search.DynamicSpecification;
+import com.jpa.search.SearchFilter;
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -42,6 +49,21 @@ public class PersonService {
         IDCard widCard = IDCard.builder().cardno("110102198710148549").build();
         Person wangwu = Person.builder().name("王五").idcard(widCard).build();
         personRepository.save(wangwu);
+    }
+
+    /**
+     * 分页列表
+     *
+     * @return org.springframework.data.domain.Page<com.jpa.entity.onetoone.Person>
+     * @author Dragon-zg
+     * @date 2019/4/30 17:45
+     * @params [specification, pageable]
+     */
+    public Page<Person> page(Map<String, Object> searchParam, Pageable pageable) {
+        Collection<SearchFilter> filters = SearchFilter.parse(searchParam);
+        Specification<Person> specification = DynamicSpecification.bySearchFilter(filters);
+        Page<Person> page = personRepository.findAll(specification, pageable);
+        return page;
     }
 
     /**

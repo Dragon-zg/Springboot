@@ -42,7 +42,7 @@ public class SortFactory {
         if(sortPropterty != null) {
             orderList.add(new Sort.Order(direction != null ? direction : DEFAULT_DIRECTION, sortPropterty));
         }
-        return CollectionUtils.isEmpty(orderList) ? null : new Sort(orderList);
+        return CollectionUtils.isEmpty(orderList) ? null : Sort.by(orderList);
     }
 
     public static Sort create(Sort sort, String sortPropterty) {

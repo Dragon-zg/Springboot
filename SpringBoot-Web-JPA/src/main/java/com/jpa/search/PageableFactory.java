@@ -6,13 +6,13 @@ import org.springframework.data.domain.Sort;
 
 /**
  制造Pageable的工厂类
- @author gelif
- @since  2015-5-18
+ @author Dragon-zg
+ @date  2019/5/5 16:36
  */
 @SuppressWarnings({"unchecked", "unused"})
 public class PageableFactory {
     private final static int DEFAULT_SIZE = 20;
-    private final static String DEFAULT_SORT = null;
+    private final static Sort.Direction DEFAULT_DIRECTION = Sort.Direction.DESC;
 
     public static Pageable create(Integer page, Integer size) {
         return PageRequest.of(page, null != size && size > 0 ? size : DEFAULT_SIZE);
@@ -26,44 +26,15 @@ public class PageableFactory {
         return PageRequest.of(page, null != size && size > 0 ? size : DEFAULT_SIZE, sort);
     }
 
-    public static Pageable create(Integer page, Integer size, int defaultSize, Sort sort) {
-        return PageRequest.of(page, null != size && size > 0 ? size : defaultSize, sort);
+    public static Pageable create(Pageable pageable, Sort.Direction direction, String... properties) {
+        return create(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(direction, properties));
     }
 
-    public static Pageable create(Integer page, Integer size, String sort, String order) {
-        return create(page, size, DEFAULT_SIZE, sort, DEFAULT_SORT, order);
-    }
-
-    public static Pageable create(Integer page, Integer size, int defaultSize, String sort, String order) {
-        return create(page, size, defaultSize, sort, DEFAULT_SORT, order);
-    }
-
-    public static Pageable create(Integer page, Integer size, String sort, String defaultSort, String order) {
-        return create(page, size, DEFAULT_SIZE, sort, defaultSort, order);
-    }
-
-    public static Pageable create(Integer page, Integer size, int defaultSize, String sortProperty, String defaultSort, String order) {
-        Sort sort = SortFactory.create(sortProperty == null ? defaultSort : sortProperty, order);
-        return PageRequest.of(page, null != size && size > 0 ? size : defaultSize, sort);
-    }
-
-    public static Pageable create(Pageable pageable, String sortPropterty, Sort.Direction direction) {
-        Sort sort = SortFactory.create(pageable.getSort(), sortPropterty, direction);
-        return create(pageable.getPageNumber(), pageable.getPageSize(), sort);
-    }
-
-    public static Pageable create(Pageable pageable, String sortPropterty) {
-        Sort sort = SortFactory.create(pageable.getSort(), sortPropterty);
-        return create(pageable.getPageNumber(), pageable.getPageSize(), sort);
-    }
-
-    public static Pageable create(Pageable pageable, Sort sort) {
-        sort = SortFactory.create(pageable.getSort(), sort);
-        return create(pageable.getPageNumber(), pageable.getPageSize(), sort);
+    public static Pageable create(Pageable pageable, String... properties) {
+        return create(pageable, DEFAULT_DIRECTION, properties);
     }
 
     public static Pageable create(Pageable pageable, Sort.Order... orders) {
-        Sort sort = SortFactory.create(pageable.getSort(), orders);
-        return create(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        return create(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(orders));
     }
 }

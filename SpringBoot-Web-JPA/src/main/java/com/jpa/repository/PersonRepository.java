@@ -1,6 +1,7 @@
 package com.jpa.repository;
 
 import com.jpa.entity.onetoone.Person;
+import com.jpa.repository.base.BaseRepository;
 
 /**
  * PersonRepository

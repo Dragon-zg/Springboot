@@ -10,7 +10,6 @@ import org.springframework.lang.Nullable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * BaseService interface contains some common methods.
@@ -48,20 +47,12 @@ public interface BaseService<T, ID> {
     Page<T> pagingList(@NonNull Map<String, Object> searchParam, @NonNull Pageable pageable);
 
     /**
-     * List all by ids
+     * List all by entities
      *
      * @param ids ids
      * @return List
      */
-    List<T> listAllByEntities(@NonNull Collection<T> entities);
-
-    /**
-     * Fetch by id
-     *
-     * @param id id
-     * @return Optional
-     */
-    Optional<T> fetchById(@NonNull ID id);
+    List<T> listAllByIds(@NonNull Collection<ID> ids);
 
     /**
      * Get by id
@@ -77,7 +68,7 @@ public interface BaseService<T, ID> {
      *
      * @param id id
      * @return T
-     * @throws NotFoundException If the specified id does not exist
+     * @throws CustomizedException If the specified id does not exist
      */
     T removeById(@NonNull ID id);
 

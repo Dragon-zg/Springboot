@@ -1,115 +1,43 @@
 package com.jpa.service;
 
-import com.jpa.entity.onetoone.IDCard;
 import com.jpa.entity.onetoone.Person;
-import com.jpa.repository.PersonRepository;
-import com.jpa.search.DynamicSpecification;
-import com.jpa.search.SearchFilter;
-import com.web.enums.ExceptionCode;
-import com.web.exception.CustomizedException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
+import com.jpa.service.base.QueryService;
 
 /**
  * @author Dragon-zg
- * @date 2019/4/24 10:39
+ * @date 2019/5/7 11:06
  **/
-@Service
-public class PersonService {
-
-    @Autowired
-    private PersonRepository personRepository;
+public interface PersonService extends QueryService<Person, Long> {
 
     /**
      * 初始化公民数据
      *
      * @return void
-     * @author Dragon-zg
-     * @date 2019/4/24 17:25
-     * @params []
      */
-    @Transactional(rollbackFor = Exception.class)
-    public void initPerson() {
-        IDCard zidCard = IDCard.builder().cardno("11010219821216xx54").build();
-        Person zhangsan = Person.builder().name("张三").idcard(zidCard).build();
-        personRepository.save(zhangsan);
-
-        IDCard lidCard = IDCard.builder().cardno("110102198902117846").build();
-        Person lisi = Person.builder().name("李四").idcard(lidCard).build();
-        personRepository.save(lisi);
-
-        IDCard widCard = IDCard.builder().cardno("110102198710148549").build();
-        Person wangwu = Person.builder().name("王五").idcard(widCard).build();
-        personRepository.save(wangwu);
-    }
-
-    /**
-     * 分页列表
-     *
-     * @return org.springframework.data.domain.Page<com.jpa.entity.onetoone.Person>
-     * @author Dragon-zg
-     * @date 2019/4/30 17:45
-     * @params [specification, pageable]
-     */
-    public Page<Person> page(Map<String, Object> searchParam, Pageable pageable) {
-        Collection<SearchFilter> filters = SearchFilter.parse(searchParam);
-        Specification<Person> specification = DynamicSpecification.bySearchFilter(filters);
-        Page<Person> page = personRepository.findAll(specification, pageable);
-        return page;
-    }
+    void initPerson();
 
     /**
      * 详情
      *
+     * @param id
      * @return com.jpa.entity.onetoone.Person
-     * @author Dragon-zg
-     * @date 2019/4/25 10:56
-     * @params [id]
      */
-    public Person detail(Long id) {
-        Optional<Person> optional = personRepository.findById(id);
-        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-    }
+    Person detail(Long id);
 
     /**
      * 更新
      *
+     * @param id
+     * @param person
      * @return void
-     * @author Dragon-zg
-     * @date 2019/4/25 15:48
-     * @params [id, person]
      */
-    @Transactional(rollbackFor = Exception.class)
-    public void update(final Long id, final Person person) {
-        Optional<Person> optional = personRepository.findById(id);
-        Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        update.setName(person.getName());
-        update.getIdcard().setCardno(person.getIdcard().getCardno());
-        personRepository.save(update);
-    }
+    void update(final Long id, final Person person);
 
     /**
      * 删除
      *
+     * @param id
      * @return void
-     * @author Dragon-zg
-     * @date 2019/4/25 15:48
-     * @params [id, person]
      */
-    @Transactional(rollbackFor = Exception.class)
-    public void delete(final Long id) {
-        Optional<Person> optional = personRepository.findById(id);
-        Person delete = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        delete.setDeleteFlag(true);
-        delete.getIdcard().setDeleteFlag(true);
-        personRepository.save(delete);
-    }
+    void delete(final Long id);
 }

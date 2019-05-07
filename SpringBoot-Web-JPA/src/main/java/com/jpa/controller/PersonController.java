@@ -29,15 +29,16 @@ public class PersonController {
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/initPerson"})
-    public void initPerson() {
+    public ResultModel initPerson() {
         personService.initPerson();
+        return ResultUtils.success();
     }
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
     public Page<Person> page(WebRequest request, Pageable pageable) {
         Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-        return personService.page(searchParam, pageable);
+        return personService.pagingList(searchParam, pageable);
     }
 
     @ApiOperation(value = "详情")

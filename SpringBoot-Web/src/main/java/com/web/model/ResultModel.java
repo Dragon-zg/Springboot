@@ -3,6 +3,8 @@ package com.web.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 /**
  * 统一返回接口格式结果集
  *
@@ -10,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @Date: 2017-12-16 19:56
  */
 @ApiModel("响应结果实体类")
-public class ResultModel<T> {
+public class ResultModel<T> implements Serializable {
 
     @ApiModelProperty("响应码")
     private Integer code;

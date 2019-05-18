@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * QueryService interface contains some common methods.
+ * CurdService interface contains some common methods.
  *
  * @param <T>  domain type
  * @param <ID> id type
  * @author Dragon-zg
  */
-public interface QueryService<T extends BaseEntity, ID> {
+public interface CurdService<T extends BaseEntity, ID> {
     /**
      * List All
      *

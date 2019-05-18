@@ -1,13 +1,13 @@
 package com.jpa.service;
 
 import com.jpa.entity.onetoone.Person;
-import com.jpa.service.base.QueryService;
+import com.jpa.service.base.CurdService;
 
 /**
  * @author Dragon-zg
  * @date 2019/5/7 11:06
  **/
-public interface PersonService extends QueryService<Person, Long> {
+public interface PersonService extends CurdService<Person, Long> {
 
     /**
      * 初始化公民数据

@@ -20,11 +20,11 @@ import java.util.Map;
  * @param <ID> id type
  * @author Dragon-zg
  */
-public abstract class AbstractQueryService<T extends BaseEntity, ID> implements QueryService<T, ID> {
+public abstract class AbstractCurdService<T extends BaseEntity, ID> implements CurdService<T, ID> {
 
     private final BaseRepository<T, ID> repository;
 
-    protected AbstractQueryService(BaseRepository<T, ID> repository) {
+    protected AbstractCurdService(BaseRepository<T, ID> repository) {
         this.repository = repository;
     }
 

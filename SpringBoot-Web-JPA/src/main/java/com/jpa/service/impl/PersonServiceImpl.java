@@ -4,6 +4,7 @@ import com.jpa.entity.onetoone.IDCard;
 import com.jpa.entity.onetoone.Person;
 import com.jpa.repository.PersonRepository;
 import com.jpa.service.PersonService;
+import com.jpa.service.base.AbstractCurdService;
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ import java.util.Optional;
  * @date 2019/4/24 10:39
  **/
 @Service
-public class AbstractCurdService extends AbstractCurdService<Person, Long> implements PersonService {
+public class PersonServiceImpl extends AbstractCurdService<Person, Long> implements PersonService {
 
     private final PersonRepository personRepository;
 
-    protected AbstractCurdService(PersonRepository personRepository) {
+    protected PersonServiceImpl(PersonRepository personRepository) {
         super(personRepository);
         this.personRepository = personRepository;
     }

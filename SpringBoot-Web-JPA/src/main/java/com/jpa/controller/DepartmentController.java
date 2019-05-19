@@ -1,7 +1,7 @@
 package com.jpa.controller;
 
-import com.jpa.entity.onetoone.Person;
-import com.jpa.service.PersonService;
+import com.jpa.entity.onetomany.Department;
+import com.jpa.service.DepartmentService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;
 import com.web.util.ServletUtils;
@@ -19,45 +19,45 @@ import java.util.Map;
  * @author Dragon-zg
  * @date 2019/4/24 10:40
  **/
-@Api(value = "person", tags = "person")
+@Api(value = "department", tags = "department")
 @RestController
-@RequestMapping("/api/person")
-public class PersonController {
+@RequestMapping("/api/department")
+public class DepartmentController {
 
     @Autowired
-    private PersonService personService;
+    private DepartmentService departmentService;
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
     public ResultModel initPerson() {
-        personService.initPerson();
+        departmentService.initDepartment();
         return ResultUtils.success();
     }
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
-    public Page<Person> page(WebRequest request, Pageable pageable) {
+    public Page<Department> page(WebRequest request, Pageable pageable) {
         Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-        return personService.pagingList(searchParam, pageable);
+        return departmentService.pagingList(searchParam, pageable);
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<Person> detail(@PathVariable("id") Long id) {
-        return ResultUtils.success(personService.detail(id));
+    public ResultModel<Department> detail(@PathVariable("id") Long id) {
+        return ResultUtils.success(departmentService.detail(id));
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
-    public ResultModel update(@PathVariable("id") Long id, @RequestBody Person person) {
-        personService.update(id, person);
+    public ResultModel update(@PathVariable("id") Long id, @RequestBody Department department) {
+        departmentService.update(id, department);
         return ResultUtils.success();
     }
 
     @ApiOperation(value = "删除")
     @DeleteMapping(value = {"/{id}/delete"})
     public ResultModel delete(@PathVariable("id") Long id) {
-        personService.delete(id);
+        departmentService.delete(id);
         return ResultUtils.success();
     }
 }

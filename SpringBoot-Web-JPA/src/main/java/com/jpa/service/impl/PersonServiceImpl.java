@@ -94,9 +94,10 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
     @Override
     public void delete(final Long id) {
         Optional<Person> optional = personRepository.findById(id);
-        Person delete = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        delete.setDeleteFlag(true);
-        delete.getIdcard().setDeleteFlag(true);
-        personRepository.save(delete);
+        optional.ifPresent((person) -> {
+            person.setDeleteFlag(true);
+            person.getIdcard().setDeleteFlag(true);
+            personRepository.save(person);
+        });
     }
 }

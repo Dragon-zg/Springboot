@@ -7,7 +7,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -41,8 +44,4 @@ public class Employee extends BaseEntity {
     @ApiModelProperty("生日")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date birthday;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id", referencedColumnName = "id", columnDefinition = "int(11) comment 'department id 外键'", insertable = false, updatable = false)
-    private Department department;
 }

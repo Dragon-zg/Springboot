@@ -35,6 +35,7 @@ public class Department extends BaseEntity {
     @ApiModelProperty("部门员工数")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(targetEntity = Employee.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id", referencedColumnName = "id", columnDefinition = "int(11) comment 'department id 外键'")
     private List<Employee> employees;
 }

@@ -24,8 +24,11 @@ import java.util.Map;
 @RequestMapping("/api/department")
 public class DepartmentController {
 
-    @Autowired
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
+
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})

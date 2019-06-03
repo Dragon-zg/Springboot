@@ -24,8 +24,11 @@ import java.util.Map;
 @RequestMapping("/api/person")
 public class PersonController {
 
-    @Autowired
-    private PersonService personService;
+    private final PersonService personService;
+
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})

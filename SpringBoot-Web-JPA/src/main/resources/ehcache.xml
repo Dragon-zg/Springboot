@@ -4,7 +4,7 @@
         xmlns:eh='http://www.ehcache.org/v3'
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.3.xsd">
     <!--指定缓存目录-->
-    <eh:persistence directory="${java.io.tmpdir}/cfa-cache-data"/>
+    <eh:persistence directory="${java.io.tmpdir}/jpa-cache"/>
 
     <!--缓存模板-->
     <eh:cache-template name="default">
@@ -19,7 +19,7 @@
     </eh:cache-template>
 
     <!--实际的缓存区间，继承了default缓存模板,cfa 完全使用模板默认-->
-    <eh:cache alias="cfa" uses-template="default">
+    <eh:cache alias="jpa" uses-template="default">
 
     </eh:cache>
 

@@ -1,11 +1,11 @@
 package com.jpa.entity.onetoone;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -25,6 +25,8 @@ import javax.persistence.*;
 @Table(name = "jpa_idcard")
 @Where(clause = "delete_flag = 0")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class IDCard extends BaseEntity {
 
     @Basic

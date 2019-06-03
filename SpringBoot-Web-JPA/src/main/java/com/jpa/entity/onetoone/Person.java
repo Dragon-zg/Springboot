@@ -4,6 +4,7 @@ import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -22,6 +23,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "jpa_person")
 @Where(clause = "delete_flag = 0")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Person extends BaseEntity {
 
     @Basic

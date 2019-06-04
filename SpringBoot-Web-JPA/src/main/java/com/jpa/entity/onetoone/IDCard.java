@@ -5,7 +5,6 @@ import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -25,9 +24,13 @@ import javax.persistence.*;
 @Table(name = "jpa_idcard")
 @Where(clause = "delete_flag = 0")
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class IDCard extends BaseEntity {
+
+    @Id
+    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("主键ID")
+    protected Long id;
 
     @Basic
     @Column(name = "cardno", columnDefinition = "varchar(18) not null comment '身份证号码'")

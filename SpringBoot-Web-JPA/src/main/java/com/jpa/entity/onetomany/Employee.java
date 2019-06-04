@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -28,6 +25,12 @@ import java.util.Date;
 @Table(name = "jpa_employee")
 @Where(clause = "delete_flag = 0")
 public class Employee extends BaseEntity {
+
+    @Id
+    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("主键ID")
+    protected Long id;
 
     @Basic
     @Column(name = "name", columnDefinition = "varchar(40) not null comment '员工姓名'")

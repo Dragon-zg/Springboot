@@ -22,12 +22,6 @@ import java.util.Date;
 @EntityListeners({PersistenceListener.class})
 public class BaseEntity implements Serializable {
 
-    @Id
-    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("主键ID")
-    private Long id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time", columnDefinition = "datetime default current_timestamp comment '创建时间'")
     @ApiModelProperty("创建时间")

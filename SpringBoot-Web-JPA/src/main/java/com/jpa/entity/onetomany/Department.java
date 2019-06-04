@@ -25,6 +25,12 @@ import java.util.List;
 @Where(clause = "delete_flag = 0")
 public class Department extends BaseEntity {
 
+    @Id
+    @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("主键ID")
+    protected Long id;
+
     @Basic
     @Column(name = "name", columnDefinition = "varchar(40) not null comment '部门名称'")
     @ApiModelProperty("部门名称")

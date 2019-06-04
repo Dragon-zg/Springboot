@@ -1,5 +1,6 @@
 package com.jpa.entity.onetoone;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jpa.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
@@ -36,4 +37,8 @@ public class IDCard extends BaseEntity {
     @Column(name = "cardno", columnDefinition = "varchar(18) not null comment '身份证号码'")
     @ApiModelProperty("身份证号码")
     private String cardno;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "idcard")
+    private Person person;
 }

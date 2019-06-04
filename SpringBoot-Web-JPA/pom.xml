@@ -11,11 +11,22 @@
 
     <artifactId>SpringBoot-Web-JPA</artifactId>
 
+    <properties>
+        <jcache.version>5.3.9.Final</jcache.version>
+        <ehcache.version>3.7.1</ehcache.version>
+    </properties>
+
     <dependencies>
         <!-- 数据库相关依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.zaxxer</groupId>
+                    <artifactId>HikariCP</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- hibernate二级缓存使用ehcache -->
         <dependency>
@@ -25,12 +36,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jcache</artifactId>
-            <version>5.3.9.Final</version>
+            <version>${jcache.version}</version>
         </dependency>
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>3.7.1</version>
+            <version>${ehcache.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dragon.org</groupId>

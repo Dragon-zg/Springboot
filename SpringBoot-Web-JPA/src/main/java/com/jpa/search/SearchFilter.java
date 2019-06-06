@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 构造｛@link org.springframework.data.jpa.domain.Specification｝的工具类
+ * 构造｛@link org.springframework.data.jpa.entity.Specification｝的工具类
  * @author gelif
  * @date 2019/4/30 16:37
  **/

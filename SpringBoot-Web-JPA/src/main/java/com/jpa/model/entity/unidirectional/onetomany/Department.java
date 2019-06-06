@@ -1,6 +1,6 @@
-package com.jpa.entity.unidirectional.onetomany;
+package com.jpa.model.entity.unidirectional.onetomany;
 
-import com.jpa.entity.base.BaseEntity;
+import com.jpa.model.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;

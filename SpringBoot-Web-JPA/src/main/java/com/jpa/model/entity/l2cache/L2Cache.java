@@ -1,7 +1,7 @@
-package com.jpa.entity.l2cache;
+package com.jpa.model.entity.l2cache;
 
-import com.jpa.entity.base.BaseEntity;
 import com.jpa.id.FormatTableGenerator;
+import com.jpa.model.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

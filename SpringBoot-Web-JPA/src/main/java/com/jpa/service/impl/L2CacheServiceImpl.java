@@ -1,6 +1,6 @@
 package com.jpa.service.impl;
 
-import com.jpa.entity.l2cache.L2Cache;
+import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.repository.L2CacheRepository;
 import com.jpa.service.L2CacheService;
 import com.jpa.service.base.AbstractCurdService;
@@ -39,7 +39,7 @@ public class L2CacheServiceImpl extends AbstractCurdService<L2Cache, String> imp
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.unidirectional.onetoone.Person
+     * @return com.jpa.model.entity.unidirectional.onetoone.Person
      */
     @Override
     public L2Cache detail(String id) {

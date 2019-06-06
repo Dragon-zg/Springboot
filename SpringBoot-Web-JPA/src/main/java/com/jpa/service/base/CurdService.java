@@ -1,6 +1,6 @@
 package com.jpa.service.base;
 
-import com.jpa.entity.base.BaseEntity;
+import com.jpa.model.entity.base.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * CurdService interface contains some common methods.
  *
- * @param <T>  domain type
+ * @param <T>  entity type
  * @param <ID> id type
  * @author Dragon-zg
  */

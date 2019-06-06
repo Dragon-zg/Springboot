@@ -1,6 +1,6 @@
 package com.jpa.repository;
 
-import com.jpa.entity.l2cache.L2Cache;
+import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.repository.base.BaseRepository;
 
 /**

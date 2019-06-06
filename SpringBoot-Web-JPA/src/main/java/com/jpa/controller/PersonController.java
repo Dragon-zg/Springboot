@@ -1,6 +1,6 @@
 package com.jpa.controller;
 
-import com.jpa.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.unidirectional.onetoone.Person;
 import com.jpa.service.PersonService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;

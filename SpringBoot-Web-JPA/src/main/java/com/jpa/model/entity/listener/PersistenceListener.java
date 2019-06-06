@@ -1,6 +1,6 @@
-package com.jpa.entity.listener;
+package com.jpa.model.entity.listener;
 
-import com.jpa.entity.base.BaseEntity;
+import com.jpa.model.entity.base.BaseEntity;
 import com.web.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

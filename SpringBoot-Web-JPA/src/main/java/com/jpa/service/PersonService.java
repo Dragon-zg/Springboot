@@ -1,6 +1,6 @@
 package com.jpa.service;
 
-import com.jpa.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.unidirectional.onetoone.Person;
 import com.jpa.service.base.CurdService;
 
 /**
@@ -20,7 +20,7 @@ public interface PersonService extends CurdService<Person, Long> {
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.unidirectional.onetoone.Person
+     * @return com.jpa.model.entity.unidirectional.onetoone.Person
      */
     Person detail(Long id);
 

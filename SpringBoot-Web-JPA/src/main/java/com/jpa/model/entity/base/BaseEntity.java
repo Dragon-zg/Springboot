@@ -1,6 +1,6 @@
-package com.jpa.entity.base;
+package com.jpa.model.entity.base;
 
-import com.jpa.entity.listener.PersistenceListener;
+import com.jpa.model.entity.listener.PersistenceListener;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

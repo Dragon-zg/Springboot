@@ -1,4 +1,4 @@
-package com.jpa.entity.unidirectional.manttomany;
+package com.jpa.model.entity.unidirectional.manttomany;
 
 import io.swagger.annotations.ApiModelProperty;
 

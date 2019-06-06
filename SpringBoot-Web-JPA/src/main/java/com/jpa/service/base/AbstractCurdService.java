@@ -1,6 +1,6 @@
 package com.jpa.service.base;
 
-import com.jpa.entity.base.BaseEntity;
+import com.jpa.model.entity.base.BaseEntity;
 import com.jpa.repository.base.BaseRepository;
 import com.jpa.search.DynamicSpecification;
 import com.jpa.search.SearchFilter;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * abstract service implementation.
  *
- * @param <T>  domain type
+ * @param <T>  entity type
  * @param <ID> id type
  * @author Dragon-zg
  */

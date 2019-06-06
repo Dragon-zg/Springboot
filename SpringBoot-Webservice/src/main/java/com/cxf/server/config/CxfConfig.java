@@ -31,8 +31,7 @@ public class CxfConfig {
      * @Description 设置cxfServlet根路径
      * @Author Dragon-zg 
      * @Date 2018/6/3 15:59
-     * @Param []  
-     * @return org.springframework.boot.web.servlet.ServletRegistrationBean  
+     * @return org.springframework.boot.web.servlet.ServletRegistrationBean
      */
     @Bean(name = "cxfServlet")
     public ServletRegistrationBean cxfServletRegistrationBean() {

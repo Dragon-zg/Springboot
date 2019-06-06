@@ -1,6 +1,6 @@
 package com.jpa.service;
 
-import com.jpa.entity.l2cache.L2Cache;
+import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.service.base.CurdService;
 
 /**
@@ -19,7 +19,7 @@ public interface L2CacheService extends CurdService<L2Cache, String> {
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.l2cache.l2cache
+     * @return com.jpa.model.entity.l2cache.l2cache
      */
     L2Cache detail(String id);
 }

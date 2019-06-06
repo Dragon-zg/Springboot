@@ -13,7 +13,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
  * @date 2018/8/28 19:44
  */
 @SpringBootApplication
-@EntityScan(basePackages = {"com.jpa.entity"})
+@EntityScan(basePackages = {"com.jpa.model.entity"})
 @EnableSpringDataWebSupport
 @EnableJpaRepositories
 @EnableCaching

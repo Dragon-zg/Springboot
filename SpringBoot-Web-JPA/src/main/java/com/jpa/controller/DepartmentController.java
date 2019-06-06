@@ -1,6 +1,6 @@
 package com.jpa.controller;
 
-import com.jpa.entity.unidirectional.onetomany.Department;
+import com.jpa.model.entity.unidirectional.onetomany.Department;
 import com.jpa.service.DepartmentService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;

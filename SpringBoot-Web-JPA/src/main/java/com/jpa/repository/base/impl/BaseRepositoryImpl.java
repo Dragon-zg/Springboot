@@ -1,6 +1,6 @@
 package com.jpa.repository.base.impl;
 
-import com.jpa.entity.base.BaseEntity;
+import com.jpa.model.entity.base.BaseEntity;
 import com.jpa.repository.base.BaseRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;

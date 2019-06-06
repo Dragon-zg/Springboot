@@ -1,6 +1,6 @@
 package com.jpa.controller;
 
-import com.jpa.entity.l2cache.L2Cache;
+import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.service.L2CacheService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;

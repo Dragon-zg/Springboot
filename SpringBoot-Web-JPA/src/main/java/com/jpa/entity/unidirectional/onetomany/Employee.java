@@ -1,4 +1,4 @@
-package com.jpa.entity.onetomany;
+package com.jpa.entity.unidirectional.onetomany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jpa.entity.base.BaseEntity;

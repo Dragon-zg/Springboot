@@ -1,4 +1,4 @@
-package com.jpa.entity.onetoone;
+package com.jpa.entity.unidirectional.onetoone;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

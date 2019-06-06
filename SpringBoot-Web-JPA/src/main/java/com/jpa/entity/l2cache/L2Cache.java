@@ -1,4 +1,4 @@
-package com.jpa.entity.L2Cache;
+package com.jpa.entity.l2cache;
 
 import com.jpa.entity.base.BaseEntity;
 import com.jpa.id.FormatTableGenerator;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 /**
  * 演示二级缓存的实体
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/4 13:04
  **/
 @Getter

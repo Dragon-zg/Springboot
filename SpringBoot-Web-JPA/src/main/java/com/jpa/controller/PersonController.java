@@ -1,13 +1,12 @@
 package com.jpa.controller;
 
-import com.jpa.entity.onetoone.Person;
+import com.jpa.entity.unidirectional.onetoone.Person;
 import com.jpa.service.PersonService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;
 import com.web.util.ServletUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;

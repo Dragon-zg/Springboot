@@ -1,10 +1,10 @@
 package com.jpa.service;
 
-import com.jpa.entity.onetomany.Department;
+import com.jpa.entity.unidirectional.onetomany.Department;
 import com.jpa.service.base.CurdService;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019-05-18 14:53
  **/
 public interface DepartmentService extends CurdService<Department, Long> {
@@ -19,7 +19,7 @@ public interface DepartmentService extends CurdService<Department, Long> {
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.onetoone.Person
+     * @return com.jpa.entity.unidirectional.onetoone.Person
      */
     Department detail(Long id);
 

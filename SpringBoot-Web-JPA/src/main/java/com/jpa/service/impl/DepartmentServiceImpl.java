@@ -1,7 +1,7 @@
 package com.jpa.service.impl;
 
-import com.jpa.entity.onetomany.Department;
-import com.jpa.entity.onetomany.Employee;
+import com.jpa.entity.unidirectional.onetomany.Department;
+import com.jpa.entity.unidirectional.onetomany.Employee;
 import com.jpa.repository.DepartmentRepository;
 import com.jpa.service.DepartmentService;
 import com.jpa.service.base.AbstractCurdService;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019-05-18 16:27
  **/
 @Service
@@ -56,7 +56,7 @@ public class DepartmentServiceImpl extends AbstractCurdService<Department, Long>
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.onetoone.Person
+     * @return com.jpa.entity.unidirectional.onetoone.Person
      */
     @Override
     public Department detail(Long id) {

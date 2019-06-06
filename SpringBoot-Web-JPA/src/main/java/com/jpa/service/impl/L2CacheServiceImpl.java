@@ -1,6 +1,6 @@
 package com.jpa.service.impl;
 
-import com.jpa.entity.L2Cache.L2Cache;
+import com.jpa.entity.l2cache.L2Cache;
 import com.jpa.repository.L2CacheRepository;
 import com.jpa.service.L2CacheService;
 import com.jpa.service.base.AbstractCurdService;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019-05-18 16:27
  **/
 @Service
@@ -39,7 +39,7 @@ public class L2CacheServiceImpl extends AbstractCurdService<L2Cache, String> imp
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.onetoone.Person
+     * @return com.jpa.entity.unidirectional.onetoone.Person
      */
     @Override
     public L2Cache detail(String id) {

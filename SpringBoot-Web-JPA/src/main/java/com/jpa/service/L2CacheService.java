@@ -1,10 +1,10 @@
 package com.jpa.service;
 
-import com.jpa.entity.L2Cache.L2Cache;
+import com.jpa.entity.l2cache.L2Cache;
 import com.jpa.service.base.CurdService;
 
 /**
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019-05-18 14:53
  **/
 public interface L2CacheService extends CurdService<L2Cache, String> {
@@ -19,7 +19,7 @@ public interface L2CacheService extends CurdService<L2Cache, String> {
      * 详情
      *
      * @param id
-     * @return com.jpa.entity.onetoone.Person
+     * @return com.jpa.entity.l2cache.l2cache
      */
     L2Cache detail(String id);
 }

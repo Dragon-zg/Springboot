@@ -11,7 +11,7 @@ import javax.persistence.*;
 /**
  * @Description: 中国公民实体
  * @Date: 2018-06-10 20:23
- * @Author: Deagon-zg
+ * @Author: Dragon-zg
  */
 @Getter
 @Setter

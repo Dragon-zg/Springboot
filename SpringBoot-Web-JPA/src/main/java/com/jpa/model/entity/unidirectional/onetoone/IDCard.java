@@ -1,7 +1,5 @@
 package com.jpa.model.entity.unidirectional.onetoone;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jpa.model.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,7 +11,7 @@ import javax.persistence.*;
 /**
  * @Description: 身份证实体
  * @Date: 2018-06-10 20:25
- * @Author: Deagon-zg
+ * @Author: Dragon-zg
  */
 @Getter
 @Setter
@@ -24,7 +22,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "jpa_idcard")
 @Where(clause = "delete_flag = 0")
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class IDCard extends BaseEntity {
 
     @Id
@@ -37,8 +34,4 @@ public class IDCard extends BaseEntity {
     @Column(name = "cardno", columnDefinition = "varchar(18) not null comment '身份证号码'")
     @ApiModelProperty("身份证号码")
     private String cardno;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "idcard")
-    private Person person;
 }

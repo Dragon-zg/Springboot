@@ -25,12 +25,4 @@ public interface PersonService extends CurdService<Person, Long> {
      * @return void
      */
     void update(final Long id, final InputConverter inputConverter);
-
-    /**
-     * 删除
-     *
-     * @param id
-     * @return void
-     */
-    void delete(final Long id);
 }

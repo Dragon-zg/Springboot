@@ -36,8 +36,16 @@ public interface CurdService<T extends BaseEntity, ID> {
 
     /**
      * find entity by ID
-     * @param id
+     *
+     * @param id 主键ID
      * @return T
      */
     T detail(@NonNull ID id);
+
+    /**
+     * delete entity by ID
+     *
+     * @param id 主键ID
+     */
+    void delete(@NonNull ID id);
 }

@@ -9,6 +9,7 @@ import com.web.exception.CustomizedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.Collection;
@@ -68,5 +69,20 @@ public abstract class AbstractCurdService<T extends BaseEntity, ID> implements C
     public T detail(ID id) {
         Optional<T> optional = repository.findById(id);
         return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+    }
+
+    /**
+     * delete entity by ID
+     *
+     * @param id 主键ID
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(final ID id) {
+        Optional<T> optional = repository.findById(id);
+        optional.ifPresent((entity) -> {
+            entity.setDeleteFlag(true);
+            repository.save(entity);
+        });
     }
 }

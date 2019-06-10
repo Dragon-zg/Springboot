@@ -35,8 +35,8 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
      * @date 2019/4/24 17:25
      * @params []
      */
-    @Transactional(rollbackFor = Exception.class)
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void initPerson() {
         IDCard zidCard = IDCard.builder().cardno("11010219821216xx54").build();
         Person zhangsan = Person.builder().name("张三").idcard(zidCard).build();
@@ -59,8 +59,8 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
      * @date 2019/4/25 15:48
      * @params [id, person]
      */
-    @Transactional(rollbackFor = Exception.class)
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(final Long id, final InputConverter inputConverter) {
         Optional<Person> optional = personRepository.findById(id);
         Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
@@ -76,8 +76,8 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
      * @date 2019/4/25 15:48
      * @params [id, person]
      */
-    @Transactional(rollbackFor = Exception.class)
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(final Long id) {
         Optional<Person> optional = personRepository.findById(id);
         optional.ifPresent((person) -> {

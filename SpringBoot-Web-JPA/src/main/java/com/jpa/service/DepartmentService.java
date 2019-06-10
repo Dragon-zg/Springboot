@@ -21,11 +21,4 @@ public interface DepartmentService extends CurdService<Department, Long> {
      * @param inputConverter
      */
     void update(final Long id, final InputConverter inputConverter);
-
-    /**
-     * 删除
-     *
-     * @param id
-     */
-    void delete(final Long id);
 }

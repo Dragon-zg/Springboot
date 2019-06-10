@@ -14,12 +14,4 @@ public interface L2CacheService extends CurdService<L2Cache, String> {
      * @return void
      */
     void init();
-
-    /**
-     * 详情
-     *
-     * @param id
-     * @return com.jpa.model.entity.l2cache.l2cache
-     */
-    L2Cache detail(String id);
 }

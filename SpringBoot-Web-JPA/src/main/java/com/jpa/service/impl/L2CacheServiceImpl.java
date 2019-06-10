@@ -4,11 +4,7 @@ import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.repository.L2CacheRepository;
 import com.jpa.service.L2CacheService;
 import com.jpa.service.base.AbstractCurdService;
-import com.web.enums.ExceptionCode;
-import com.web.exception.CustomizedException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * @author Dragon-zg
@@ -33,17 +29,5 @@ public class L2CacheServiceImpl extends AbstractCurdService<L2Cache, String> imp
     public void init() {
         L2Cache l2Cache = L2Cache.builder().build();
         l2CacheRepository.save(l2Cache);
-    }
-
-    /**
-     * 详情
-     *
-     * @param id
-     * @return com.jpa.model.entity.unidirectional.onetoone.Person
-     */
-    @Override
-    public L2Cache detail(String id) {
-        Optional<L2Cache> optional = l2CacheRepository.findById(id);
-        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
     }
 }

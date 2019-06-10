@@ -15,14 +15,6 @@ public interface DepartmentService extends CurdService<Department, Long> {
     void initDepartment();
 
     /**
-     * 详情
-     *
-     * @param id
-     * @return com.jpa.model.entity.unidirectional.onetoone.Person
-     */
-    Department detail(Long id);
-
-    /**
      * 更新
      *
      * @param id

@@ -4,6 +4,8 @@ import com.jpa.model.entity.base.BaseEntity;
 import com.jpa.repository.base.BaseRepository;
 import com.jpa.search.DynamicSpecification;
 import com.jpa.search.SearchFilter;
+import com.web.enums.ExceptionCode;
+import com.web.exception.CustomizedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -12,6 +14,7 @@ import org.springframework.util.Assert;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * abstract service implementation.
@@ -53,5 +56,17 @@ public abstract class AbstractCurdService<T extends BaseEntity, ID> implements C
         Specification<T> specification = DynamicSpecification.bySearchFilter(filters);
         Page<T> page = repository.findAll(specification, pageable);
         return page;
+    }
+
+    /**
+     * find entity by id
+     *
+     * @param id
+     * @return T
+     */
+    @Override
+    public T detail(ID id) {
+        Optional<T> optional = repository.findById(id);
+        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
     }
 }

@@ -33,4 +33,11 @@ public interface CurdService<T extends BaseEntity, ID> {
      */
     @NonNull
     Page<T> pagingList(@NonNull Map<String, Object> searchParam, @NonNull Pageable pageable);
+
+    /**
+     * find entity by ID
+     * @param id
+     * @return T
+     */
+    T detail(@NonNull ID id);
 }

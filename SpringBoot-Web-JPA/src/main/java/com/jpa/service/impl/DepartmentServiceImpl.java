@@ -56,18 +56,6 @@ public class DepartmentServiceImpl extends AbstractCurdService<Department, Long>
     }
 
     /**
-     * 详情
-     *
-     * @param id
-     * @return com.jpa.model.entity.unidirectional.onetoone.Person
-     */
-    @Override
-    public Department detail(Long id) {
-        Optional<Department> optional = departmentRepository.findById(id);
-        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-    }
-
-    /**
      * 更新
      *
      * @param id

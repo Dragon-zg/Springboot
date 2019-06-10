@@ -52,20 +52,6 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
     }
 
     /**
-     * 详情
-     *
-     * @return com.jpa.model.entity.unidirectional.onetoone.Person
-     * @author Dragon-zg
-     * @date 2019/4/25 10:56
-     * @params [id]
-     */
-    @Override
-    public Person detail(Long id) {
-        Optional<Person> optional = personRepository.findById(id);
-        return optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-    }
-
-    /**
      * 更新
      *
      * @return void

@@ -11,10 +11,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Dragon-zg
@@ -31,19 +35,25 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    @ApiOperation(value = "分页列表")
+    @GetMapping(value = {"/page"})
+    public Page<DepartmentVO> page(WebRequest request, Pageable pageable) {
+        Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
+        Page<Department> departmentPage = departmentService.pagingList(searchParam, pageable);
+        return departmentPage.map(department -> new DepartmentVO().convertFrom(department));
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping(value = {"/list"})
+    public List<DepartmentVO> list() {
+        return convertTo(departmentService.listAll());
+    }
+
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
     public ResultModel initDepartment() {
         departmentService.initDepartment();
         return ResultUtils.success();
-    }
-
-    @ApiOperation(value = "分页列表")
-    @GetMapping(value = {""})
-    public Page<DepartmentVO> page(WebRequest request, Pageable pageable) {
-        Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-        Page<Department> departmentPage = departmentService.pagingList(searchParam, pageable);
-        return departmentPage.map(department -> new DepartmentVO().convertFrom(department));
     }
 
     @ApiOperation(value = "详情")
@@ -65,5 +75,14 @@ public class DepartmentController {
     public ResultModel delete(@PathVariable("id") Long id) {
         departmentService.delete(id);
         return ResultUtils.success();
+    }
+
+    private List<DepartmentVO> convertTo(List<Department> departments) {
+        if (CollectionUtils.isEmpty(departments)) {
+            return Collections.emptyList();
+        }
+
+        return departments.stream().map(department -> (DepartmentVO) new DepartmentVO().convertFrom(department))
+                .collect(Collectors.toList());
     }
 }

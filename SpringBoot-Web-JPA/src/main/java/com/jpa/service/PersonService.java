@@ -29,7 +29,7 @@ public interface PersonService extends CurdService<Person, Long> {
      * 更新
      *
      * @param id
-     * @param person
+     * @param inputConverter
      * @return void
      */
     void update(final Long id, final InputConverter inputConverter);

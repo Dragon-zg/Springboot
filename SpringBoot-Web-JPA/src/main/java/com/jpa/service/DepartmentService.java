@@ -11,8 +11,6 @@ import com.jpa.service.base.CurdService;
 public interface DepartmentService extends CurdService<Department, Long> {
     /**
      * 初始化部门数据
-     *
-     * @return void
      */
     void initDepartment();
 
@@ -28,8 +26,7 @@ public interface DepartmentService extends CurdService<Department, Long> {
      * 更新
      *
      * @param id
-     * @param department
-     * @return void
+     * @param inputConverter
      */
     void update(final Long id, final InputConverter inputConverter);
 
@@ -37,7 +34,6 @@ public interface DepartmentService extends CurdService<Department, Long> {
      * 删除
      *
      * @param id
-     * @return void
      */
     void delete(final Long id);
 }

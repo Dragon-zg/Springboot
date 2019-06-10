@@ -6,7 +6,6 @@ import com.jpa.search.DynamicSpecification;
 import com.jpa.search.SearchFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.Assert;
 
@@ -37,32 +36,6 @@ public abstract class AbstractCurdService<T extends BaseEntity, ID> implements C
     @Override
     public List<T> listAll() {
         return repository.findAll();
-    }
-
-    /**
-     * List all by {@link Sort}.
-     *
-     * @param sort sort
-     * @return List
-     */
-    @Override
-    public List<T> listAll(Sort sort) {
-        Assert.notNull(sort, "sort is must not null.");
-        return repository.findAll(sort);
-    }
-
-    /**
-     * Returns all entities matching the given {@link Specification} and {@link Sort}.
-     *
-     * @param spec spec
-     * @param sort sort
-     * @return List
-     */
-    @Override
-    public List<T> listAll(Specification<T> spec, Sort sort) {
-        Assert.notNull(spec, "specification is must not null.");
-        Assert.notNull(sort, "sort is must not null.");
-        return repository.findAll(spec, sort);
     }
 
     /**

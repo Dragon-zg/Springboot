@@ -2,8 +2,8 @@ package com.web.interceptor;
 
 import com.google.common.collect.Lists;
 import com.web.annotation.IpStint;
-import com.web.constants.PropertiesKeyConstant;
-import com.web.constants.SymbolConstant;
+import com.web.constant.PropertiesKeyConsts;
+import com.web.constant.SymbolConsts;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -51,12 +51,12 @@ public class IpInterceptor implements HandlerInterceptor {
 
             if (ArrayUtils.isEmpty(ipFilter.denyIp())) {
                 //读取默认配置
-                String denyIps = environment.getProperty(PropertiesKeyConstant.IP_INTERCEPTION_DEFAULT_DENY);
+                String denyIps = environment.getProperty(PropertiesKeyConsts.IP_INTERCEPTION_DEFAULT_DENY);
                 if (log.isDebugEnabled()) {
                     log.debug("denyIps: {}", denyIps);
                 }
                 if (StringUtils.isNotBlank(denyIps)) {
-                    denyIpList = Lists.newArrayList(denyIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
+                    denyIpList = Lists.newArrayList(denyIps.trim().split(SymbolConsts.SYMBOL_COMMA_HALF));
                 }
             } else {
                 denyIpList = Lists.newArrayList(ipFilter.denyIp());
@@ -64,12 +64,12 @@ public class IpInterceptor implements HandlerInterceptor {
 
             if (ArrayUtils.isEmpty(ipFilter.allowIp())) {
                 //读取默认配置
-                String allowIps = environment.getProperty(PropertiesKeyConstant.IP_INTERCEPTION_DEFAULT_ALLOW);
+                String allowIps = environment.getProperty(PropertiesKeyConsts.IP_INTERCEPTION_DEFAULT_ALLOW);
                 if (log.isDebugEnabled()) {
                     log.debug("allowIps: {}", allowIps);
                 }
                 if (StringUtils.isNotBlank(allowIps)) {
-                    allowIpList = Lists.newArrayList(allowIps.trim().split(SymbolConstant.SYMBOL_COMMA_HALF));
+                    allowIpList = Lists.newArrayList(allowIps.trim().split(SymbolConsts.SYMBOL_COMMA_HALF));
                 }
             } else {
                 allowIpList = Lists.newArrayList(ipFilter.allowIp());

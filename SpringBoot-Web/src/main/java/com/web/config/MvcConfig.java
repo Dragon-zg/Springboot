@@ -1,6 +1,6 @@
 package com.web.config;
 
-import com.web.constants.EnvConstant;
+import com.web.constant.EnvConsts;
 import com.web.i18n.I18nMessageResource;
 import com.web.interceptor.IpInterceptor;
 import org.springframework.context.MessageSource;
@@ -47,7 +47,7 @@ public class MvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        if (environment.acceptsProfiles(Profiles.of(EnvConstant.DEVELOPMENT, EnvConstant.PRODUCTION))) {
+        if (environment.acceptsProfiles(Profiles.of(EnvConsts.DEVELOPMENT, EnvConsts.PRODUCTION))) {
             //IP访问限制拦截器
             registry.addInterceptor(new IpInterceptor(environment)).addPathPatterns("/api/**");
         }
@@ -56,7 +56,7 @@ public class MvcConfig implements WebMvcConfigurer {
     /**
      * 打印请求相关日志信息
      */
-    @Profile({EnvConstant.DEVELOPMENT, EnvConstant.PRODUCTION})
+    @Profile({EnvConsts.DEVELOPMENT, EnvConsts.PRODUCTION})
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();

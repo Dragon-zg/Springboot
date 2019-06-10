@@ -1,4 +1,4 @@
-package com.web.constants;
+package com.web.constant;
 
 /**
  * 文件格式常量类
@@ -6,7 +6,7 @@ package com.web.constants;
  * @author Dragon-zg
  * @date 2018/12/1 15:27
  **/
-public interface FileFormatConstant {
+public interface FileFormatConsts {
     /**
      * PDF
      */

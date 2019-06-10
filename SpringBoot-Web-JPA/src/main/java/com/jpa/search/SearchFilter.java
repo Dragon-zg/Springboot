@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.web.constants.SymbolConstant;
+import com.web.constant.SymbolConsts;
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
 import org.apache.commons.lang3.StringUtils;
@@ -61,7 +61,7 @@ public class SearchFilter {
         for(Map.Entry<String, Object> entry : searchParams.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            String[] names = StringUtils.split(key, SymbolConstant.SYMBOL_UNDERLINE);
+            String[] names = StringUtils.split(key, SymbolConsts.SYMBOL_UNDERLINE);
             if(names.length != 2 && names.length != 3) {
                 continue;
             }

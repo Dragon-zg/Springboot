@@ -1,4 +1,4 @@
-package com.web.constants;
+package com.web.constant;
 
 /**
  * 环境常量类
@@ -6,7 +6,7 @@ package com.web.constants;
  * @author Dragon-zg
  * @date 2018/11/7 9:39
  */
-public interface EnvConstant {
+public interface EnvConsts {
 
     /**
      * 测试环境

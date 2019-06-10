@@ -1,11 +1,12 @@
-package com.web.constants;
+package com.web.constant;
 
 /**
- * properties文件前缀常量类
+ * properties文件key值常量类
+ *
  * @author Dragon-zg
- * @date 2018/10/25 17:12
- **/
-public interface PrefixConstant {
+ * @date 2018/12/26 8:15
+ */
+public interface PropertiesKeyConsts {
     /**
      * ip拦截器默认白名单
      */
@@ -14,5 +15,4 @@ public interface PrefixConstant {
      * ip拦截器默认黑名单
      */
     String IP_INTERCEPTION_DEFAULT_DENY = "ip.interception.default.deny";
-
 }

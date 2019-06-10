@@ -1,6 +1,8 @@
 package com.jpa.controller;
 
+import com.jpa.model.dto.DepartmentDTO;
 import com.jpa.model.entity.unidirectional.onetomany.Department;
+import com.jpa.model.vo.DepartmentVO;
 import com.jpa.service.DepartmentService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;
@@ -31,28 +33,30 @@ public class DepartmentController {
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
-    public ResultModel initPerson() {
+    public ResultModel initDepartment() {
         departmentService.initDepartment();
         return ResultUtils.success();
     }
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
-    public Page<Department> page(WebRequest request, Pageable pageable) {
+    public Page<DepartmentVO> page(WebRequest request, Pageable pageable) {
         Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-        return departmentService.pagingList(searchParam, pageable);
+        Page<Department> departmentPage = departmentService.pagingList(searchParam, pageable);
+        return departmentPage.map(department -> new DepartmentVO().convertFrom(department));
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<Department> detail(@PathVariable("id") Long id) {
-        return ResultUtils.success(departmentService.detail(id));
+    public ResultModel<DepartmentVO> detail(@PathVariable("id") Long id) {
+        Department department = departmentService.detail(id);
+        return ResultUtils.success(new DepartmentVO().convertFrom(department));
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
-    public ResultModel update(@PathVariable("id") Long id, @RequestBody Department department) {
-        departmentService.update(id, department);
+    public ResultModel update(@PathVariable("id") Long id, @RequestBody DepartmentDTO departmentDto) {
+        departmentService.update(id, departmentDto);
         return ResultUtils.success();
     }
 

@@ -1,5 +1,6 @@
 package com.jpa.service.impl;
 
+import com.jpa.model.converter.InputConverter;
 import com.jpa.model.entity.unidirectional.onetoone.IDCard;
 import com.jpa.model.entity.unidirectional.onetoone.Person;
 import com.jpa.repository.PersonRepository;
@@ -74,11 +75,10 @@ public class PersonServiceImpl extends AbstractCurdService<Person, Long> impleme
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void update(final Long id, final Person person) {
+    public void update(final Long id, final InputConverter inputConverter) {
         Optional<Person> optional = personRepository.findById(id);
         Person update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        update.setName(person.getName());
-        update.getIdcard().setCardno(person.getIdcard().getCardno());
+        inputConverter.convertTo(update);
         personRepository.save(update);
     }
 

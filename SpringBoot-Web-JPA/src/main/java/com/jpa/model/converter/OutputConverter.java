@@ -1,5 +1,7 @@
-package com.jpa.model.dto.base;
+package com.jpa.model.converter;
 
+
+import org.springframework.util.Assert;
 
 /**
  * Converter interface for output DTO.
@@ -20,8 +22,9 @@ public interface OutputConverter<DTO extends OutputConverter<DTO, DOMAIN>, DOMAI
      */
     @SuppressWarnings("unchecked")
     default <T extends DTO> T convertFrom(DOMAIN domain) {
+        Assert.notNull(domain, "domain object must not be null");
 
-
+        org.springframework.beans.BeanUtils.copyProperties(domain, this);
         return (T) this;
     }
 }

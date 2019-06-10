@@ -1,5 +1,6 @@
 package com.jpa.service;
 
+import com.jpa.model.converter.InputConverter;
 import com.jpa.model.entity.unidirectional.onetoone.Person;
 import com.jpa.service.base.CurdService;
 
@@ -31,7 +32,7 @@ public interface PersonService extends CurdService<Person, Long> {
      * @param person
      * @return void
      */
-    void update(final Long id, final Person person);
+    void update(final Long id, final InputConverter inputConverter);
 
     /**
      * 删除

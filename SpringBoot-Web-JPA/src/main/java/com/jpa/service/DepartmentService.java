@@ -1,5 +1,6 @@
 package com.jpa.service;
 
+import com.jpa.model.converter.InputConverter;
 import com.jpa.model.entity.unidirectional.onetomany.Department;
 import com.jpa.service.base.CurdService;
 
@@ -30,7 +31,7 @@ public interface DepartmentService extends CurdService<Department, Long> {
      * @param department
      * @return void
      */
-    void update(final Long id, final Department department);
+    void update(final Long id, final InputConverter inputConverter);
 
     /**
      * 删除

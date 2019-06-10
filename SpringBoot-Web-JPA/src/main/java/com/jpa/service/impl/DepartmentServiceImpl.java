@@ -1,5 +1,6 @@
 package com.jpa.service.impl;
 
+import com.jpa.model.converter.InputConverter;
 import com.jpa.model.entity.unidirectional.onetomany.Department;
 import com.jpa.model.entity.unidirectional.onetomany.Employee;
 import com.jpa.repository.DepartmentRepository;
@@ -11,6 +12,7 @@ import com.web.exception.CustomizedException;
 import com.web.util.DateUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +38,7 @@ public class DepartmentServiceImpl extends AbstractCurdService<Department, Long>
      * @return void
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void initDepartment() {
         Employee zhangsan1 = Employee.builder().name("zhangsan1").age(18)
                 .birthday(DateUtils.parseDate("2016-01-13 12:13:14", DateFormat.DEFAULT_TIME)).build();
@@ -72,11 +75,11 @@ public class DepartmentServiceImpl extends AbstractCurdService<Department, Long>
      * @return void
      */
     @Override
-    public void update(Long id, Department department) {
+    @Transactional(rollbackFor = Exception.class)
+    public void update(Long id, final InputConverter inputConverter) {
         Optional<Department> optional = departmentRepository.findById(id);
         Department update = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
-        update.setName(department.getName());
-        update.setQuantity(department.getQuantity());
+        inputConverter.convertTo(update);
         departmentRepository.save(update);
     }
 
@@ -87,6 +90,7 @@ public class DepartmentServiceImpl extends AbstractCurdService<Department, Long>
      * @return void
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
         Optional<Department> optional = departmentRepository.findById(id);
         optional.ifPresent((department) -> {

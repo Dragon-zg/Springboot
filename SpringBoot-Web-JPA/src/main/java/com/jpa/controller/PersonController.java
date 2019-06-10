@@ -1,6 +1,8 @@
 package com.jpa.controller;
 
+import com.jpa.model.dto.PersonDTO;
 import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.vo.PersonVO;
 import com.jpa.service.PersonService;
 import com.web.model.ResultModel;
 import com.web.util.ResultUtils;
@@ -38,21 +40,23 @@ public class PersonController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {""})
-    public Page<Person> page(WebRequest request, Pageable pageable) {
+    public Page<PersonVO> page(WebRequest request, Pageable pageable) {
         Map<String, Object> searchParam = ServletUtils.getParametersStartingWith(request, "search_");
-        return personService.pagingList(searchParam, pageable);
+        Page<Person> personPage = personService.pagingList(searchParam, pageable);
+        return personPage.map(person -> new PersonVO().convertFrom(person));
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<Person> detail(@PathVariable("id") Long id) {
-        return ResultUtils.success(personService.detail(id));
+    public ResultModel<PersonVO> detail(@PathVariable("id") Long id) {
+        Person person = personService.detail(id);
+        return ResultUtils.success(new PersonVO().convertFrom(person));
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
-    public ResultModel update(@PathVariable("id") Long id, @RequestBody Person person) {
-        personService.update(id, person);
+    public ResultModel update(@PathVariable("id") Long id, @RequestBody PersonDTO personDto) {
+        personService.update(id, personDto);
         return ResultUtils.success();
     }
 

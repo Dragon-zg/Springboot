@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
- * @Description i18N工具类
- * @Author Dragon-zg
- * @Date 2018/7/7 16:51
+ * @description i18N工具类
+ * @author Dragon-zg
+ * @date 2018/7/7 16:51
  **/
 @Component
 public class I18nUtil {
@@ -26,9 +26,9 @@ public class I18nUtil {
     }
 
     /**
-     * @Description 系统多语言翻译
-     * @Author Dragon-zg
-     * @Date 2018/7/20 13:47
+     * @description 系统多语言翻译
+     * @author Dragon-zg
+     * @date 2018/7/20 13:47
      * @Param [code]
      * @return java.lang.String
      */
@@ -37,9 +37,9 @@ public class I18nUtil {
     }
 
     /**
-     * @Description 系统多语言翻译,加参数
-     * @Author Dragon-zg
-     * @Date 2018/7/20 13:47
+     * @description 系统多语言翻译,加参数
+     * @author Dragon-zg
+     * @date 2018/7/20 13:47
      * @Param [code, args]
      * @return java.lang.String
      */

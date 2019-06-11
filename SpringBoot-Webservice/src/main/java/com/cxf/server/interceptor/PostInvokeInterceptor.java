@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @Description 请求方法后置拦截器
- * @Author Dragon-zg
- * @Date 2018/6/5 9:28
+ * @description 请求方法后置拦截器
+ * @author Dragon-zg
+ * @date 2018/6/5 9:28
  **/
 public class PostInvokeInterceptor extends AbstractPhaseInterceptor<Message> {
     private final static Logger logger = LoggerFactory.getLogger(PostInvokeInterceptor.class);

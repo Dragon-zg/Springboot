@@ -9,9 +9,9 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 
 /**
- * @Description: 身份证实体
- * @Date: 2018-06-10 20:25
- * @Author: Dragon-zg
+ * @description: 身份证实体
+ * @date: 2018-06-10 20:25
+ * @author: Dragon-zg
  */
 @Getter
 @Setter

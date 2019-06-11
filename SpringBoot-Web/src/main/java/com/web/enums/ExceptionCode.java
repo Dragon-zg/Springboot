@@ -1,9 +1,9 @@
 package com.web.enums;
 
 /**
- * @Description: 异常编码枚举类
- * @Author Dragon-zg
- * @Date: 2017-12-16 20:34
+ * @description: 异常编码枚举类
+ * @author Dragon-zg
+ * @date: 2017-12-16 20:34
  */
 public enum ExceptionCode {
     /**

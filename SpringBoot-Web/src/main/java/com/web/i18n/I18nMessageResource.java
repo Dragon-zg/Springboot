@@ -10,9 +10,9 @@ import java.text.MessageFormat;
 import java.util.Locale;
 
 /**
- * @Description 多语言环境自定义MessageResource
- * @Author Dragon-zg
- * @Date 2018/7/4 14:16
+ * @description 多语言环境自定义MessageResource
+ * @author Dragon-zg
+ * @date 2018/7/4 14:16
  **/
 public class I18nMessageResource extends AbstractMessageSource implements ResourceLoaderAware {
 

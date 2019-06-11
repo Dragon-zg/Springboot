@@ -9,9 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
- * @Description 时间工具类
- * @Author Dragon-zg
- * @Date 2018/7/31 9:03
+ * @description 时间工具类
+ * @author Dragon-zg
+ * @date 2018/7/31 9:03
  **/
 public class DateUtils {
 

@@ -8,7 +8,7 @@ import com.web.model.ResultModel;
  * 相应结果工具类
  *
  * @author Dragon-zg
- * @Date: 2017-12-16 20:41
+ * @date: 2017-12-16 20:41
  */
 @SuppressWarnings("unchecked")
 public class ResultUtils {

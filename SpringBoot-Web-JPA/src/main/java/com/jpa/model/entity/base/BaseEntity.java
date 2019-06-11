@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Description: 所有实体的父类
- * @Date: 2018-06-03 18:22
- * @Author: Dragon-zg
+ * @description: 所有实体的父类
+ * @date: 2018-06-03 18:22
+ * @author: Dragon-zg
  */
 @Getter
 @Setter

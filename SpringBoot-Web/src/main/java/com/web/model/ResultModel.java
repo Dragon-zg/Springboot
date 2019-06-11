@@ -8,8 +8,8 @@ import java.io.Serializable;
 /**
  * 统一返回接口格式结果集
  *
- * @Author Dragon-zg
- * @Date: 2017-12-16 19:56
+ * @author Dragon-zg
+ * @date: 2017-12-16 19:56
  */
 @ApiModel("响应结果实体类")
 public class ResultModel<T> implements Serializable {

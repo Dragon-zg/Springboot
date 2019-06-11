@@ -7,8 +7,8 @@ import javax.jws.WebService;
 
 /**
  *
- * @Date: 2018-06-03 15:09
- * @Author: Dragon-zg
+ * @date: 2018-06-03 15:09
+ * @author: Dragon-zg
  */
 @WebService(serviceName = "userServices",//服务名
         portName = "userPort",

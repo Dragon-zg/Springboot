@@ -8,8 +8,8 @@ import javax.jws.soap.SOAPBinding;
 
 /**
  *
- * @Date: 2018-06-03 15:05
- * @Author: Dragon-zg
+ * @date: 2018-06-03 15:05
+ * @author: Dragon-zg
  */
 @WebService(targetNamespace = "http://service.server.cxf.com")
 @SOAPBinding(style = SOAPBinding.Style.RPC)

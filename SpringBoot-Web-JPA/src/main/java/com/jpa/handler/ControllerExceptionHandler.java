@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * 当controller抛出异常时, 自动捕获异常并返回相应错误码及信息
  *
  * @author Dragon-zg
- * @Date: 2017-12-16 20:11
+ * @date: 2017-12-16 20:11
  */
 @Log4j2
 @RestControllerAdvice(annotations = {RestController.class, Controller.class})

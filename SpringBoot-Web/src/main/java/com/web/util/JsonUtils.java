@@ -9,8 +9,8 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 /**
  * JSON 工具类
- * @Author Dragon-zg
- * @Date 2018/8/15 13:18
+ * @author Dragon-zg
+ * @date 2018/8/15 13:18
  **/
 @Log4j2
 public class JsonUtils {

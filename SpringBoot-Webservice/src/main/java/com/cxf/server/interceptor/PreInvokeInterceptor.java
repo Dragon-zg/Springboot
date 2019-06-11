@@ -12,7 +12,7 @@ import javax.xml.ws.handler.MessageContext;
 
 /**
  * @author Dragon-zg
- * @Description: 请求方法前置拦截器
+ * @description: 请求方法前置拦截器
  */
 public class PreInvokeInterceptor extends AbstractPhaseInterceptor<Message> {
     private final static Logger logger = LoggerFactory.getLogger(PreInvokeInterceptor.class);

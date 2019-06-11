@@ -6,8 +6,8 @@ import com.web.enums.ExceptionCode;
 /**
  * 自定义业务异常
  *
- * @Author Dragon-zg
- * @Date: 2017-12-16 20:07
+ * @author Dragon-zg
+ * @date: 2017-12-16 20:07
  */
 public class CustomizedException extends RuntimeException {
     private Integer code;

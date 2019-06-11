@@ -8,9 +8,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @Description MD5加密工具类
- * @Author Dragon-zg
- * @Date 2018/6/2 20:16
+ * @description MD5加密工具类
+ * @author Dragon-zg
+ * @date 2018/6/2 20:16
  * @Param
  * @return
  */

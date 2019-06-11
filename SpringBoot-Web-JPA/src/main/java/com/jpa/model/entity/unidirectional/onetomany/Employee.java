@@ -11,9 +11,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @Description: 员工实体
- * @Date: 2018-06-03 18:11
- * @Author: Dragon-zg
+ * @description: 员工实体
+ * @date: 2018-06-03 18:11
+ * @author: Dragon-zg
  */
 @Getter
 @Setter

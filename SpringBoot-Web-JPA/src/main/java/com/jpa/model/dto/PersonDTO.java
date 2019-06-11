@@ -1,8 +1,8 @@
 package com.jpa.model.dto;
 
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.onetoone.IDCard;
-import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.onetoone.IDCard;
+import com.jpa.model.entity.onetoone.Person;
 import lombok.Data;
 
 /**

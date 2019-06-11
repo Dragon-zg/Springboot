@@ -1,7 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.model.dto.PersonDTO;
-import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.onetoone.Person;
 import com.jpa.model.vo.PersonVO;
 import com.jpa.service.PersonService;
 import com.web.util.ServletUtils;

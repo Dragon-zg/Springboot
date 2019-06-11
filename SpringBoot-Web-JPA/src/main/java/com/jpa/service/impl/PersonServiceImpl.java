@@ -1,8 +1,8 @@
 package com.jpa.service.impl;
 
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.onetoone.IDCard;
-import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.onetoone.IDCard;
+import com.jpa.model.entity.onetoone.Person;
 import com.jpa.repository.PersonRepository;
 import com.jpa.service.PersonService;
 import com.jpa.service.base.AbstractCurdService;

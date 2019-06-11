@@ -1,8 +1,8 @@
 package com.jpa.model.vo;
 
 import com.jpa.model.converter.OutputConverter;
-import com.jpa.model.entity.unidirectional.onetoone.IDCard;
-import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.onetoone.IDCard;
+import com.jpa.model.entity.onetoone.Person;
 import lombok.Data;
 import org.springframework.util.Assert;
 

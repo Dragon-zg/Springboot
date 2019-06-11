@@ -1,6 +1,6 @@
 package com.jpa.repository;
 
-import com.jpa.model.entity.unidirectional.onetomany.Department;
+import com.jpa.model.entity.onetomany.Department;
 import com.jpa.repository.base.BaseRepository;
 
 /**

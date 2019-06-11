@@ -1,7 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.model.dto.TeacherDTO;
-import com.jpa.model.entity.unidirectional.manttomany.Teacher;
+import com.jpa.model.entity.manttomany.Teacher;
 import com.jpa.model.vo.TeacherVO;
 import com.jpa.service.TeacherService;
 import com.web.util.ServletUtils;

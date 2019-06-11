@@ -2,8 +2,8 @@ package com.jpa.service.impl;
 
 import com.google.common.collect.Lists;
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.manttomany.Student;
-import com.jpa.model.entity.unidirectional.manttomany.Teacher;
+import com.jpa.model.entity.manttomany.Student;
+import com.jpa.model.entity.manttomany.Teacher;
 import com.jpa.repository.TeacherRepository;
 import com.jpa.service.TeacherService;
 import com.jpa.service.base.AbstractCurdService;

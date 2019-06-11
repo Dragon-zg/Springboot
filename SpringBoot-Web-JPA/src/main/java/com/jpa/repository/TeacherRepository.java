@@ -1,6 +1,6 @@
 package com.jpa.repository;
 
-import com.jpa.model.entity.unidirectional.manttomany.Teacher;
+import com.jpa.model.entity.manttomany.Teacher;
 import com.jpa.repository.base.BaseRepository;
 
 /**

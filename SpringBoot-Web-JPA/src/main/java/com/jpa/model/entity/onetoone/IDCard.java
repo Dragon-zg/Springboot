@@ -1,4 +1,4 @@
-package com.jpa.model.entity.unidirectional.onetoone;
+package com.jpa.model.entity.onetoone;
 
 import com.jpa.model.entity.base.BaseEntity;
 import io.swagger.annotations.ApiModel;

@@ -1,7 +1,7 @@
 package com.jpa.model.dto;
 
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.onetomany.Department;
+import com.jpa.model.entity.onetomany.Department;
 import lombok.Data;
 
 /**

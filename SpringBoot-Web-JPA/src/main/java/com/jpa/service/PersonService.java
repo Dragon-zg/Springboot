@@ -1,7 +1,7 @@
 package com.jpa.service;
 
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.onetoone.Person;
+import com.jpa.model.entity.onetoone.Person;
 import com.jpa.service.base.CurdService;
 
 /**

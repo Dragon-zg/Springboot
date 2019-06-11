@@ -1,7 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.model.dto.DepartmentDTO;
-import com.jpa.model.entity.unidirectional.onetomany.Department;
+import com.jpa.model.entity.onetomany.Department;
 import com.jpa.model.vo.DepartmentVO;
 import com.jpa.service.DepartmentService;
 import com.web.util.ServletUtils;

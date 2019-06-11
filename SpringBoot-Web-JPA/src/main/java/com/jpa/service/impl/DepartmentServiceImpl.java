@@ -1,8 +1,8 @@
 package com.jpa.service.impl;
 
 import com.jpa.model.converter.InputConverter;
-import com.jpa.model.entity.unidirectional.onetomany.Department;
-import com.jpa.model.entity.unidirectional.onetomany.Employee;
+import com.jpa.model.entity.onetomany.Department;
+import com.jpa.model.entity.onetomany.Employee;
 import com.jpa.repository.DepartmentRepository;
 import com.jpa.service.DepartmentService;
 import com.jpa.service.base.AbstractCurdService;

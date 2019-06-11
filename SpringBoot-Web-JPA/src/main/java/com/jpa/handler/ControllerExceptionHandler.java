@@ -1,4 +1,4 @@
-package com.web.handler;
+package com.jpa.handler;
 
 import com.web.enums.ExceptionCode;
 import com.web.exception.CustomizedException;
@@ -20,18 +20,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @Log4j2
 @RestControllerAdvice(annotations = {RestController.class, Controller.class})
-public class AutoExceptionHandler {
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResultModel<?> handleException(Exception e) {
+    public ResultModel handleException(Exception e) {
         log.error(e.getMessage(), e);
         return ResultUtils.error(ExceptionCode.UNKOW_ERROR);
     }
 
     @ExceptionHandler(value = CustomizedException.class)
     @ResponseStatus(HttpStatus.OK)
-    public ResultModel<?> handleBusiException(CustomizedException e) {
+    public ResultModel handleBusiException(CustomizedException e) {
         //若属于业务异常,则抛出相关编码信息
         log.info(e.getMessage());
         return ResultUtils.error(e.getCode(), e.getMessage());

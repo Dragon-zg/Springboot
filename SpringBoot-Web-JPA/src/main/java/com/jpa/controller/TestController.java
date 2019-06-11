@@ -2,8 +2,6 @@ package com.jpa.controller;
 
 import com.web.annotation.IpStint;
 import com.web.i18n.I18nUtil;
-import com.web.model.ResultModel;
-import com.web.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +28,6 @@ public class TestController {
     @IpStint
     @ApiOperation("IP拦截Demo测试")
     @GetMapping("/ipStint")
-    public ResultModel ipStint() {
-        return ResultUtils.success();
+    public void ipStint() {
     }
 }

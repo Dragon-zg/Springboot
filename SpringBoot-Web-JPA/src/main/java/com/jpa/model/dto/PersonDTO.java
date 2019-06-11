@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * Person DTO
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/10 13:40
  **/
 @Data

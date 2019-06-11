@@ -2,8 +2,6 @@ package com.jpa.controller;
 
 import com.jpa.model.entity.l2cache.L2Cache;
 import com.jpa.service.L2CacheService;
-import com.web.model.ResultModel;
-import com.web.util.ResultUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +23,13 @@ public class L2CacheController {
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
-    public ResultModel init() {
+    public void init() {
         l2CacheService.init();
-        return ResultUtils.success();
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<L2Cache> detail(@PathVariable("id") String id) {
-        return ResultUtils.success(l2CacheService.detail(id));
+    public L2Cache detail(@PathVariable("id") String id) {
+        return l2CacheService.detail(id);
     }
 }

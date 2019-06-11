@@ -4,8 +4,6 @@ import com.jpa.model.dto.DepartmentDTO;
 import com.jpa.model.entity.unidirectional.onetomany.Department;
 import com.jpa.model.vo.DepartmentVO;
 import com.jpa.service.DepartmentService;
-import com.web.model.ResultModel;
-import com.web.util.ResultUtils;
 import com.web.util.ServletUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,30 +49,27 @@ public class DepartmentController {
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
-    public ResultModel initDepartment() {
+    public void initDepartment() {
         departmentService.initDepartment();
-        return ResultUtils.success();
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<DepartmentVO> detail(@PathVariable("id") Long id) {
+    public DepartmentVO detail(@PathVariable("id") Long id) {
         Department department = departmentService.detail(id);
-        return ResultUtils.success(new DepartmentVO().convertFrom(department));
+        return new DepartmentVO().convertFrom(department);
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
-    public ResultModel update(@PathVariable("id") Long id, @RequestBody DepartmentDTO departmentDto) {
+    public void update(@PathVariable("id") Long id, @RequestBody DepartmentDTO departmentDto) {
         departmentService.update(id, departmentDto);
-        return ResultUtils.success();
     }
 
     @ApiOperation(value = "删除")
     @DeleteMapping(value = {"/{id}/delete"})
-    public ResultModel delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) {
         departmentService.delete(id);
-        return ResultUtils.success();
     }
 
     private List<DepartmentVO> convertTo(List<Department> departments) {

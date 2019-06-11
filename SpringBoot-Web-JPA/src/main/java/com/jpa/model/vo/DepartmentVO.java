@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * Department VO
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/10 15:14
  **/
 @Data

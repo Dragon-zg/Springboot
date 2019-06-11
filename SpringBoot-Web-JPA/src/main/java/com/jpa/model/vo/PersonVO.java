@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
 /**
  * Person VO
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/10 11:36
  **/
 @Data

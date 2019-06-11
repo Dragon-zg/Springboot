@@ -4,8 +4,6 @@ import com.jpa.model.dto.PersonDTO;
 import com.jpa.model.entity.unidirectional.onetoone.Person;
 import com.jpa.model.vo.PersonVO;
 import com.jpa.service.PersonService;
-import com.web.model.ResultModel;
-import com.web.util.ResultUtils;
 import com.web.util.ServletUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -51,30 +49,27 @@ public class PersonController {
 
     @ApiOperation(value = "初始化")
     @PostMapping(value = {"/init"})
-    public ResultModel initPerson() {
+    public void initPerson() {
         personService.initPerson();
-        return ResultUtils.success();
     }
 
     @ApiOperation(value = "详情")
     @GetMapping(value = {"/{id}/detail"})
-    public ResultModel<PersonVO> detail(@PathVariable("id") Long id) {
+    public PersonVO detail(@PathVariable("id") Long id) {
         Person person = personService.detail(id);
-        return ResultUtils.success(new PersonVO().convertFrom(person));
+        return new PersonVO().convertFrom(person);
     }
 
     @ApiOperation(value = "更新")
     @PutMapping(value = {"/{id}/update"})
-    public ResultModel update(@PathVariable("id") Long id, @RequestBody PersonDTO personDto) {
+    public void update(@PathVariable("id") Long id, @RequestBody PersonDTO personDto) {
         personService.update(id, personDto);
-        return ResultUtils.success();
     }
 
     @ApiOperation(value = "删除")
     @DeleteMapping(value = {"/{id}/delete"})
-    public ResultModel delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) {
         personService.delete(id);
-        return ResultUtils.success();
     }
 
     private List<PersonVO> convertTo(List<Person> personList) {

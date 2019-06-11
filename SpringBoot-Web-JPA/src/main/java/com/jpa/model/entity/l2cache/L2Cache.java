@@ -2,6 +2,8 @@ package com.jpa.model.entity.l2cache;
 
 import com.jpa.id.FormatTableGenerator;
 import com.jpa.model.entity.base.BaseEntity;
+import com.jpa.model.enums.UseType;
+import com.jpa.model.enums.converter.UseTypeConverter;
 import io.swagger.annotations.ApiModel;
 import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -40,4 +42,9 @@ public class L2Cache extends BaseEntity{
                     @org.hibernate.annotations.Parameter(name = FormatTableGenerator.INITIAL_PARAM, value = "100000"),
                     @org.hibernate.annotations.Parameter(name = FormatTableGenerator.INCREMENT_PARAM, value = "1")})
     private String id;
+
+    @Basic
+    @Convert(converter = UseTypeConverter.class)
+    @Column(name = "use_type", columnDefinition = "tinyint(1) unsigned not null default 1 comment '使用状态(1.启用 2.禁用)'")
+    private UseType useType;
 }

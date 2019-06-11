@@ -1,6 +1,7 @@
 package com.jpa.service.impl;
 
 import com.jpa.model.entity.l2cache.L2Cache;
+import com.jpa.model.enums.UseType;
 import com.jpa.repository.L2CacheRepository;
 import com.jpa.service.L2CacheService;
 import com.jpa.service.base.AbstractCurdService;
@@ -27,7 +28,9 @@ public class L2CacheServiceImpl extends AbstractCurdService<L2Cache, String> imp
      */
     @Override
     public void init() {
-        L2Cache l2Cache = L2Cache.builder().build();
-        l2CacheRepository.save(l2Cache);
+        L2Cache l2Cache1 = L2Cache.builder().useType(UseType.Enable).build();
+        l2CacheRepository.save(l2Cache1);
+        L2Cache l2Cache2 = L2Cache.builder().useType(UseType.Disable).build();
+        l2CacheRepository.save(l2Cache2);
     }
 }

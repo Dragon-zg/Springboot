@@ -14,4 +14,11 @@ public interface L2CacheService extends CurdService<L2Cache, String> {
      * @return void
      */
     void init();
+
+    /**
+     * 保存
+     *
+     * @param l2Cache
+     */
+    void create(L2Cache l2Cache);
 }

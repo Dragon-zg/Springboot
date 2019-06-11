@@ -1,17 +1,23 @@
 package com.jpa.model.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * 使用状态枚举类
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/11 15:33
  */
-public enum UseType implements ValueEnum<Integer> {
-    /** 启用 */
-    Enable("启用",1),
-    /** 禁用 */
-    Disable("禁用", 2)
-    ;
+public enum UseType implements DbValue<Integer> {
+    /**
+     * 启用
+     */
+    Enable("启用", 1),
+    /**
+     * 禁用
+     */
+    Disable("禁用", 2);
 
     private final String desc;
     private final Integer value;
@@ -27,6 +33,21 @@ public enum UseType implements ValueEnum<Integer> {
      * @return enum value
      */
     @Override
+    public Integer getDbValue() {
+        return value;
+    }
+
+    @JsonCreator
+    public static UseType getEnum(Integer value) {
+        for (UseType item : values()) {
+            if (item.getValue().equals(value)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
     public Integer getValue() {
         return value;
     }

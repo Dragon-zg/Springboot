@@ -7,7 +7,7 @@ import javax.persistence.Converter;
 /**
  * UseTypeConverter
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/11 15:39
  **/
 @Converter(autoApply = true)

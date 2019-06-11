@@ -33,4 +33,14 @@ public class L2CacheServiceImpl extends AbstractCurdService<L2Cache, String> imp
         L2Cache l2Cache2 = L2Cache.builder().useType(UseType.Disable).build();
         l2CacheRepository.save(l2Cache2);
     }
+
+    /**
+     * 保存
+     *
+     * @param l2Cache
+     */
+    @Override
+    public void create(L2Cache l2Cache) {
+        l2CacheRepository.save(l2Cache);
+    }
 }

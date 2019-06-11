@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 老师实体
  *
- * @author wangqiang
+ * @author Dragon-zg
  * @date 2019/6/11 14:06
  **/
 @Getter

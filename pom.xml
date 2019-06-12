@@ -13,6 +13,7 @@
         <module>SpringBoot-Web-JPA</module>
         <module>SpringBoot-Web</module>
         <module>SpringBoot-Webservice</module>
+        <module>SpringBoot-Quartz</module>
     </modules>
 
     <properties>
@@ -40,6 +41,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <!-- 移除logback 使用log4j2 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>test</scope>
         </dependency>
         <!-- 使用log4j2日志 -->

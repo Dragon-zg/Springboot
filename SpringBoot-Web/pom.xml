@@ -18,11 +18,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
-                <!-- 移除logback 使用log4j2 -->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
                 <!-- 移除tomcat 使用undertow -->
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>

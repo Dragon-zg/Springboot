@@ -1,4 +1,4 @@
-package com.web.annotation;
+package com.example.annotation;
 
 import org.springframework.context.annotation.Configuration;
 

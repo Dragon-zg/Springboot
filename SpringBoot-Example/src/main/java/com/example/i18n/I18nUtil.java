@@ -1,4 +1,4 @@
-package com.web.i18n;
+package com.example.i18n;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;

@@ -10,10 +10,11 @@
     <version>1.0</version>
 
     <modules>
-        <module>SpringBoot-Web-JPA</module>
         <module>SpringBoot-Web</module>
-        <module>SpringBoot-Webservice</module>
+        <module>SpringBoot-Example</module>
+        <module>SpringBoot-Web-JPA</module>
         <module>SpringBoot-Quartz</module>
+        <module>SpringBoot-Webservice</module>
     </modules>
 
     <properties>

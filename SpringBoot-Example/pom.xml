@@ -9,14 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>SpringBoot-Quartz</artifactId>
+    <artifactId>SpringBoot-Example</artifactId>
 
     <dependencies>
-        <!--quartz依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.dragon.org</groupId>
             <artifactId>SpringBoot-Web</artifactId>

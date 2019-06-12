@@ -1,7 +1,7 @@
-package com.web.interceptor;
+package com.example.interceptor;
 
+import com.example.annotation.IpStint;
 import com.google.common.collect.Lists;
-import com.web.annotation.IpStint;
 import com.web.constant.PropertiesKeyConsts;
 import com.web.constant.SymbolConsts;
 import lombok.extern.log4j.Log4j2;

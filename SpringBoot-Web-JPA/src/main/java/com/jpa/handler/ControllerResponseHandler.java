@@ -11,7 +11,7 @@ import org.springframework.http.converter.json.AbstractJackson2HttpMessageConver
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date 2019/6/10 17:10
  **/
 @Log4j2
-@ControllerAdvice("com.jpa.controller")
+@RestControllerAdvice("com.jpa.controller")
 public class ControllerResponseHandler implements ResponseBodyAdvice<Object> {
 
     @Override

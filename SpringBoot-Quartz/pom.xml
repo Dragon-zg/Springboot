@@ -10,11 +10,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>SpringBoot-Quartz</artifactId>
-
-    <!--quartz依赖-->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-quartz</artifactId>
-    </dependency>
-
+    <dependencies>
+        <!--quartz依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dragon.org</groupId>
+            <artifactId>SpringBoot-Web</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang3</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 </project>

@@ -17,6 +17,11 @@
     </properties>
 
     <dependencies>
+        <!-- 引入Actuator监控依赖 会执行SQL:/* ping */ SELECT 1 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!-- 数据库相关依赖包 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

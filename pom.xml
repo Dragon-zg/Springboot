@@ -12,7 +12,7 @@
     <modules>
         <module>SpringBoot-Web</module>
         <module>SpringBoot-Example</module>
-        <module>SpringBoot-Web-JPA</module>
+        <module>SpringBoot-Jpa</module>
         <module>SpringBoot-Quartz</module>
         <module>SpringBoot-Webservice</module>
     </modules>

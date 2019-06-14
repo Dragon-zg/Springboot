@@ -12,7 +12,7 @@
     <artifactId>SpringBoot-Mybatis</artifactId>
 
     <properties>
-        <mybatis.version>2.0.1</mybatis.version>
+        <mybatis.plus.version>3.1.1</mybatis.plus.version>
     </properties>
 
     <dependencies>
@@ -21,23 +21,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- Spring Boot集成mybatis -->
+        <!-- Spring Boot集成mybatis 官方文档https://mybatis.plus/ -->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis.version}</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis.plus.version}</version>
+            <exclusions>
+                <!-- 去除HikariCP使用druid -->
+                <exclusion>
+                    <groupId>com.zaxxer</groupId>
+                    <artifactId>HikariCP</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <!-- 分页插件 -->
-        <!-- <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.1</version>
-        </dependency>-->
-        <!-- Spring Boot集成 pagehelper-->
-        <!--<dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-        </dependency>-->
         <!-- druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>

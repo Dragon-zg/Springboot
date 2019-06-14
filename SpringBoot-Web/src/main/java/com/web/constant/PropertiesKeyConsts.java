@@ -8,6 +8,10 @@ package com.web.constant;
  */
 public interface PropertiesKeyConsts {
     /**
+     * app name
+     */
+    String APP_NAME = "app.name";
+    /**
      * ip拦截器默认白名单
      */
     String IP_INTERCEPTION_DEFAULT_ALLOW = "ip.interception.default.allow";

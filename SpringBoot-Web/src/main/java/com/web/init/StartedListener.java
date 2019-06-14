@@ -1,12 +1,15 @@
 package com.web.init;
 
+import com.web.constant.PropertiesKeyConsts;
 import com.web.enums.DateFormat;
 import com.web.util.DateUtils;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,11 +22,19 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class StartedListener implements ApplicationListener<ApplicationStartedEvent> {
+    /**
+     * 默认应用名称
+     */
+    private final String DEFAULT_APP_NAME = "web app";
+
+    @Autowired
+    private Environment environment;
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
-        //初始化参数
-        //打印当前服务器时间
-        log.info("当前项目启动时间是: {}", DateUtils.getNowStr(DateFormat.CHINA_TIME));
+        //打印当前服务器信息
+        log.info("当前项目应用名称是: {}, 启动时间是: {}",
+                environment.getProperty(PropertiesKeyConsts.APP_NAME, DEFAULT_APP_NAME),
+                DateUtils.getNowStr(DateFormat.CHINA_TIME));
     }
 }

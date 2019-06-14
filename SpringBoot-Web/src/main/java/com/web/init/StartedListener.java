@@ -4,9 +4,7 @@ import com.web.constant.PropertiesKeyConsts;
 import com.web.enums.DateFormat;
 import com.web.util.DateUtils;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
-import org.springframework.context.ApplicationListener;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
@@ -21,20 +19,19 @@ import org.springframework.stereotype.Component;
 @Log4j2
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class StartedListener implements ApplicationListener<ApplicationStartedEvent> {
-    /**
-     * 默认应用名称
-     */
-    private final String DEFAULT_APP_NAME = "web app";
+public class StartedListener implements CommandLineRunner {
 
-    @Autowired
-    private Environment environment;
+    private final Environment environment;
+
+    public StartedListener(Environment environment) {
+        this.environment = environment;
+    }
 
     @Override
-    public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
+    public void run(String... args) {
         //打印当前服务器信息
         log.info("当前项目应用名称是: {}, 启动时间是: {}",
-                environment.getProperty(PropertiesKeyConsts.APP_NAME, DEFAULT_APP_NAME),
+                environment.getProperty(PropertiesKeyConsts.APP_NAME, "web app"),
                 DateUtils.getNowStr(DateFormat.CHINA_TIME));
     }
 }

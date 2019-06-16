@@ -10,9 +10,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @description: 所有实体的父类
- * @date: 2018-06-03 18:22
- * @author: Lnnk
+ * 所有实体的父类
+ *
+ * @author Lnnk
+ * @date 2018-06-03 18:22
  */
 @Getter
 @Setter

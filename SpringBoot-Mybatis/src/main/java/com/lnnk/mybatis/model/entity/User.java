@@ -6,6 +6,8 @@ import com.lnnk.mybatis.model.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户实体对应表 user
@@ -14,6 +16,8 @@ import lombok.Data;
  * @date 2019/6/14 14:27
  **/
 @Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @ApiModel("mybatisUser")
 @TableName("mybatis_user")
 public class User extends BaseEntity {

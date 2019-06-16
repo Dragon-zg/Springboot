@@ -4,17 +4,12 @@ DROP TABLE IF EXISTS mybatis_user;
 
 CREATE TABLE mybatis_user
 (
-	id BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+	id BIGINT(20) NOT NULL COMMENT '主键ID',
 	name VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
 	age INT(11) NULL DEFAULT NULL COMMENT '年龄',
 	email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
+	create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+	update_time DATETIME DEFAULT NULL COMMENT '更新时间',
+	delete_flag TINYINT NOT NULL DEFAULT 0 COMMENT '删除标识符 0.未删除 1.已删除',
 	PRIMARY KEY (id)
 );
-
-
-INSERT INTO mybatis_user (name, age, email) VALUES
-('Jone', 18, 'test1@baomidou.com'),
-('Jack', 20, 'test2@baomidou.com'),
-('Tom', 28, 'test3@baomidou.com'),
-('Sandy', 21, 'test4@baomidou.com'),
-('Billie', 24, 'test5@baomidou.com');

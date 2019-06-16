@@ -15,8 +15,8 @@
         </File>
     </appenders>
     <loggers>
-        <Logger name="com.jpa" level="debug" additivity="true"/>
-        <Logger name="com.web" level="debug" additivity="true"/>
+        <Logger name="com.lnnk.jpa" level="debug" additivity="true"/>
+        <Logger name="com.lnnk.web" level="debug" additivity="true"/>
         <Logger name="antlr" level="warn" additivity="true"/>
         <Logger name="com.alibaba" level="warn" additivity="true"/>
         <Logger name="com.alibaba.druid" level="debug" additivity="true"/>

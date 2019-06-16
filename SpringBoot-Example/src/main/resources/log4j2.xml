@@ -16,7 +16,7 @@
     </appenders>
     <loggers>
         <Logger name="com.quartz" level="debug" additivity="true"/>
-        <Logger name="com.web" level="debug" additivity="true"/>
+        <Logger name="com.lnnk.web" level="debug" additivity="true"/>
         <Logger name="antlr" level="warn" additivity="true"/>
         <Logger name="com.mysql" level="warn" additivity="true"/>
         <Logger name="javax" level="warn" additivity="true"/>

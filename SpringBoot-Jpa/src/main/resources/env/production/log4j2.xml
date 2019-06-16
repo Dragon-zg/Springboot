@@ -71,10 +71,10 @@
         </RollingFile>
     </appenders>
     <loggers>
-        <Logger name="com.jpa" level="info" additivity="true">
+        <Logger name="com.lnnk.jpa" level="info" additivity="true">
             <appender-ref ref="rollingInfoFile" />
         </Logger>
-        <Logger name="com.web" level="info" additivity="true">
+        <Logger name="com.lnnk.web" level="info" additivity="true">
             <appender-ref ref="rollingInfoFile" />
         </Logger>
         <Logger name="org.apache" level="warn" additivity="true"/>

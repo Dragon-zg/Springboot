@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 /**
  * MybatisApplication
  *
- * @author Dragon-zg
+ * @author Lnnk
  * @date 2019/6/13 16:52
  */
 @SpringBootApplication

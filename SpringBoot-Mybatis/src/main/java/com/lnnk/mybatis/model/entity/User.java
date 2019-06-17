@@ -1,7 +1,7 @@
 package com.lnnk.mybatis.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.lnnk.mybatis.model.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * 用户实体对应表 user
+ * 用户实体对应表 mybatis_user
  *
  * @author Lnnk
  * @date 2019/6/14 14:27
@@ -19,11 +19,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ApiModel("mybatisUser")
-@TableName("mybatis_user")
 public class User extends BaseEntity {
 
-    @TableId
-    @ApiModelProperty("主键ID")
+    @TableId(type = IdType.ID_WORKER)
+    @ApiModelProperty("雪花算法 主键ID")
     private Long id;
 
     @ApiModelProperty("姓名")

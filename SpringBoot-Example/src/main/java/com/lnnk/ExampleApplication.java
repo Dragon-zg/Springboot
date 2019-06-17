@@ -1,4 +1,4 @@
-package com.lnnk.example;
+package com.lnnk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

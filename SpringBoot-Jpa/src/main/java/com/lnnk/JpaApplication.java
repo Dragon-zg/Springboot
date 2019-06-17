@@ -1,4 +1,4 @@
-package com.lnnk.jpa;
+package com.lnnk;
 
 import com.lnnk.jpa.repository.base.impl.BaseRepositoryImpl;
 import org.springframework.boot.SpringApplication;

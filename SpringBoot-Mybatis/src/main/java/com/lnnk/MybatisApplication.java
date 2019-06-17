@@ -1,4 +1,4 @@
-package com.lnnk.mybatis;
+package com.lnnk;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

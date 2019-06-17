@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Log4j2
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class StartedListener implements CommandLineRunner {
 
     private final Environment environment;

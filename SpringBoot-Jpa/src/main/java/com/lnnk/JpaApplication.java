@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author Lnnk
@@ -15,6 +16,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
  */
 @SpringBootApplication
 @EnableSpringDataWebSupport
+@EnableTransactionManagement
 @EnableCaching
 @EntityScan(basePackages = {"com.lnnk.jpa.model.entity"})
 @EnableJpaRepositories(basePackages = "com.lnnk.jpa.repository", repositoryBaseClass = BaseRepositoryImpl.class)

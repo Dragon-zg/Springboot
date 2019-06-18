@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author Lnnk
  * @date 2019/6/11 15:33
  */
-public enum UseType implements DbValue<Integer> {
+public enum UseType implements ValueEnum<Integer> {
     /**
      * 启用
      */
@@ -27,18 +27,8 @@ public enum UseType implements DbValue<Integer> {
         this.value = value;
     }
 
-    /**
-     * Gets enum value.
-     *
-     * @return enum value
-     */
-    @Override
-    public Integer getDbValue() {
-        return value;
-    }
-
     @JsonCreator
-    public static UseType getEnum(Integer value) {
+    public static UseType getUseType(Integer value) {
         for (UseType item : values()) {
             if (item.getValue().equals(value)) {
                 return item;
@@ -47,7 +37,13 @@ public enum UseType implements DbValue<Integer> {
         return null;
     }
 
+    /**
+     * Gets enum value.
+     *
+     * @return enum value
+     */
     @JsonValue
+    @Override
     public Integer getValue() {
         return value;
     }

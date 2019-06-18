@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  * @param <T> value type
  * @author Lnnk
  */
-public interface DbValue<T> {
+public interface ValueEnum<T> {
 
     /**
      * Converts value to corresponding enum.
@@ -21,13 +21,13 @@ public interface DbValue<T> {
      * @param <E>      enum generic
      * @return corresponding enum
      */
-    static <V, E extends DbValue<V>> E valueToEnum(final Class<E> enumType, final V value) {
+    static <V, E extends ValueEnum<V>> E valueToEnum(final Class<E> enumType, final V value) {
         Assert.notNull(enumType, "enum type must not be null");
         Assert.notNull(value, "value must not be null");
         Assert.isTrue(enumType.isEnum(), "type must be an enum type");
 
         return Stream.of(enumType.getEnumConstants())
-                .filter(item -> item.getDbValue().equals(value))
+                .filter(item -> item.getValue().equals(value))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("unknown database value: " + value));
     }
@@ -37,6 +37,6 @@ public interface DbValue<T> {
      *
      * @return enum value
      */
-    T getDbValue();
+    T getValue();
 
 }

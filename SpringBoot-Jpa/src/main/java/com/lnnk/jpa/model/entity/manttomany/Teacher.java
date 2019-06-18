@@ -1,8 +1,6 @@
 package com.lnnk.jpa.model.entity.manttomany;
 
 import com.lnnk.jpa.model.entity.base.BaseEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
@@ -20,21 +18,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ApiModel("老师实体")
 @Entity
 @Table(name = "jpa_teacher")
 @Where(clause = "delete_flag = 0")
 public class Teacher extends BaseEntity {
 
+    /**
+     * 主键ID
+     */
     @Id
     @Column(name = "id", columnDefinition = "int(11) comment '主键ID'")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("主键ID")
     private Long id;
 
+    /**
+     * 老师姓名
+     */
     @Basic
     @Column(name = "name", columnDefinition = "varchar(40) not null comment '老师姓名'")
-    @ApiModelProperty("老师姓名")
     private String name;
 
     @ManyToMany(targetEntity = Student.class, fetch = FetchType.LAZY,cascade = {CascadeType.ALL})

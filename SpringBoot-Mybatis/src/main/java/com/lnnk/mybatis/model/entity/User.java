@@ -3,8 +3,6 @@ package com.lnnk.mybatis.model.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.lnnk.mybatis.model.base.BaseEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,20 +16,25 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ApiModel("mybatisUser")
 public class User extends BaseEntity {
-
+    /**
+     * 雪花算法 主键ID
+     */
     @TableId(type = IdType.ID_WORKER)
-    @ApiModelProperty("雪花算法 主键ID")
     private Long id;
 
-    @ApiModelProperty("姓名")
+    /**
+     * 姓名
+     */
     private String name;
 
-    @ApiModelProperty("年龄")
+    /**
+     * 年龄
+     */
     private Integer age;
-
-    @ApiModelProperty("邮箱")
+    /**
+     * 邮箱
+     */
     private String email;
 
 }

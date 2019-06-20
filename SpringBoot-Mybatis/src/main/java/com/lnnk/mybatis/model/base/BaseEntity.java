@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 所有实体的父类
@@ -22,12 +22,12 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    protected LocalDateTime createTime;
+    protected Date createTime;
 
     /**
      * 更新时间
      */
-    protected LocalDateTime updateTime;
+    protected Date updateTime;
 
     /**
      * 删除标识符 0.未删除 1.已删除

@@ -10,4 +10,8 @@ import com.lnnk.mybatis.model.entity.User;
  * @date 2019-06-16 20:12
  */
 public interface UserService extends IService<User> {
+    /**
+     * 初始化
+     */
+    void init();
 }

@@ -36,8 +36,14 @@ public class UserController {
     }
 
     @ApiOperation(value = "列表")
-    @PostMapping(value = {"/list"})
+    @GetMapping(value = {"/list"})
     public List<User> list() {
         return userService.list();
+    }
+
+    @ApiOperation(value = "初始化")
+    @PostMapping(value = {"/init"})
+    public void init() {
+        userService.init();
     }
 }

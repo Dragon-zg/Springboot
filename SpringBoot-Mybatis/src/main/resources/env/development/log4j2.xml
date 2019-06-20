@@ -16,6 +16,7 @@
     </appenders>
     <loggers>
         <Logger name="com.lnnk.mybatis" level="debug" additivity="true"/>
+        <Logger name="com.lnnk.mybatis.mapper" level="info" additivity="true"/>
         <Logger name="com.lnnk.web" level="debug" additivity="true"/>
         <Logger name="springfox.documentation" level="warn" additivity="true"/>
         <Logger name="com.mysql" level="warn" additivity="true"/>

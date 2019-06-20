@@ -3,7 +3,7 @@ package com.lnnk.mybatis.p6spy;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.p6spy.engine.logging.Category;
 import com.p6spy.engine.spy.appender.FormattedLogger;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * P6spy日志实现
@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author lnnk
  * @see FormattedLogger
  */
-@Slf4j
+@Log4j2
 public class P6spyLogger extends FormattedLogger {
 
     @Override

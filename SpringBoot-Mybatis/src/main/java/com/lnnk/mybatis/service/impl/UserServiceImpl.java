@@ -14,4 +14,11 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    /**
+     * 初始化
+     */
+    @Override
+    public void init() {
+    }
 }

@@ -13,6 +13,7 @@
 
     <properties>
         <mybatis.plus.version>3.1.1</mybatis.plus.version>
+        <p6spy.version>3.8.2</p6spy.version>
     </properties>
 
     <dependencies>
@@ -26,6 +27,12 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.version}</version>
+        </dependency>
+        <!-- p6spy SQL分析 -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>${p6spy.version}</version>
         </dependency>
         <!-- mybatis plus generator -->
         <dependency>

@@ -1,11 +1,8 @@
 package com.lnnk.mybatis.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
-import com.lnnk.web.constant.EnvConsts;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 /**
  * MybatisPlus配置类
@@ -22,14 +19,5 @@ public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor getPaginationInterceptor() {
         return new PaginationInterceptor();
-    }
-
-    /**
-     * SQL执行效率插件,测试环境
-     */
-    @Bean
-    @Profile({EnvConsts.DEVELOPMENT})
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
     }
 }

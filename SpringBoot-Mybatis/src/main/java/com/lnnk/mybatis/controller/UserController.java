@@ -5,11 +5,13 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lnnk.mybatis.model.dto.UserDTO;
+import com.lnnk.mybatis.model.dto.UserPageDTO;
 import com.lnnk.mybatis.model.entity.User;
 import com.lnnk.mybatis.model.vo.UserVO;
 import com.lnnk.mybatis.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +40,14 @@ public class UserController {
     @GetMapping(value = {"/page"})
     public IPage<UserVO> page(@RequestParam(value = "current", defaultValue = "1") Integer current,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
-                              UserDTO userDTO) {
-        QueryWrapper<User> wrapper = Wrappers.<User>query().ge(null != userDTO.getAge(), "age", userDTO.getAge());
-        return userService.page(new Page<>(current, size), wrapper).convert(user -> new UserVO().convertFrom(user));
+                              UserPageDTO userPageDTO) {
+        QueryWrapper<User> wrapper = Wrappers.<User>query()
+                .eq(StringUtils.isNotEmpty(userPageDTO.getName()), "name", userPageDTO.getName())
+                .ge(null != userPageDTO.getAge(), "age", userPageDTO.getAge())
+                .eq(null != userPageDTO.getUseType(), "enable", userPageDTO.getUseType())
+                .eq(null != userPageDTO.getGender(), "gender", userPageDTO.getGender());
+        return userService.page(new Page<>(current, size), wrapper)
+                .convert(user -> new UserVO().convertFrom(user));
     }
 
     @ApiOperation(value = "列表")

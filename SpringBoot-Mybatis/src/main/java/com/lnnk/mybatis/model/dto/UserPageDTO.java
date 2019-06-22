@@ -1,19 +1,17 @@
 package com.lnnk.mybatis.model.dto;
 
-import com.lnnk.mybatis.model.converter.InputConverter;
-import com.lnnk.mybatis.model.entity.User;
 import com.lnnk.mybatis.model.enums.GenderEnum;
 import com.lnnk.mybatis.model.enums.UseType;
 import lombok.Data;
 
 /**
- * UserDTO
+ * UserPageDTO
  *
  * @author Lnnk
- * @date 2019-06-22 18:09
+ * @date 2019-06-22 23:39
  **/
 @Data
-public class UserDTO implements InputConverter<User> {
+public class UserPageDTO {
     /**
      * 姓名
      */

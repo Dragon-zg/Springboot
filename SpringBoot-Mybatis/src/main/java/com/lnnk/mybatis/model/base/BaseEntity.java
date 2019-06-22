@@ -1,5 +1,7 @@
 package com.lnnk.mybatis.model.base;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
@@ -20,13 +22,15 @@ import java.util.Date;
 public class BaseEntity implements Serializable {
 
     /**
-     * 创建时间
+     * 创建时间,插入时默认填充字段
      */
+    @TableField(fill = FieldFill.INSERT)
     protected Date createTime;
 
     /**
-     * 更新时间
+     * 更新时间，插入更新时默认填充字段
      */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     protected Date updateTime;
 
     /**

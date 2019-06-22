@@ -38,8 +38,8 @@ public class UserController {
     @GetMapping(value = {"/page"})
     public IPage<UserVO> page(@RequestParam(value = "current", defaultValue = "1") Integer current,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
-                              @RequestParam(required = false) Integer age) {
-        QueryWrapper<User> wrapper = Wrappers.<User>query().ge(null != age, "age", age);
+                              UserDTO userDTO) {
+        QueryWrapper<User> wrapper = Wrappers.<User>query().ge(null != userDTO.getAge(), "age", userDTO.getAge());
         return userService.page(new Page<>(current, size), wrapper).convert(user -> new UserVO().convertFrom(user));
     }
 

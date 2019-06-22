@@ -37,7 +37,7 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected InjectionConfig getInjectionConfig() {
+    protected InjectionConfig getInjectionConfig(String relativePath) {
         return new InjectionConfig() {
             @Override
             public void initMap() {
@@ -49,7 +49,7 @@ public class SuperGenerator {
             // 自定义输出文件目录
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return getResourcePath() + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return getResourcePath(relativePath) + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         }));
     }
@@ -84,7 +84,8 @@ public class SuperGenerator {
                 .setTablePrefix("mybatis_")
                 // 表名生成策略
                 .setNaming(NamingStrategy.underline_to_camel)
-                //.setInclude(new String[] { "user" }) // 需要生成的表
+                // 需要生成的表
+                .setInclude(tableName)
                 //自定义实体父类
                 .setSuperEntityClass("com.lnnk.mybatis.model.base.BaseEntity")
                 // 自定义实体，公共字段
@@ -106,9 +107,7 @@ public class SuperGenerator {
                 .setEntityLombokModel(true)
                 // Boolean类型字段是否移除is前缀处理
                 .setEntityBooleanColumnRemoveIsPrefix(true)
-                .setRestControllerStyle(false)
-                .setRestControllerStyle(true)
-                .setInclude(tableName);
+                .setRestControllerStyle(true);
     }
 
     /**
@@ -142,7 +141,7 @@ public class SuperGenerator {
                             return DbColumnType.BOOLEAN;
                         }
                         if (fieldType.toLowerCase().equals("tinyint")) {
-                            return DbColumnType.BOOLEAN;
+                            return DbColumnType.INTEGER;
                         }
                         if (fieldType.toLowerCase().equals("date")) {
                             return DbColumnType.DATE_SQL;
@@ -159,7 +158,7 @@ public class SuperGenerator {
                 .setDriverName("com.mysql.cj.jdbc.Driver")
                 .setUsername("root")
                 .setPassword("123456")
-                .setUrl("jdbc:mysql://127.0.0.1:3306/test??serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&allowPublicKeyRetrieval=true");
+                .setUrl("jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&allowPublicKeyRetrieval=true");
     }
 
     /**
@@ -167,10 +166,10 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected GlobalConfig getGlobalConfig() {
+    protected GlobalConfig getGlobalConfig(String relativePath) {
         return new GlobalConfig()
                 //输出目录
-                .setOutputDir(getJavaPath())
+                .setOutputDir(getJavaPath(relativePath))
                 // 是否覆盖文件
                 .setFileOverride(false)
                 // 开启 activeRecord 模式
@@ -211,8 +210,8 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected String getJavaPath() {
-        String javaPath = getRootPath() + "/src/main/java";
+    protected String getJavaPath(String relativePath) {
+        String javaPath = getRootPath() + relativePath + "/src/main/java";
         System.err.println(" Generator Java Path:【 " + javaPath + " 】");
         return javaPath;
     }
@@ -222,8 +221,8 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected String getResourcePath() {
-        String resourcePath = getRootPath() + "/src/main/resources";
+    protected String getResourcePath(String relativePath) {
+        String resourcePath = getRootPath() + relativePath + "/src/main/resources";
         System.err.println(" Generator Resource Path:【 " + resourcePath + " 】");
         return resourcePath;
     }
@@ -234,10 +233,10 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected AutoGenerator getAutoGenerator(String tableName) {
+    protected AutoGenerator getAutoGenerator(String tableName, String relativePath) {
         return new AutoGenerator()
                 // 全局配置
-                .setGlobalConfig(getGlobalConfig())
+                .setGlobalConfig(getGlobalConfig(relativePath))
                 // 数据源配置
                 .setDataSource(getDataSourceConfig())
                 // 策略配置
@@ -245,7 +244,7 @@ public class SuperGenerator {
                 // 包配置
                 .setPackageInfo(getPackageConfig())
                 // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
-                .setCfg(getInjectionConfig())
+                .setCfg(getInjectionConfig(relativePath))
                 .setTemplate(getTemplateConfig());
     }
 

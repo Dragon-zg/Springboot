@@ -32,16 +32,13 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 public class MysqlGenerator extends SuperGenerator {
 
     public static void main(String[] args) {
-        String tableName = "mybatis_test";
+        String tableName = "mybatis_example";
+        String relativePath = "/SpringBoot-Mybatis";
 
         // 代码生成器
         MysqlGenerator mysqlGenerator = new MysqlGenerator();
-        AutoGenerator mpg = mysqlGenerator.getAutoGenerator(tableName);
+        AutoGenerator mpg = mysqlGenerator.getAutoGenerator(tableName, relativePath);
         mpg.execute();
-        if (tableName == null) {
-            System.err.println(" Generator Error !");
-        } else {
-            System.err.println(" TableName【 " + tableName + " 】" + "Generator Success !");
-        }
+        System.err.println(" TableName【 " + tableName + " 】" + "Generator Success !");
     }
 }

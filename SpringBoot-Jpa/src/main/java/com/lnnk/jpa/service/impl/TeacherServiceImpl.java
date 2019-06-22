@@ -57,7 +57,6 @@ public class TeacherServiceImpl extends AbstractCurdService<Teacher, Long> imple
     /**
      * 更新
      *
-     * @return void
      * @author Lnnk
      * @date 2019/4/25 15:48
      * @params [id, person]

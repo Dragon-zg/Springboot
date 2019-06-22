@@ -1,6 +1,9 @@
 package com.lnnk.mybatis.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lnnk.mybatis.model.dto.UserDTO;
 import com.lnnk.mybatis.model.entity.User;
 import com.lnnk.mybatis.model.vo.UserVO;
@@ -33,8 +36,11 @@ public class UserController {
 
     @ApiOperation(value = "分页列表")
     @GetMapping(value = {"/page"})
-    public IPage<User> page(IPage<User> page) {
-        return userService.page(page);
+    public IPage<UserVO> page(@RequestParam(value = "current", defaultValue = "1") Integer current,
+                              @RequestParam(value = "size", defaultValue = "10") Integer size,
+                              @RequestParam(required = false) Integer age) {
+        QueryWrapper<User> wrapper = Wrappers.<User>query().ge(null != age, "age", age);
+        return userService.page(new Page<>(current, size), wrapper).convert(user -> new UserVO().convertFrom(user));
     }
 
     @ApiOperation(value = "列表")

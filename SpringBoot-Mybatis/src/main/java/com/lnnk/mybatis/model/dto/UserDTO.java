@@ -2,6 +2,8 @@ package com.lnnk.mybatis.model.dto;
 
 import com.lnnk.mybatis.model.converter.InputConverter;
 import com.lnnk.mybatis.model.entity.User;
+import com.lnnk.mybatis.model.enums.GenderEnum;
+import com.lnnk.mybatis.model.enums.UseType;
 import lombok.Data;
 
 /**
@@ -25,4 +27,13 @@ public class UserDTO implements InputConverter<User> {
      * 邮箱
      */
     private String email;
+    /**
+     * 使用状态
+     */
+    private UseType useType;
+
+    /**
+     * 性别
+     */
+    private GenderEnum gender;
 }

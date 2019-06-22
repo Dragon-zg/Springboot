@@ -1,8 +1,11 @@
 package com.lnnk.mybatis.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.lnnk.mybatis.model.base.BaseEntity;
+import com.lnnk.mybatis.model.enums.GenderEnum;
+import com.lnnk.mybatis.model.enums.UseType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -36,5 +39,16 @@ public class User extends BaseEntity {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 使用状态
+     */
+    @TableField("enable")
+    private UseType useType;
+
+    /**
+     * 性别
+     */
+    private GenderEnum gender;
 
 }

@@ -41,6 +41,7 @@ public class UserController {
     public IPage<UserVO> page(@RequestParam(value = "current", defaultValue = "1") Integer current,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
                               UserPageDTO userPageDTO) {
+        //GET 方法不能使用json传输参数,故无法使用jackson进行序列化
         QueryWrapper<User> wrapper = Wrappers.<User>query()
                 .eq(StringUtils.isNotEmpty(userPageDTO.getName()), "name", userPageDTO.getName())
                 .ge(null != userPageDTO.getAge(), "age", userPageDTO.getAge())

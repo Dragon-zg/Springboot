@@ -23,13 +23,13 @@ public enum GenderEnum implements IEnum<Integer> {
     private Integer value;
     private String desc;
 
-    GenderEnum(final Integer value, final String desc) {
+    GenderEnum(Integer value, String desc) {
         this.value = value;
         this.desc = desc;
     }
 
     @JsonCreator
-    public static GenderEnum getUseType(Integer value) {
+    public static GenderEnum get(Integer value) {
         for (GenderEnum item : values()) {
             if (item.getValue().equals(value)) {
                 return item;

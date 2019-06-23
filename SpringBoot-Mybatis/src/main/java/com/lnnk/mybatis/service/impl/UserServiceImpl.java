@@ -23,6 +23,12 @@ import java.util.Arrays;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    private final UserMapper userMapper;
+
+    public UserServiceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
     /**
      * 初始化
      */
@@ -68,7 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public User detail(Long id) {
-        User user = getById(id);
+        User user = userMapper.queryById(id);
         if (null == user) {
             throw new CustomizedException(ExceptionCode.DATA_NOT_EXIST);
         }

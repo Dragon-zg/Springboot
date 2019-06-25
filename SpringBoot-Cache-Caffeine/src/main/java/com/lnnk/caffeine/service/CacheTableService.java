@@ -16,7 +16,7 @@ public interface CacheTableService {
      * @param cacheTable cacheTable
      * @return com.lnnk.caffeine.entity.CacheTable
      */
-    public CacheTable save(CacheTable cacheTable);
+    CacheTable save(CacheTable cacheTable);
 
     /**
      * 删除并删除缓存
@@ -24,7 +24,7 @@ public interface CacheTableService {
      * @param id ID
      * @return void
      */
-    public void remove(Long id);
+    void remove(Long id);
 
     /**
      * 查询并缓存
@@ -32,10 +32,18 @@ public interface CacheTableService {
      * @param id ID
      * @return com.lnnk.caffeine.entity.CacheTable
      */
-    public CacheTable findOne(Long id);
+    CacheTable findOne(Long id);
+
+    /**
+     * 查询并缓存(id<3, content.length > 10)
+     *
+     * @param id ID
+     * @return com.lnnk.caffeine.entity.CacheTable
+     */
+    CacheTable findOneByConditionAndUnless(Long id);
 
     /**
      * 删除所有缓存
      */
-    public void removeCache();
+    void removeCache();
 }

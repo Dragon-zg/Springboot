@@ -59,6 +59,15 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
+    @Cacheable(key = "#id", condition = "#id < 3", unless = "#result.content.length > 10")
+    public CacheTable findOneByConditionAndUnless(Long id) {
+        Optional<CacheTable> optional = cacheTableRepository.findById(id);
+        CacheTable cacheTable = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+        log.info("查询并缓存使用条件(id<3, content.length > 10): {}", cacheTable.toString());
+        return cacheTable;
+    }
+
+    @Override
     @CacheEvict(allEntries = true, beforeInvocation = true)
     public void removeCache() {
         // allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，表示不需要。

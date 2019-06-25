@@ -6,6 +6,7 @@ import com.lnnk.caffeine.service.CacheTableService;
 import com.lnnk.web.enums.ExceptionCode;
 import com.lnnk.web.exception.CustomizedException;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,6 +22,7 @@ import java.util.Optional;
  **/
 @Log4j2
 @Service
+@CacheConfig(cacheNames = "cacheTable")
 public class CacheTableServiceImpl implements CacheTableService {
 
     private final CacheTableRepository cacheTableRepository;
@@ -30,7 +32,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @CachePut(value = "cacheTable", key = "#cacheTable.id")
+    @CachePut(key = "#cacheTable.id")
     public CacheTable save(CacheTable cacheTable) {
         // @CachePut每次都会执行方法，并将结果存入指定的缓存中
         CacheTable saveModel = cacheTableRepository.save(cacheTable);
@@ -39,7 +41,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @CacheEvict(value = "cacheTable", key = "#id")
+    @CacheEvict(key = "#id")
     public void remove(Long id) {
         // @CacheEvict是用来标注在需要清除缓存的元素
         cacheTableRepository.deleteById(id);
@@ -47,7 +49,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @Cacheable(value = "people", key = "#id", sync = true)
+    @Cacheable(key = "#id", sync = true)
     public CacheTable findOne(Long id) {
         // @Cacheable执行前会去检查缓存中是否存在之前执行过的结果,若有则直接返回缓存数据,反之每次都会执行方法，并将结果存入指定的缓存中
         Optional<CacheTable> optional = cacheTableRepository.findById(id);
@@ -57,7 +59,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @CacheEvict(value = "cacheTable", allEntries = true, beforeInvocation = true)
+    @CacheEvict(allEntries = true, beforeInvocation = true)
     public void removeCache() {
         // allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，表示不需要。
         // beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素

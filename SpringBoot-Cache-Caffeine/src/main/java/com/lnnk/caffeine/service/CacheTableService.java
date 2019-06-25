@@ -33,4 +33,9 @@ public interface CacheTableService {
      * @return com.lnnk.caffeine.entity.CacheTable
      */
     public CacheTable findOne(Long id);
+
+    /**
+     * 删除所有缓存
+     */
+    public void removeCache();
 }

@@ -32,6 +32,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     @Override
     @CachePut(value = "cacheTable", key = "#cacheTable.id")
     public CacheTable save(CacheTable cacheTable) {
+        // @CachePut每次都会执行方法，并将结果存入指定的缓存中
         CacheTable saveModel = cacheTableRepository.save(cacheTable);
         log.info("保存并新增缓存: {}", saveModel.toString());
         return saveModel;
@@ -40,6 +41,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     @Override
     @CacheEvict(value = "cacheTable", key = "#id")
     public void remove(Long id) {
+        // @CacheEvict是用来标注在需要清除缓存的元素
         cacheTableRepository.deleteById(id);
         log.info("删除并删除缓存: {}", id);
     }
@@ -47,9 +49,17 @@ public class CacheTableServiceImpl implements CacheTableService {
     @Override
     @Cacheable(value = "people", key = "#id", sync = true)
     public CacheTable findOne(Long id) {
+        // @Cacheable执行前会去检查缓存中是否存在之前执行过的结果,若有则直接返回缓存数据,反之每次都会执行方法，并将结果存入指定的缓存中
         Optional<CacheTable> optional = cacheTableRepository.findById(id);
         CacheTable cacheTable = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
         log.info("查询并缓存: {}", cacheTable.toString());
         return cacheTable;
+    }
+
+    @Override
+    @CacheEvict(value = "cacheTable", allEntries = true, beforeInvocation = true)
+    public void removeCache() {
+        // allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，表示不需要。
+        // beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素
     }
 }

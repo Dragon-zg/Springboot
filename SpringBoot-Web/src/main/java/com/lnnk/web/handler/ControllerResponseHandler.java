@@ -21,8 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date 2019/6/10 17:10
  **/
 @Log4j2
-@RestControllerAdvice({"com.lnnk.jpa.controller",
-        "com.lnnk.mybatis.controller", "com.lnnk.quartz.controller"})
+@RestControllerAdvice({"com.lnnk"})
 public class ControllerResponseHandler implements ResponseBodyAdvice<Object> {
 
     @Override

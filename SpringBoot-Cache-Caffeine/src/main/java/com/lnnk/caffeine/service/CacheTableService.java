@@ -11,12 +11,17 @@ import com.lnnk.caffeine.entity.CacheTable;
 public interface CacheTableService {
 
     /**
+     * 初始化
+     */
+    void init();
+
+    /**
      * 保存并添加缓存
      *
      * @param cacheTable cacheTable
      * @return com.lnnk.caffeine.entity.CacheTable
      */
-    CacheTable save(CacheTable cacheTable);
+    CacheTable saveAndCache(CacheTable cacheTable);
 
     /**
      * 删除并删除缓存
@@ -24,7 +29,7 @@ public interface CacheTableService {
      * @param id ID
      * @return void
      */
-    void remove(Long id);
+    void removeAndCache(Long id);
 
     /**
      * 查询并缓存
@@ -32,7 +37,7 @@ public interface CacheTableService {
      * @param id ID
      * @return com.lnnk.caffeine.entity.CacheTable
      */
-    CacheTable findOne(Long id);
+    CacheTable findOneCache(Long id);
 
     /**
      * 查询并缓存(id<3, content.length > 10)
@@ -40,7 +45,7 @@ public interface CacheTableService {
      * @param id ID
      * @return com.lnnk.caffeine.entity.CacheTable
      */
-    CacheTable findOneByConditionAndUnless(Long id);
+    CacheTable findOneByCondition(Long id);
 
     /**
      * 删除所有缓存

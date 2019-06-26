@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -32,8 +33,25 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void init() {
+        CacheTable cacheTable1 = new CacheTable();
+        cacheTable1.setContent("1");
+        cacheTableRepository.save(cacheTable1);
+
+        CacheTable cacheTable2 = new CacheTable();
+        cacheTable2.setContent("2");
+        cacheTableRepository.save(cacheTable2);
+
+        CacheTable cacheTable3 = new CacheTable();
+        cacheTable3.setContent("3333333333333333333333333");
+        cacheTableRepository.save(cacheTable3);
+    }
+
+    @Override
     @CachePut(key = "#cacheTable.id")
-    public CacheTable save(CacheTable cacheTable) {
+    @Transactional(rollbackFor = Exception.class)
+    public CacheTable saveAndCache(CacheTable cacheTable) {
         // @CachePut每次都会执行方法，并将结果存入指定的缓存中
         CacheTable saveModel = cacheTableRepository.save(cacheTable);
         log.info("保存并新增缓存: {}", saveModel.toString());
@@ -42,15 +60,16 @@ public class CacheTableServiceImpl implements CacheTableService {
 
     @Override
     @CacheEvict(key = "#id")
-    public void remove(Long id) {
+    @Transactional(rollbackFor = Exception.class)
+    public void removeAndCache(Long id) {
         // @CacheEvict是用来标注在需要清除缓存的元素
         cacheTableRepository.deleteById(id);
         log.info("删除并删除缓存: {}", id);
     }
 
     @Override
-    @Cacheable(key = "#id", sync = true)
-    public CacheTable findOne(Long id) {
+    @Cacheable(key = "#id", unless = "#result == null")
+    public CacheTable findOneCache(Long id) {
         // @Cacheable执行前会去检查缓存中是否存在之前执行过的结果,若有则直接返回缓存数据,反之每次都会执行方法，并将结果存入指定的缓存中
         Optional<CacheTable> optional = cacheTableRepository.findById(id);
         CacheTable cacheTable = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
@@ -59,8 +78,8 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @Cacheable(key = "#id", condition = "#id < 3", unless = "#result.content.length > 10")
-    public CacheTable findOneByConditionAndUnless(Long id) {
+    @Cacheable(key = "#id", condition = "#id <= 3", unless = "#result.content.length() > 10")
+    public CacheTable findOneByCondition(Long id) {
         Optional<CacheTable> optional = cacheTableRepository.findById(id);
         CacheTable cacheTable = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
         log.info("查询并缓存使用条件(id<3, content.length > 10): {}", cacheTable.toString());

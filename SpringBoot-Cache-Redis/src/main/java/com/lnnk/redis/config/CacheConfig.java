@@ -67,7 +67,7 @@ public class CacheConfig extends CachingConfigurerSupport {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 // redis中缓存超时的时间 0代表无限
                 .entryTtl(Duration.ZERO)
-                // 缓存统一前缀
+                // 缓存统一使用cacheName
                 //.prefixKeysWith("prefix::")
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer))

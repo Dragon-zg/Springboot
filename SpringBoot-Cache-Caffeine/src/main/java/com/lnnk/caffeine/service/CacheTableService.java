@@ -2,6 +2,8 @@ package com.lnnk.caffeine.service;
 
 import com.lnnk.caffeine.entity.CacheTable;
 
+import java.util.List;
+
 /**
  * CacheTableService
  *
@@ -46,6 +48,14 @@ public interface CacheTableService {
      * @return com.lnnk.caffeine.entity.CacheTable
      */
     CacheTable findOneByCondition(Long id);
+
+
+    /**
+     * 列表并缓存
+     *
+     * @return java.util.List<com.lnnk.caffeine.entity.CacheTable>
+     */
+    List<CacheTable> list();
 
     /**
      * 删除所有缓存

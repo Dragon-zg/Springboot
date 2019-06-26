@@ -5,6 +5,7 @@ import com.lnnk.caffeine.repository.CacheTableRepository;
 import com.lnnk.caffeine.service.CacheTableService;
 import com.lnnk.web.enums.ExceptionCode;
 import com.lnnk.web.exception.CustomizedException;
+import com.lnnk.web.util.JsonUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -87,9 +89,19 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
+    @Cacheable(key = "'list'", unless = "#result == null")
+    public List<CacheTable> list() {
+        // @Cacheable执行前会去检查缓存中是否存在之前执行过的结果,若有则直接返回缓存数据,反之每次都会执行方法，并将结果存入指定的缓存中
+        List<CacheTable> list = cacheTableRepository.findAll();
+        log.info("列表并缓存: {}", JsonUtils.toJson(list));
+        return list;
+    }
+
+    @Override
     @CacheEvict(allEntries = true, beforeInvocation = true)
     public void removeCache() {
         // allEntries是boolean类型，表示是否需要清除缓存中的所有元素。默认为false，表示不需要。
         // beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素
+        throw new CustomizedException(ExceptionCode.SUCCESS);
     }
 }

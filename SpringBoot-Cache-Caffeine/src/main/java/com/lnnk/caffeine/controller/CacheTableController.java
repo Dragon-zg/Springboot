@@ -6,6 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * CacheTableController
  *
@@ -47,6 +49,12 @@ public class CacheTableController {
     public CacheTable findOneByCondition(@PathVariable("id") Long id) {
         CacheTable cacheTable = cacheTableService.findOneByCondition(id);
         return cacheTable;
+    }
+
+    @ApiOperation(value = "列表并缓存")
+    @GetMapping(value = {"/list"})
+    public List<CacheTable> list() {
+        return cacheTableService.list();
     }
 
     @ApiOperation(value = "删除并删除缓存")

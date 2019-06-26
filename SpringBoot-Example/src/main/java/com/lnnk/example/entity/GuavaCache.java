@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * 演示Guava缓存的实体
  *
- * @author wangqiang
+ * @author lnnk
  * @date 2019/6/25 9:37
  */
 @Data

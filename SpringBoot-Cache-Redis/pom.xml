@@ -12,7 +12,7 @@
     <artifactId>SpringBoot-Cache-Redis</artifactId>
 
     <properties>
-        <caffeine.version>2.7.0</caffeine.version>
+        <pool2.version>2.6.2</pool2.version>
     </properties>
 
     <dependencies>
@@ -36,6 +36,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- lettuce pool 缓存连接池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${pool2.version}</version>
         </dependency>
         <dependency>
             <groupId>com.lnnk.org</groupId>

@@ -70,7 +70,7 @@ public class CacheTableServiceImpl implements CacheTableService {
     }
 
     @Override
-    @Cacheable(key = "#id", unless = "#result == null")
+    @Cacheable(key = "'cacheTable.' + #id", unless = "#result == null")
     public CacheTable findOneCache(Long id) {
         // @Cacheable执行前会去检查缓存中是否存在之前执行过的结果,若有则直接返回缓存数据,反之每次都会执行方法，并将结果存入指定的缓存中
         Optional<CacheTable> optional = cacheTableRepository.findById(id);

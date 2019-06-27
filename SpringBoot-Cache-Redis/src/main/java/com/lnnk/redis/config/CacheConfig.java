@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lnnk.web.constant.SymbolConsts;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -29,7 +28,6 @@ import java.util.StringJoiner;
  * @date 2019/6/26 14:03
  **/
 @Configuration
-@Log4j2
 public class CacheConfig extends CachingConfigurerSupport {
 
     private static String generate(Object target, Method method, Object... params) {

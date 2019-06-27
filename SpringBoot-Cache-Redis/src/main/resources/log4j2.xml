@@ -18,6 +18,7 @@
         <Logger name="com.lnnk.redis" level="debug" additivity="true"/>
         <Logger name="com.lnnk.web" level="debug" additivity="true"/>
         <Logger name="io.netty" level="warn" additivity="true"/>
+        <Logger name="io.lettuce" level="warn" additivity="true"/>
         <Logger name="springfox.documentation" level="warn" additivity="true"/>
         <Logger name="com.mysql" level="warn" additivity="true"/>
         <Logger name="java.sql" level="warn" additivity="true"/>

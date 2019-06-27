@@ -44,13 +44,13 @@ public class MongoInfoController {
         return mongoInfo;
     }
 
-    @ApiOperation(value = "查询并根据条件缓存")
+    @ApiOperation(value = "更新")
     @PutMapping(value = {"/update"})
     public void update(@RequestBody MongoInfo mongoInfo) {
         mongoInfoService.update(mongoInfo);
     }
 
-    @ApiOperation(value = "列表并缓存")
+    @ApiOperation(value = "列表")
     @GetMapping(value = {"/list"})
     public List<MongoInfo> list() {
         return mongoInfoService.list();

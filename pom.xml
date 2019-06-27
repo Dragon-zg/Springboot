@@ -14,6 +14,7 @@
         <module>SpringBoot-Example</module>
         <module>SpringBoot-Jpa</module>
         <module>SpringBoot-Mybatis</module>
+        <module>SpringBoot-Mongo</module>
         <module>SpringBoot-Quartz</module>
         <module>SpringBoot-Cache-Caffeine</module>
         <module>SpringBoot-Cache-Redis</module>

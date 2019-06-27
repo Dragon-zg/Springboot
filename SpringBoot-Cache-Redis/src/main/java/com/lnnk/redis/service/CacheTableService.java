@@ -61,4 +61,12 @@ public interface CacheTableService {
      * 删除所有缓存
      */
     void removeCache();
+
+    /**
+     * 根据自定义key生成缓存key
+     *
+     * @param id ID
+     * @return com.lnnk.caffeine.entity.CacheTable
+     */
+    CacheTable customizedKeyGenerator(Long id);
 }

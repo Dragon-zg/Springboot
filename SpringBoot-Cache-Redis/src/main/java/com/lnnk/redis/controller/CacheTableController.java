@@ -51,6 +51,12 @@ public class CacheTableController {
         return cacheTable;
     }
 
+    @ApiOperation(value = "根据自定义key生成缓存key")
+    @GetMapping(value = {"/{id}/customizedKeyGenerator"})
+    public CacheTable customizedKeyGenerator(@PathVariable("id") Long id) {
+        return cacheTableService.customizedKeyGenerator(id);
+    }
+
     @ApiOperation(value = "列表并缓存")
     @GetMapping(value = {"/list"})
     public List<CacheTable> list() {

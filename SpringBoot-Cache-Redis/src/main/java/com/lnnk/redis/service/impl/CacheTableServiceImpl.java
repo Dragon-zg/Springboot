@@ -104,4 +104,13 @@ public class CacheTableServiceImpl implements CacheTableService {
         // beforeInvocation可以改变触发清除操作的时间，当我们指定该属性值为true时，Spring会在调用该方法之前清除缓存中的指定元素
         throw new CustomizedException(ExceptionCode.SUCCESS);
     }
+
+    @Override
+    @Cacheable
+    public CacheTable customizedKeyGenerator(Long id) {
+        Optional<CacheTable> optional = cacheTableRepository.findById(id);
+        CacheTable cacheTable = optional.orElseThrow(() -> new CustomizedException(ExceptionCode.DATA_NOT_EXIST));
+        log.info("根据自定义key生成缓存key: {}", cacheTable.toString());
+        return cacheTable;
+    }
 }

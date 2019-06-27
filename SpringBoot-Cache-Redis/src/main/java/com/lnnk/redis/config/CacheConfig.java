@@ -30,23 +30,21 @@ import java.util.StringJoiner;
 @Configuration
 public class CacheConfig extends CachingConfigurerSupport {
 
-    private static String generate(Object target, Method method, Object... params) {
-        StringJoiner joiner = new StringJoiner(SymbolConsts.SYMBOL_PERIOD_HALF);
-        joiner.add(target.getClass().getSimpleName());
-        joiner.add(method.getName());
-        for (Object param : params) {
-            joiner.add(param.toString());
-        }
-        return joiner.toString();
-    }
-
     /**
      * 自定义缓存key的生成策略.
      */
     @Bean
     @Override
     public KeyGenerator keyGenerator() {
-        return CacheConfig::generate;
+        return (Object target, Method method, Object... params) -> {
+            StringJoiner joiner = new StringJoiner(SymbolConsts.SYMBOL_PERIOD_HALF);
+            joiner.add(target.getClass().getSimpleName());
+            joiner.add(method.getName());
+            for (Object param : params) {
+                joiner.add(param.toString());
+            }
+            return joiner.toString();
+        };
     }
 
     /**

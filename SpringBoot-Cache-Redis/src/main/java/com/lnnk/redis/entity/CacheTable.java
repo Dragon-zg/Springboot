@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * 演示Guava缓存的实体
+ * 演示缓存的实体
  *
  * @author lnnk
  * @date 2019/6/25 9:37

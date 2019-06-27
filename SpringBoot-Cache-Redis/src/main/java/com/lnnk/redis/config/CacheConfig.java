@@ -33,7 +33,6 @@ public class CacheConfig extends CachingConfigurerSupport {
     /**
      * 自定义缓存key的生成策略.
      */
-    @Bean
     @Override
     public KeyGenerator keyGenerator() {
         return (Object target, Method method, Object... params) -> {

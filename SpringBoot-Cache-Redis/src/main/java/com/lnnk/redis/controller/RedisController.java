@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * RedisController
  *
- * @author wangqiang
+ * @author lnnk
  * @date 2019/6/27 8:47
  **/
 @Api(value = "redis", tags = "redis")

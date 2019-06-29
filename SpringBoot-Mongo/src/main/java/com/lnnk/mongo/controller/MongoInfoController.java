@@ -45,9 +45,9 @@ public class MongoInfoController {
     }
 
     @ApiOperation(value = "更新")
-    @PutMapping(value = {"/update"})
-    public void update(@RequestBody MongoInfo mongoInfo) {
-        mongoInfoService.update(mongoInfo);
+    @PutMapping(value = {"/{uuid}/update"})
+    public void update(@PathVariable("uuid") String uuid, @RequestBody MongoInfo mongoInfo) {
+        mongoInfoService.update(uuid, mongoInfo);
     }
 
     @ApiOperation(value = "列表")

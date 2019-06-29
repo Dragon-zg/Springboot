@@ -18,7 +18,7 @@
         <Logger name="com.lnnk.mongo" level="debug" additivity="true"/>
         <Logger name="com.lnnk.web" level="debug" additivity="true"/>
         <Logger name="springfox.documentation" level="warn" additivity="true"/>
-        <Logger name="java.sql" level="warn" additivity="true"/>
+        <Logger name="com.mongodb" level="warn" additivity="true"/>
         <Logger name="net.sf" level="warn" additivity="true"/>
         <Logger name="com.fasterxml" level="warn" additivity="true"/>
         <Logger name="com.google" level="warn" additivity="true"/>
@@ -31,7 +31,6 @@
         <Logger name="org.springframework.web" level="warn" additivity="true"/>
         <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="true"/>
         <Logger name="io.undertow" level="warn" additivity="true"/>
-        <Logger name="com.zaxxer.hikari" level="warn" additivity="true"/>
         <Root level="debug">
             <appender-ref ref="console"/>
             <appender-ref ref="file"/>

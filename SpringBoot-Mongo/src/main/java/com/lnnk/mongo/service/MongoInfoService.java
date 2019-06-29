@@ -31,7 +31,7 @@ public interface MongoInfoService {
      * @param mongoInfo mongoInfo
      * @return com.lnnk.mongo.entity.MongoInfo
      */
-    void update(MongoInfo mongoInfo);
+    void update(String uuid, MongoInfo mongoInfo);
 
     /**
      * 删除

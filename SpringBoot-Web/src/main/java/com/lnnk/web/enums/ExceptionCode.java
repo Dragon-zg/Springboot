@@ -18,7 +18,9 @@ public enum ExceptionCode {
      * 未知错误 999999
      */
     UNKOW_ERROR(999999, "未知错误!"),
-
+    /**
+     * 数据不存在! 300
+     */
     DATA_NOT_EXIST(300, "数据不存在!")
 
     ;

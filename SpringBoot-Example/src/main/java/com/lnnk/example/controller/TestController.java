@@ -30,4 +30,9 @@ public class TestController {
     @GetMapping("/ipStint")
     public void ipStint() {
     }
+
+    @ApiOperation("切面Demo测试")
+    @GetMapping("/aspect")
+    public void aspect() {
+    }
 }

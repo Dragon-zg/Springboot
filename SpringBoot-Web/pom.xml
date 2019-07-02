@@ -12,6 +12,10 @@
 
     <artifactId>SpringBoot-Web</artifactId>
 
+    <properties>
+        <springfox.version>2.9.2</springfox.version>
+    </properties>
+
     <dependencies>
         <!-- web项目相关依赖包 -->
         <dependency>

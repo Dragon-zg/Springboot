@@ -12,6 +12,7 @@
     <artifactId>SpringBoot-Jpa</artifactId>
 
     <properties>
+        <druid.version>1.1.16</druid.version>
         <jcache.version>5.3.9.Final</jcache.version>
         <ehcache.version>3.7.1</ehcache.version>
     </properties>

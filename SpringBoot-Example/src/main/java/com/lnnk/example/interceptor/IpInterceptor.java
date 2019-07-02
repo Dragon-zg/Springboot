@@ -1,5 +1,6 @@
 package com.lnnk.example.interceptor;
 
+import cn.hutool.extra.servlet.ServletUtil;
 import com.google.common.collect.Lists;
 import com.lnnk.example.annotation.IpStint;
 import com.lnnk.web.constant.PropertiesKeyConsts;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,8 +25,6 @@ import java.util.List;
 @Log4j2
 public class IpInterceptor implements HandlerInterceptor {
 
-    private final static String UNKNOWN = "unknown";
-
     public IpInterceptor(Environment environment) {
         this.environment = environment;
     }
@@ -34,8 +32,7 @@ public class IpInterceptor implements HandlerInterceptor {
     private final Environment environment;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         if (handler instanceof HandlerMethod) {
             IpStint ipFilter = ((HandlerMethod) handler).getMethodAnnotation(IpStint.class);
             if (ipFilter == null) {
@@ -43,7 +40,7 @@ public class IpInterceptor implements HandlerInterceptor {
             }
 
             //获取请求主机IP地址
-            String ipAddress = getIpAddress(request);
+            String ipAddress = ServletUtil.getClientIP(request);
             //黑名单
             List<String> denyIpList = null;
             //白名单
@@ -107,45 +104,5 @@ public class IpInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
-    }
-
-    /**
-     * 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址;
-     *
-     * @param request
-     * @return
-     * @throws IOException
-     */
-    public final static String getIpAddress(HttpServletRequest request) throws IOException {
-        // 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址
-        String ip = request.getHeader("X-Forwarded-For");
-
-        if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-                ip = request.getHeader("Proxy-Client-IP");
-            }
-            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-                ip = request.getHeader("WL-Proxy-Client-IP");
-            }
-            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-                ip = request.getHeader("HTTP_CLIENT_IP");
-            }
-            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-                ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-            }
-            if (ip == null || ip.length() == 0 || UNKNOWN.equalsIgnoreCase(ip)) {
-                ip = request.getRemoteAddr();
-            }
-        } else if (ip.length() > 15) {
-            String[] ips = ip.split(",");
-            for (int index = 0; index < ips.length; index++) {
-                String strIp = (String) ips[index];
-                if (!(UNKNOWN.equalsIgnoreCase(strIp))) {
-                    ip = strIp;
-                    break;
-                }
-            }
-        }
-        return "0:0:0:0:0:0:0:1".equals(ip) ? "127.0.0.1" : ip;
     }
 }

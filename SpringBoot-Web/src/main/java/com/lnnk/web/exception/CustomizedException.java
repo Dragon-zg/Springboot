@@ -12,6 +12,11 @@ import com.lnnk.web.enums.ExceptionCode;
 public class CustomizedException extends RuntimeException {
     private Integer code;
 
+    public CustomizedException(Integer code, String message) {
+        super(message);
+        this.code = code;
+    }
+
     public CustomizedException(ExceptionCode exceptionCode) {
         super(exceptionCode.getMsg());
         this.code = exceptionCode.getCode();

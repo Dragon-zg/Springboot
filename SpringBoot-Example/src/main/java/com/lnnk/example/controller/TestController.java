@@ -2,15 +2,15 @@ package com.lnnk.example.controller;
 
 import com.lnnk.example.annotation.IpStint;
 import com.lnnk.example.i18n.I18nUtil;
+import com.lnnk.example.model.param.InputParam;
 import com.lnnk.web.enums.ExceptionCode;
 import com.lnnk.web.exception.CustomizedException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Lnnk
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "测试功能接口")
 @RestController
 @RequestMapping("/api/test")
+@Log4j2
 public class TestController {
 
     @ApiOperation("多语言Demo测试")
@@ -43,5 +44,11 @@ public class TestController {
         } else if (StringUtils.equals("2", type)) {
             throw new CustomizedException(ExceptionCode.PARAM_ERROR);
         }
+    }
+
+    @ApiOperation("参数校验Demo测试")
+    @PostMapping("/validated")
+    public void validatedTest(@Validated(InputParam.ParameterGroup1.class) @RequestBody InputParam inputParam) {
+        log.info("参数校验Demo测试. inputParam: {}", inputParam);
     }
 }

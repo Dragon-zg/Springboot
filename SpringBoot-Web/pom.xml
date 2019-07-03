@@ -27,11 +27,6 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
-                <!-- 移除hibernate的注解校验功能 -->
-                <exclusion>
-                    <groupId>org.hibernate.validator</groupId>
-                    <artifactId>hibernate-validator</artifactId>
-                </exclusion>
             </exclusions>
         </dependency>
         <!-- undertow -->

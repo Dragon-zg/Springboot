@@ -29,6 +29,11 @@ public interface SymbolConsts {
     String SYMBOL_SEMICOLON = ";";
 
     /**
+     * 分号空格
+     */
+    String SYMBOL_SEMICOLON_BLANK = "; ";
+
+    /**
      * 等于
      */
     String SYMBOL_EQUALS = "=";

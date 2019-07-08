@@ -3,6 +3,7 @@ package com.lnnk.web.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -50,5 +51,17 @@ public class MvcConfig implements WebMvcConfigurer {
         //指明该bean运行环境
         filter.setEnvironment(environment);
         return filter;
+    }
+
+    /**
+     * Add {@link org.springframework.core.convert.converter.Converter Converters}
+     * and {@link org.springframework.format.Formatter Formatters} in addition to the ones
+     * registered by default.
+     *
+     * @param registry 注册器
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        // TODO 添加枚举全局转换工厂
     }
 }

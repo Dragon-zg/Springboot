@@ -3,6 +3,7 @@ package com.lnnk.mybatis.model.enums;
 import com.baomidou.mybatisplus.core.enums.IEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.lnnk.web.support.IConvertEnum;
 
 /**
  * 通用枚举注入演示，注意需要实现 IEnums 也需要扫描枚举包
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author Lnnk
  * @date 2019-06-22 22:04
  */
-public enum GenderEnum implements IEnum<Integer> {
+public enum GenderEnum implements IEnum<Integer>, IConvertEnum<Integer> {
     /**
      * 男性
      */

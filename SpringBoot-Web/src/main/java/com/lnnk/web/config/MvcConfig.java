@@ -1,5 +1,6 @@
 package com.lnnk.web.config;
 
+import com.lnnk.web.support.UniversalEnumConverterFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -62,6 +63,7 @@ public class MvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        // TODO 添加枚举全局转换工厂
+        // 添加枚举全局转换工厂
+        registry.addConverterFactory(new UniversalEnumConverterFactory());
     }
 }

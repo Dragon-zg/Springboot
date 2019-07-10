@@ -3,6 +3,7 @@ package com.lnnk.mybatis.model.enums;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.lnnk.web.support.IConvertEnum;
 
 /**
  * 使用状态枚举类
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author Lnnk
  * @date 2019/6/11 15:33
  */
-public enum UseType {
+public enum UseType implements IConvertEnum<Integer> {
     /**
      * 启用
      */

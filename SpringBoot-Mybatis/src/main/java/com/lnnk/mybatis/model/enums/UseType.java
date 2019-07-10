@@ -43,6 +43,7 @@ public enum UseType implements IConvertEnum<Integer> {
     }
 
     @JsonValue
+    @Override
     public Integer getValue() {
         return value;
     }

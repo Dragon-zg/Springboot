@@ -1,5 +1,6 @@
 package com.lnnk.example.model.param;
 
+import com.lnnk.web.support.validator.annotation.Limited;
 import lombok.Data;
 
 import javax.validation.constraints.*;
@@ -27,6 +28,12 @@ public class InputParam implements Serializable {
 
     @NotBlank(message = "地址不能为空,去除空格校验", groups = {ParameterGroup1.class})
     private String address;
+
+    @Limited(value = {"A", "B"}, message = "类型只支持A,B", groups = {ParameterGroup1.class})
+    private String type;
+
+    @Limited(value = {"4", "5"}, message = "类型只支持4,5", groups = {ParameterGroup1.class})
+    private Integer intType;
 
     /**
      * 验证组1

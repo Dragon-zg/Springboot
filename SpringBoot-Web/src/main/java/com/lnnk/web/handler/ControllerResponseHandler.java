@@ -1,7 +1,7 @@
 package com.lnnk.web.handler;
 
-import com.lnnk.web.model.ResultModel;
-import com.lnnk.web.util.ResultUtils;
+import com.lnnk.web.model.support.ResponseBack;
+import com.lnnk.web.util.ResponseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
@@ -54,14 +54,14 @@ public class ControllerResponseHandler implements ResponseBodyAdvice<Object> {
         // Get return body
         Object returnBody = bodyContainer.getValue();
 
-        if (returnBody instanceof ResultModel) {
+        if (returnBody instanceof ResponseBack) {
             // If the return body is instance of ResultModel
             response.setStatusCode(HttpStatus.OK);
             return;
         }
 
         // Wrap the return body
-        ResultModel<?> resultModel = ResultUtils.success(returnBody);
+        ResponseBack<?> resultModel = ResponseUtils.success(returnBody);
         bodyContainer.setValue(resultModel);
         response.setStatusCode(HttpStatus.OK);
     }

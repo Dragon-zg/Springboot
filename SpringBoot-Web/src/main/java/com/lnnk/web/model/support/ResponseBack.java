@@ -1,4 +1,4 @@
-package com.lnnk.web.model;
+package com.lnnk.web.model.support;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @date: 2017-12-16 19:56
  */
 @ApiModel("响应结果实体类")
-public class ResultModel<T> implements Serializable {
+public class ResponseBack<T> implements Serializable {
 
     @ApiModelProperty("响应码")
     private Integer code;
@@ -23,7 +23,7 @@ public class ResultModel<T> implements Serializable {
     @ApiModelProperty("响应结果")
     private T data;
 
-    public ResultModel() {
+    public ResponseBack() {
     }
 
     public Integer getCode() {

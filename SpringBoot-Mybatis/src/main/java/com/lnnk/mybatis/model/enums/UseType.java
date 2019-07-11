@@ -3,7 +3,7 @@ package com.lnnk.mybatis.model.enums;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.lnnk.web.support.IConvertEnum;
+import com.lnnk.web.support.convert.IConvertEnum;
 
 /**
  * 使用状态枚举类

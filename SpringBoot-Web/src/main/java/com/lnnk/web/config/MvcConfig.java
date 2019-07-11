@@ -1,6 +1,6 @@
 package com.lnnk.web.config;
 
-import com.lnnk.web.support.UniversalEnumConverterFactory;
+import com.lnnk.web.support.convert.UniversalEnumConverterFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;

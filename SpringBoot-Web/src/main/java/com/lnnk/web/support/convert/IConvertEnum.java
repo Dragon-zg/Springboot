@@ -1,4 +1,4 @@
-package com.lnnk.web.support;
+package com.lnnk.web.support.convert;
 
 /**
  * support convert for String to enum

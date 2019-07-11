@@ -3,8 +3,8 @@ package com.lnnk.web.handler;
 import com.lnnk.web.constant.SymbolConsts;
 import com.lnnk.web.enums.ExceptionCode;
 import com.lnnk.web.exception.CustomizedException;
-import com.lnnk.web.model.ResultModel;
-import com.lnnk.web.util.ResultUtils;
+import com.lnnk.web.model.support.ResponseBack;
+import com.lnnk.web.util.ResponseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -29,26 +29,26 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.OK)
-    public ResultModel handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
+    public ResponseBack handleMethodArgumentNotValid(MethodArgumentNotValidException e) {
         BindingResult bindingResult = e.getBindingResult();
         StringJoiner errorMsg = new StringJoiner(SymbolConsts.SYMBOL_SEMICOLON_BLANK);
         bindingResult.getFieldErrors().forEach(fieldError -> errorMsg.add(String.format("错误字段: %s，错误值: %s，原因：%s",
                 fieldError.getField(), fieldError.getRejectedValue(), fieldError.getDefaultMessage())));
-        return ResultUtils.error(ExceptionCode.PARAM_ERROR.getCode(), errorMsg.toString());
+        return ResponseUtils.error(ExceptionCode.PARAM_ERROR.getCode(), errorMsg.toString());
     }
 
     @ExceptionHandler(value = CustomizedException.class)
     @ResponseStatus(HttpStatus.OK)
-    public ResultModel handleBusiException(CustomizedException e) {
+    public ResponseBack handleBusiException(CustomizedException e) {
         //若属于业务异常,则抛出相关编码信息
         log.info(e.getMessage());
-        return ResultUtils.error(e.getCode(), e.getMessage());
+        return ResponseUtils.error(e.getCode(), e.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResultModel handleException(Exception e) {
+    public ResponseBack handleException(Exception e) {
         log.error(e.getMessage(), e);
-        return ResultUtils.error(ExceptionCode.UNKOW_ERROR);
+        return ResponseUtils.error(ExceptionCode.UNKOW_ERROR);
     }
 }

@@ -15,14 +15,14 @@ import javax.annotation.PostConstruct;
 public class I18nUtil {
 
     @Autowired
-    private I18nMessageResource i18NMessageResource;
+    private I18nMessageResource i18nMessageResource;
 
     private static I18nUtil i18nUtil;
 
     @PostConstruct
     public void init() {
         i18nUtil = this;
-        i18nUtil.i18NMessageResource = this.i18NMessageResource;
+        i18nUtil.i18nMessageResource = this.i18nMessageResource;
     }
 
     /**
@@ -33,7 +33,7 @@ public class I18nUtil {
      * @return java.lang.String
      */
     public static String getMessage(String code){
-        return i18nUtil.i18NMessageResource.getMessage(code, null, LocaleContextHolder.getLocale());
+        return i18nUtil.i18nMessageResource.getMessage(code, null, LocaleContextHolder.getLocale());
     }
 
     /**
@@ -44,6 +44,6 @@ public class I18nUtil {
      * @return java.lang.String
      */
     public static String getMessage(String code, Object... args){
-        return i18nUtil.i18NMessageResource.getMessage(code, args, LocaleContextHolder.getLocale());
+        return i18nUtil.i18nMessageResource.getMessage(code, args, LocaleContextHolder.getLocale());
     }
 }

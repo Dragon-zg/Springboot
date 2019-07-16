@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
     /**
      * Propagation.REQUIRED 支持当前事务,如果当前没有事务,就新建一个事务.这是最常见的选择.
      *
-     * @throws RollbackException
+     * @throws RollbackException 自定义
      */
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     /**
      * PROPAGATION_REQUIRES_NEW – 新建事务,如果当前存在事务,把当前事务挂起.
      *
-     * @throws RollbackException
+     * @throws RollbackException 自定义
      */
     @Override
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
     /**
      * 插入一条记录并抛出异常,该方法事务不会回滚
      *
-     * @throws RollbackException
+     * @throws RollbackException 自定义
      */
     @Override
     public void invokeInsertThenRollback1() throws RollbackException {
@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
     /**
      * 插入一条记录并抛出异常,该方法事务会回滚
      *
-     * @throws RollbackException
+     * @throws RollbackException 自定义
      */
     @Override
     public void invokeInsertThenRollback2() throws RollbackException {
@@ -73,7 +73,7 @@ public class ProductServiceImpl implements ProductService {
     /**
      * 插入一条记录并抛出异常,该方法事务会回滚
      *
-     * @throws RollbackException
+     * @throws RollbackException 自定义
      */
     @Override
     @Transactional(rollbackFor = Exception.class)

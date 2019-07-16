@@ -3,7 +3,7 @@ package com.lnnk.example.exception;
 import java.sql.SQLException;
 
 /**
- * RollbackException
+ * 自定义RollbackException
  *
  * @author lnnk
  * @date 2019/7/16 13:14

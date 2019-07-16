@@ -1,5 +1,6 @@
 package com.lnnk.example.model.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
  * @date 2019/7/15 11:37
  **/
 @Data
+@Builder
 @Entity
 @Table(name = "example_product")
 public class Product {

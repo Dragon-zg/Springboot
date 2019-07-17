@@ -26,8 +26,10 @@ public class CustomValidator implements Validator {
         CustomParam customParam = (CustomParam) target;
 
         String userName = customParam.getUserName();
-        if (StringUtils.isNotBlank(userName) && userName.length() > 20) {
-            errors.rejectValue("userName", "customParam.userName.tooLong", "用户名不能超过{20}个字符");
+        if (StringUtils.isNotBlank(userName)) {
+            if (userName.length() > 20) {
+                errors.rejectValue("userName", "customParam.userName.tooLong", "用户名不能超过{20}个字符");
+            }
         } else {
             errors.rejectValue("userName", "customParam.userName.required", "用户名不能为空");
         }

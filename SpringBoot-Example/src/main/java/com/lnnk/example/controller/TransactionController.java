@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Lnnk
  * @date 2019/7/15 14:00
  **/
-@Api(tags = "事务传播性演示接口")
+@Api(tags = "事务传播性")
 @RestController
 @RequestMapping("/api/transaction")
 public class TransactionController {

@@ -25,7 +25,7 @@ public interface QuartzService {
     void createScheduleJob(QuartzEntity quartzEntity);
 
     /**
-     * 立即运行一次定时任务
+     * 运行定时任务
      *
      * @param jobName  定时任务名称
      * @param jobGroup 定时任务分组
@@ -53,7 +53,7 @@ public interface QuartzService {
      *
      * @param quartzEntity 定时任务信息类
      */
-    void resumeScheduleJob(QuartzEntity quartzEntity);
+    void updateScheduleJobCron(QuartzEntity quartzEntity);
 
     /**
      * 删除定时任务

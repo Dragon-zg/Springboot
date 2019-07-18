@@ -84,7 +84,7 @@ public class QuartzServiceImpl implements QuartzService {
     }
 
     @Override
-    public void resumeScheduleJob(QuartzEntity quartzEntity) {
+    public void updateScheduleJobCron(QuartzEntity quartzEntity) {
         //获取到对应任务的触发器
         TriggerKey triggerKey = TriggerKey.triggerKey(quartzEntity.getTriggerName(), quartzEntity.getTriggerGroup());
         Assert.notNull(triggerKey, "triggerKey must is not null!");

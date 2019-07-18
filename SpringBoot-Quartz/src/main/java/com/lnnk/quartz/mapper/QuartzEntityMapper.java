@@ -17,5 +17,5 @@ public interface QuartzEntityMapper {
      *
      * @return java.util.List<com.lnnk.quartz.model.entity.QuartzEntity>
      */
-    List<QuartzEntity> getJobList();
+    List<QuartzEntity> getScheduleList();
 }

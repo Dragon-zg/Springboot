@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lnnk.quartz.mapper.QuartzEntityMapper">
     <!-- 获取定时任务列表 -->
-    <select id="getJobList" resultType="com.lnnk.quartz.model.entity.QuartzEntity">
+    <select id="getScheduleList" resultType="com.lnnk.quartz.model.entity.QuartzEntity">
         SELECT
             job.JOB_NAME AS jobName,
             job.JOB_GROUP AS jobGroup,

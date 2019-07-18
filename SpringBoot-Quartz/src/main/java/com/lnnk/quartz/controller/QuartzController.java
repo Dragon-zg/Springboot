@@ -28,6 +28,6 @@ public class QuartzController {
     @ApiOperation(value = "定时任务列表")
     @GetMapping(value = {""})
     public List<QuartzEntity> getJobList() {
-        return quartzService.getJobList();
+        return quartzService.getScheduleList();
     }
 }

@@ -25,7 +25,7 @@ public class QuartzController {
 
     @ApiOperation(value = "定时任务列表")
     @GetMapping(value = {""})
-    public List<QuartzEntity> getJobList() {
+    public List<QuartzEntity> getScheduleList() {
         return quartzService.getScheduleList();
     }
 
@@ -33,6 +33,18 @@ public class QuartzController {
     @PostMapping(value = {""})
     public void createScheduleJob(@RequestBody QuartzEntity quartzEntity) {
         quartzService.createScheduleJob(quartzEntity);
+    }
+
+    @ApiOperation(value = "重新设置定时任务cron")
+    @PutMapping(value = {""})
+    void updateScheduleJobCron(@RequestBody QuartzEntity quartzEntity) {
+        quartzService.updateScheduleJobCron(quartzEntity);
+    }
+
+    @ApiOperation(value = "删除定时任务")
+    @DeleteMapping(value = {""})
+    void deleteScheduleJob(QuartzEntity quartzEntity) {
+        quartzService.deleteScheduleJob(quartzEntity);
     }
 
     @ApiOperation(value = "运行定时任务")
@@ -51,17 +63,5 @@ public class QuartzController {
     @PostMapping(value = {"/resume"})
     public void resumeScheduleJob(@RequestBody QuartzEntity quartzEntity) {
         quartzService.resumeScheduleJob(quartzEntity.getJobName(), quartzEntity.getJobGroup());
-    }
-
-    @ApiOperation(value = "重新设置定时任务cron")
-    @PutMapping(value = {""})
-    void updateScheduleJobCron(@RequestBody QuartzEntity quartzEntity) {
-        quartzService.updateScheduleJobCron(quartzEntity);
-    }
-
-    @ApiOperation(value = "删除定时任务")
-    @DeleteMapping(value = {""})
-    void deleteScheduleJob(QuartzEntity quartzEntity) {
-        quartzService.deleteScheduleJob(quartzEntity);
     }
 }

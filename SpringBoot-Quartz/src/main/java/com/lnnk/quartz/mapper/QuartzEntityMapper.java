@@ -1,6 +1,6 @@
 package com.lnnk.quartz.mapper;
 
-import com.lnnk.quartz.model.entity.QuartzEntity;
+import com.lnnk.quartz.model.vo.QuartzVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface QuartzEntityMapper {
     /**
      * 获取定时任务列表
      *
-     * @return java.util.List<com.lnnk.quartz.model.entity.QuartzEntity>
+     * @return java.util.List<QuartzVO>
      */
-    List<QuartzEntity> getScheduleList();
+    List<QuartzVO> getScheduleList();
 }

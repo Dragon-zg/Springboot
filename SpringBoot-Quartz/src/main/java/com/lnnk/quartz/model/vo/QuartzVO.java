@@ -1,4 +1,4 @@
-package com.lnnk.quartz.model.entity;
+package com.lnnk.quartz.model.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class QuartzEntity {
+public class QuartzVO {
 
     /**
      * 任务名称

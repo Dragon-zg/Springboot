@@ -37,13 +37,13 @@ public class QuartzController {
 
     @ApiOperation(value = "重新设置定时任务cron")
     @PutMapping(value = {""})
-    void updateScheduleJobCron(@RequestBody QuartzVO quartzVO) {
+    public void updateScheduleJobCron(@RequestBody QuartzVO quartzVO) {
         quartzService.updateScheduleJobCron(quartzVO);
     }
 
     @ApiOperation(value = "删除定时任务")
     @DeleteMapping(value = {""})
-    void deleteScheduleJob(QuartzVO quartzVO) {
+    public void deleteScheduleJob(QuartzVO quartzVO) {
         quartzService.deleteScheduleJob(quartzVO);
     }
 

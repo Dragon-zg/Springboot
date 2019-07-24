@@ -61,4 +61,20 @@ public interface QuartzService {
      * @param quartzVO 定时任务信息类
      */
     void deleteScheduleJob(QuartzVO quartzVO);
+
+    /**
+     * 启动所有定时任务
+     *
+     * @author wangqiang
+     * @date 2019/7/24 10:47
+     */
+    void resumeAllJobs();
+
+    /**
+     * 暂停所有定时任务
+     *
+     * @author wangqiang
+     * @date 2019/7/24 10:48
+     */
+    void pauseAllJobs();
 }

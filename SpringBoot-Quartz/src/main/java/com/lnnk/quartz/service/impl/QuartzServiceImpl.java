@@ -103,13 +103,35 @@ public class QuartzServiceImpl implements QuartzService {
     public void deleteScheduleJob(QuartzVO quartzVO) {
         JobKey jobKey = JobKey.jobKey(quartzVO.getJobName(), quartzVO.getJobGroup());
         Assert.notNull(jobKey, "jobKey must is not null!");
-        TriggerKey triggerKey = TriggerKey.triggerKey(quartzVO.getTriggerName(), quartzVO.getTriggerGroup());
-        Assert.notNull(triggerKey, "triggerKey must is not null!");
+        TriggerKey triggerKey = TriggerKey.triggerKey(quartzVO.getJobName());
         try {
-            scheduler.deleteJob(jobKey);
+            //暂停触发器
+            scheduler.pauseTrigger(triggerKey);
+            //移除触发器
             scheduler.unscheduleJob(triggerKey);
+            //删除任务
+            scheduler.deleteJob(jobKey);
         } catch (SchedulerException e) {
             log.error("删除定时任务失败!", e);
         }
+    }
+
+    @Override
+    public void resumeAllJobs() {
+        try {
+            scheduler.resumeAll();
+        } catch (SchedulerException e) {
+            log.error("恢复所有定时任务失败!", e);
+        }
+    }
+
+    @Override
+    public void pauseAllJobs() {
+        try {
+            scheduler.pauseAll();
+        } catch (SchedulerException e) {
+            log.error("暂停所有定时任务失败!", e);
+        }
+
     }
 }

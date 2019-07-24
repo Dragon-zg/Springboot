@@ -64,4 +64,16 @@ public class QuartzController {
     public void resumeScheduleJob(@RequestBody QuartzVO quartzVO) {
         quartzService.resumeScheduleJob(quartzVO.getJobName(), quartzVO.getJobGroup());
     }
+
+    @ApiOperation(value = "恢复所有定时任务")
+    @GetMapping(value = {"/resumeAll"})
+    public void resumeAllJobs() {
+        quartzService.resumeAllJobs();
+    }
+
+    @ApiOperation(value = "暂停所有定时任务")
+    @GetMapping(value = {"/pauseAll"})
+    public void pauseAllJobs() {
+        quartzService.pauseAllJobs();
+    }
 }

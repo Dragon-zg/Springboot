@@ -10,15 +10,25 @@
     <version>1.0</version>
 
     <modules>
+        <!-- 抽出的web依赖 -->
         <module>SpringBoot-Web</module>
+        <!-- 使用spring特性的一些demo -->
         <module>SpringBoot-Example</module>
+        <!-- 用于管理和监控一个或者多个Spring Boot应用 -->
         <module>SpringBoot-Admin</module>
+        <!-- springBoot与JPA结合的demo -->
         <module>SpringBoot-Jpa</module>
+        <!-- springBoot与Mybatis-plus结合的demo -->
         <module>SpringBoot-Mybatis</module>
+        <!-- SpringBoot使用SpringDataMongo操作mongodb数据库 -->
         <module>SpringBoot-Mongo</module>
+        <!-- SpringBoot使用结合quartz -->
         <module>SpringBoot-Quartz</module>
+        <!-- SpringBoot使用caffeine做缓存 -->
         <module>SpringBoot-Cache-Caffeine</module>
+        <!-- SpringBoot使用redis做缓存 -->
         <module>SpringBoot-Cache-Redis</module>
+        <!-- webservice -->
         <module>SpringBoot-Webservice</module>
     </modules>
 

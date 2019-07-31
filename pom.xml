@@ -12,6 +12,7 @@
     <modules>
         <module>SpringBoot-Web</module>
         <module>SpringBoot-Example</module>
+        <module>SpringBoot-Admin</module>
         <module>SpringBoot-Jpa</module>
         <module>SpringBoot-Mybatis</module>
         <module>SpringBoot-Mongo</module>

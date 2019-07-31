@@ -22,12 +22,14 @@
         <module>SpringBoot-Mybatis</module>
         <!-- SpringBoot使用SpringDataMongo操作mongodb数据库 -->
         <module>SpringBoot-Mongo</module>
-        <!-- SpringBoot使用结合quartz -->
-        <module>SpringBoot-Quartz</module>
         <!-- SpringBoot使用caffeine做缓存 -->
         <module>SpringBoot-Cache-Caffeine</module>
         <!-- SpringBoot使用redis做缓存 -->
         <module>SpringBoot-Cache-Redis</module>
+        <!-- SpringBoot使用结合quartz -->
+        <module>SpringBoot-Quartz</module>
+        <!-- SpringBoot使用RabbitMQ实践 -->
+        <module>SpringBoot-RabbitMQ</module>
         <!-- webservice -->
         <module>SpringBoot-Webservice</module>
     </modules>

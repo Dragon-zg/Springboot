@@ -65,7 +65,7 @@ public interface QuartzService {
     /**
      * 启动所有定时任务
      *
-     * @author wangqiang
+     * @author lnnk
      * @date 2019/7/24 10:47
      */
     void resumeAllJobs();
@@ -73,7 +73,7 @@ public interface QuartzService {
     /**
      * 暂停所有定时任务
      *
-     * @author wangqiang
+     * @author lnnk
      * @date 2019/7/24 10:48
      */
     void pauseAllJobs();

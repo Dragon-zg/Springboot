@@ -8,8 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * direct模式, 路由键与队列名完全匹配
- * 消息中的路由键(routing key)如果和Binding中的binding key一致, 交换器就将消息发到对应的队列中。
+ * direct模式:直连交换机是一种带路由功能的交换机,一个队列会和一个交换机绑定，除此之外再绑定一个routing_key,
+ * 当消息被发送的时候,需要指定一个binding_key,这个消息被送达交换机的时候，就会被这个交换机送到指定的队列里面去.
+ * 同样的一个binding_key也是支持应用到多个队列中的.
  *
  * @author lnnk
  * @date 2019/8/1 15:35

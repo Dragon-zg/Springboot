@@ -29,23 +29,12 @@ import java.util.Map;
 @Configuration
 public class HeadersConfig {
     public static final String HEADERS_QUEUE_1 = "headers.queue_1";
-    public static final String HEADERS_EXCHANGE_1 = "headers.exchange_1";
+    public static final String HEADERS_EXCHANGE = "headers.exchange";
     public static final String HEADERS_QUEUE_2 = "headers.queue_2";
-    public static final String HEADERS_EXCHANGE_2 = "headers.exchange_2";
 
     @Bean
     public Queue headersQueue1() {
         return new Queue(HEADERS_QUEUE_1);
-    }
-
-    @Bean
-    public HeadersExchange headersExchange1() {
-        return new HeadersExchange(HEADERS_EXCHANGE_1);
-    }
-
-    @Bean
-    public Binding headersBinding1() {
-        return BindingBuilder.bind(headersQueue1()).to(headersExchange1()).whereAll(getHeaders()).match();
     }
 
     @Bean
@@ -54,13 +43,18 @@ public class HeadersConfig {
     }
 
     @Bean
-    public HeadersExchange headersExchange2() {
-        return new HeadersExchange(HEADERS_EXCHANGE_2);
+    public HeadersExchange headersExchange() {
+        return new HeadersExchange(HEADERS_EXCHANGE);
+    }
+
+    @Bean
+    public Binding headersBinding1() {
+        return BindingBuilder.bind(headersQueue1()).to(headersExchange()).whereAll(getHeaders()).match();
     }
 
     @Bean
     public Binding headersBinding2() {
-        return BindingBuilder.bind(headersQueue2()).to(headersExchange2()).whereAny(getHeaders()).match();
+        return BindingBuilder.bind(headersQueue2()).to(headersExchange()).whereAny(getHeaders()).match();
     }
 
     private Map<String, Object> getHeaders() {

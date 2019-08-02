@@ -27,28 +27,16 @@ public class HeadersController {
         this.headersProvider = headersProvider;
     }
 
-    @ApiOperation("队列1部分匹配")
-    @PostMapping("/queue1/part")
+    @ApiOperation("队列部分匹配")
+    @PostMapping("/queue/part")
     public void sendQueue1Part(@RequestBody AmqpMessage amqpMessage) {
-        headersProvider.sendQueue1(getPartHeaders(), amqpMessage);
+        headersProvider.sendQueue(getPartHeaders(), amqpMessage);
     }
 
-    @ApiOperation("队列1全部匹配")
-    @PostMapping("/queue1/all")
+    @ApiOperation("队列全部匹配")
+    @PostMapping("/queue/all")
     public void sendQueue1All(@RequestBody AmqpMessage amqpMessage) {
-        headersProvider.sendQueue1(getAllHeaders(), amqpMessage);
-    }
-
-    @ApiOperation("队列2全部匹配")
-    @PostMapping("/queue2/part")
-    public void sendQueue2Part(@RequestBody AmqpMessage amqpMessage) {
-        headersProvider.sendQueue2(getPartHeaders(), amqpMessage);
-    }
-
-    @ApiOperation("队列2全部匹配")
-    @PostMapping("/queue2/all")
-    public void sendQueue2All(@RequestBody AmqpMessage amqpMessage) {
-        headersProvider.sendQueue2(getAllHeaders(), amqpMessage);
+        headersProvider.sendQueue(getAllHeaders(), amqpMessage);
     }
 
     private Map<String, Object> getAllHeaders() {

@@ -34,11 +34,7 @@ public class HeadersProvider {
         return messageConverter.toMessage(msg, messageProperties);
     }
 
-    public void sendQueue1(Map<String, Object> headers, AmqpMessage amqpMessage) {
-        rabbitTemplate.convertAndSend(HeadersConfig.HEADERS_EXCHANGE_1, StringUtils.EMPTY, getMessage(headers, amqpMessage));
-    }
-
-    public void sendQueue2(Map<String, Object> headers, AmqpMessage amqpMessage) {
-        rabbitTemplate.convertAndSend(HeadersConfig.HEADERS_EXCHANGE_2, StringUtils.EMPTY, getMessage(headers, amqpMessage));
+    public void sendQueue(Map<String, Object> headers, AmqpMessage amqpMessage) {
+        rabbitTemplate.convertAndSend(HeadersConfig.HEADERS_EXCHANGE, StringUtils.EMPTY, getMessage(headers, amqpMessage));
     }
 }

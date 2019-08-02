@@ -8,17 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * fanout模式
- * 就是我们熟悉的广播模式或者订阅模式，给Fanout交换机发送消息，绑定了这个交换机的所有队列都收到这个消息。
+ * fanout模式:扇形交换机是最基本的交换机类型,它所能做的事情非常简单-->广播消息.
+ * 扇形交换机会把能接收到的消息全部发送给绑定在自己身上的队列.
+ * 因为广播不需要“思考,所以扇形交换机处理消息的速度也是所有的交换机类型里面最快的。
  *
  * @author lnnk
  * @date 2019/8/1 16:24
  **/
 @Configuration
 public class FanoutConfig {
-    static final String FANOUT_QUEUE_1 = "fanout.queue_1";
-    static final String FANOUT_QUEUE_2 = "fanout.queue_2";
-    static final String FANOUT_EXCHANGE = "fanout.exchange";
+    public static final String FANOUT_QUEUE_1 = "fanout.queue_1";
+    public static final String FANOUT_QUEUE_2 = "fanout.queue_2";
+    public static final String FANOUT_EXCHANGE = "fanout.exchange";
 
     @Bean
     public Queue fanoutQueue1() {

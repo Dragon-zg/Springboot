@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * RabbitMqController
- *
- * @author wangqiang
+ * @author lnnk
  * @date 2019/8/2 9:04
  **/
-@Api(tags = "RabbitMQ")
+@Api(tags = "直连交换机")
 @RestController
 @RequestMapping("/api/direct")
 public class DirectController {

@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 /**
- * @author wangqiang
+ * @author lnnk
  * @date 2019/8/2 8:53
  **/
 @Service

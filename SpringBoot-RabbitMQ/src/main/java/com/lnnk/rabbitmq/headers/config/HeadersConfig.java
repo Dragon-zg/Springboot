@@ -19,6 +19,9 @@ import java.util.Map;
  * 绑定交换机和队列的时候,Hash结构中要求携带一个键"x-match"这个键的Value可以是any或者all,
  * 这代表消息携带的Hash是需要全部匹配(all),还是仅匹配一个键(any)就可以了.
  * 相比直连交换机,首部交换机的优势是匹配的规则不被限定为字符串(string).
+ * <p>
+ * whereAll:当消息生产者传到Exchange中的headers中的键值对所有都符合(所有Map或所有Key)要求时，才启用该队列。
+ * whereAny:只要消息生产者传到Exchange中的headers中的键值对有至少一个(至少一个Map或至少一个Key)符合要求时，就启用该队列。
  *
  * @author lnnk
  * @date 2019/8/1 15:35

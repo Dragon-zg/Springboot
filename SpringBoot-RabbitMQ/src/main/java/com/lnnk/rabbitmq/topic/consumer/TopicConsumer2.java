@@ -1,7 +1,7 @@
 package com.lnnk.rabbitmq.topic.consumer;
 
 import cn.hutool.json.JSONUtil;
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import com.lnnk.rabbitmq.topic.config.TopicConfig;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class TopicConsumer2 {
 
     @RabbitHandler
-    public void handler(Message message) {
-        log.info("队列名字: {}, 消费内容: {}", TopicConfig.TOPIC_QUEUE_2, JSONUtil.toJsonStr(message));
+    public void handler(AmqpMessage amqpMessage) {
+        log.info("队列名字: {}, 消费内容: {}", TopicConfig.TOPIC_QUEUE_2, JSONUtil.toJsonStr(amqpMessage));
     }
 }

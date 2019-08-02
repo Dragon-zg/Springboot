@@ -1,6 +1,6 @@
 package com.lnnk.rabbitmq.topic.provider;
 
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import com.lnnk.rabbitmq.topic.config.TopicConfig;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class TopicProvider {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendQueue1(Message message) {
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE, TopicConfig.TOPIC_KEY_1, message);
+    public void sendQueue1(AmqpMessage amqpMessage) {
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE, TopicConfig.TOPIC_KEY_1, amqpMessage);
     }
 
-    public void sendQueue2(Message message) {
-        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE, TopicConfig.TOPIC_KEY_3, message);
+    public void sendQueue2(AmqpMessage amqpMessage) {
+        rabbitTemplate.convertAndSend(TopicConfig.TOPIC_EXCHANGE, TopicConfig.TOPIC_KEY_3, amqpMessage);
     }
 }

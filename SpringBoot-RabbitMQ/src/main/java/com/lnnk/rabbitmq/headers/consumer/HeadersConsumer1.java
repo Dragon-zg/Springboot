@@ -1,8 +1,8 @@
-package com.lnnk.rabbitmq.topic.consumer;
+package com.lnnk.rabbitmq.headers.consumer;
 
 import cn.hutool.json.JSONUtil;
+import com.lnnk.rabbitmq.headers.config.HeadersConfig;
 import com.lnnk.rabbitmq.model.support.AmqpMessage;
-import com.lnnk.rabbitmq.topic.config.TopicConfig;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
  **/
 @Log4j2
 @Component
-@RabbitListener(queues = TopicConfig.TOPIC_QUEUE_1)
-public class TopicConsumer1 {
+@RabbitListener(queues = HeadersConfig.HEADERS_QUEUE_1)
+public class HeadersConsumer1 {
 
     @RabbitHandler
     public void handler(AmqpMessage amqpMessage) {
-        log.info("队列名字: {}, 消费内容: {}", TopicConfig.TOPIC_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
+        log.info("队列名字: {}, 消费内容: {}", HeadersConfig.HEADERS_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
     }
 }

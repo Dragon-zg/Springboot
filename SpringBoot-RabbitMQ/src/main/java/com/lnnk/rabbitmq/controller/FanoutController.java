@@ -1,7 +1,7 @@
 package com.lnnk.rabbitmq.controller;
 
 import com.lnnk.rabbitmq.fanout.provider.FanoutProvider;
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +26,7 @@ public class FanoutController {
 
     @ApiOperation("广播发送消息")
     @PostMapping("/queue")
-    public void sendQueue(@RequestBody Message message) {
-        fanoutProvider.sendQueue(message);
+    public void sendQueue(@RequestBody AmqpMessage amqpMessage) {
+        fanoutProvider.sendQueue(amqpMessage);
     }
 }

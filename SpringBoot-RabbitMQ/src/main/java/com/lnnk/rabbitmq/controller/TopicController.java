@@ -1,6 +1,6 @@
 package com.lnnk.rabbitmq.controller;
 
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import com.lnnk.rabbitmq.topic.provider.TopicProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,13 +26,13 @@ public class TopicController {
 
     @ApiOperation("向匹配routingKey为topic.key.message队列发送消息")
     @PostMapping("/queue1")
-    public void sendQueue1(@RequestBody Message message) {
-        topicProvider.sendQueue1(message);
+    public void sendQueue1(@RequestBody AmqpMessage amqpMessage) {
+        topicProvider.sendQueue1(amqpMessage);
     }
 
     @ApiOperation("向匹配routingKey为topic.key.msg队列发送消息")
     @PostMapping("/queue2")
-    public void sendQueue2(@RequestBody Message message) {
-        topicProvider.sendQueue2(message);
+    public void sendQueue2(@RequestBody AmqpMessage amqpMessage) {
+        topicProvider.sendQueue2(amqpMessage);
     }
 }

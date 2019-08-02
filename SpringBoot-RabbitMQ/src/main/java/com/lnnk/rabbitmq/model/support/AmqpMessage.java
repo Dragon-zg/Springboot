@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2019/8/1 17:29
  **/
 @Data
-public class Message implements Serializable {
+public class AmqpMessage implements Serializable {
     /**
      * 消息内容
      */

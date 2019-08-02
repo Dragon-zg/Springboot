@@ -2,7 +2,7 @@ package com.lnnk.rabbitmq.direct.consumer;
 
 import cn.hutool.json.JSONUtil;
 import com.lnnk.rabbitmq.direct.config.DirectConfig;
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 public class DirectConsumer1 {
 
     @RabbitHandler
-    public void handler(Message message) {
-        log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(message));
+    public void handler(AmqpMessage amqpMessage) {
+        log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
     }
 
 

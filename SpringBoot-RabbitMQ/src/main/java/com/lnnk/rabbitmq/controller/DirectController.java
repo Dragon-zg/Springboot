@@ -1,7 +1,7 @@
 package com.lnnk.rabbitmq.controller;
 
 import com.lnnk.rabbitmq.direct.provider.DirectProvider;
-import com.lnnk.rabbitmq.model.support.Message;
+import com.lnnk.rabbitmq.model.support.AmqpMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +26,8 @@ public class DirectController {
 
     @ApiOperation("向队列1发送消息")
     @PostMapping("/queue1")
-    public void sendQueue1(@RequestBody Message message) {
-        directProvider.sendQueue1(message);
+    public void sendQueue1(@RequestBody AmqpMessage amqpMessage) {
+        directProvider.sendQueue1(amqpMessage);
     }
 
     @ApiOperation("向队列1发送消息,类型string")
@@ -38,7 +38,7 @@ public class DirectController {
 
     @ApiOperation("向队列2发送消息")
     @PostMapping("/queue2")
-    public void sendQueue2(@RequestBody Message message) {
-        directProvider.sendQueue2(message);
+    public void sendQueue2(@RequestBody AmqpMessage amqpMessage) {
+        directProvider.sendQueue2(amqpMessage);
     }
 }

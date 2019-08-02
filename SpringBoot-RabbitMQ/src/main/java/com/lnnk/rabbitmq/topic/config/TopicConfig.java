@@ -8,18 +8,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * topic模式
+ * topic模式:主题交换机,发送到主题交换机上的消息需要携带指定规则的routing_key,主题交换机会根据这个规则将数据发送到对应的(多个)队列上.
+ * 主题交换机的routing_key需要有一定的规则:
+ * 1.*表示一个单词
+ * 2.#表示任意数量（零个或多个）单词
  *
  * @author lnnk
  * @date 2019/8/1 16:30
  **/
 @Configuration
 public class TopicConfig {
-    static final String TOPIC_QUEUE_1 = "topic.queue_1";
-    static final String TOPIC_KEY_1 = "topic.key.message";
-    static final String TOPIC_QUEUE_2 = "topic.queue_2";
-    static final String TOPIC_KEY_2 = "topic.key.#";
-    static final String TOPIC_EXCHANGE = "topic.exchange";
+    public static final String TOPIC_QUEUE_1 = "topic.queue_1";
+    public static final String TOPIC_KEY_1 = "topic.key.message";
+    public static final String TOPIC_QUEUE_2 = "topic.queue_2";
+    private static final String TOPIC_KEY_2 = "topic.key.#";
+    public static final String TOPIC_KEY_3 = "topic.key.msg";
+    public static final String TOPIC_EXCHANGE = "topic.exchange";
 
     @Bean
     public Queue topicQueue1() {

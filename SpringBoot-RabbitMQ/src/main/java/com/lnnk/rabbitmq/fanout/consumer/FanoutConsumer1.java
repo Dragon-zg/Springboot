@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RabbitListener(queues = FanoutConfig.FANOUT_QUEUE_1)
 public class FanoutConsumer1 {
+
     @RabbitHandler
     public void handler(Message message) {
         log.info("队列名字: {}, 消费内容: {}", FanoutConfig.FANOUT_QUEUE_1, JSONUtil.toJsonStr(message));

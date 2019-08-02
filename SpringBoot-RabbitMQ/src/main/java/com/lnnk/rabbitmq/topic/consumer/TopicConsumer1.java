@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RabbitListener(queues = TopicConfig.TOPIC_QUEUE_1)
 public class TopicConsumer1 {
+
     @RabbitHandler
     public void handler(Message message) {
         log.info("队列名字: {}, 消费内容: {}", TopicConfig.TOPIC_QUEUE_1, JSONUtil.toJsonStr(message));

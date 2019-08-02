@@ -18,7 +18,7 @@ public class DirectProvider {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendQueue1(Message message) {
+    public void sendQueue1(Object message) {
         rabbitTemplate.convertAndSend(DirectConfig.DIRECT_EXCHANGE, DirectConfig.DIRECT_KEY_1, message);
     }
 

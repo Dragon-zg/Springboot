@@ -30,6 +30,12 @@ public class DirectController {
         directProvider.sendQueue1(message);
     }
 
+    @ApiOperation("向队列1发送消息,类型string")
+    @PostMapping("/queue1")
+    public void sendQueue1(@RequestBody String message) {
+        directProvider.sendQueue1(message);
+    }
+
     @ApiOperation("向队列2发送消息")
     @PostMapping("/queue2")
     public void sendQueue2(@RequestBody Message message) {

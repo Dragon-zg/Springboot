@@ -23,4 +23,10 @@ public class DirectConsumer1 {
     public void handler(Message message) {
         log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(message));
     }
+
+
+    @RabbitHandler
+    public void handlerString(String message) {
+        log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(message));
+    }
 }

@@ -1,10 +1,7 @@
 package com.lnnk.rabbitmq.headers.config;
 
 import com.google.common.collect.Maps;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.HeadersExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -34,12 +31,12 @@ public class HeadersConfig {
 
     @Bean
     public Queue headersQueue1() {
-        return new Queue(HEADERS_QUEUE_1);
+        return QueueBuilder.durable(HEADERS_QUEUE_1).build();
     }
 
     @Bean
     public Queue headersQueue2() {
-        return new Queue(HEADERS_QUEUE_2);
+        return QueueBuilder.durable(HEADERS_QUEUE_2).build();
     }
 
     @Bean

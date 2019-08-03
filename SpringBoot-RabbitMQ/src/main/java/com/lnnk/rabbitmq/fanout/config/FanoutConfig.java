@@ -1,9 +1,6 @@
 package com.lnnk.rabbitmq.fanout.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.FanoutExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,12 +20,12 @@ public class FanoutConfig {
 
     @Bean
     public Queue fanoutQueue1() {
-        return new Queue(FANOUT_QUEUE_1);
+        return QueueBuilder.durable(FANOUT_QUEUE_1).build();
     }
 
     @Bean
     public Queue fanoutQueue2() {
-        return new Queue(FANOUT_QUEUE_2);
+        return QueueBuilder.durable(FANOUT_QUEUE_2).build();
     }
 
     @Bean

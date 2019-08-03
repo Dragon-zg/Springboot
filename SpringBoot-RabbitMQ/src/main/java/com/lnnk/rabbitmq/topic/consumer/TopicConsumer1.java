@@ -19,6 +19,7 @@ public class TopicConsumer1 {
 
     @RabbitHandler
     public void handler(AmqpMessage amqpMessage) {
-        log.info("队列名字: {}, 消费内容: {}", TopicConfig.TOPIC_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
+        log.info("队列名字: {}, routingKey:{}, 消费内容: {}",
+                TopicConfig.TOPIC_QUEUE_1, TopicConfig.TOPIC_KEY_1, JSONUtil.toJsonStr(amqpMessage));
     }
 }

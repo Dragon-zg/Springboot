@@ -1,9 +1,6 @@
 package com.lnnk.rabbitmq.topic.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,32 +18,32 @@ public class TopicConfig {
     public static final String TOPIC_QUEUE_1 = "topic.queue_1";
     public static final String TOPIC_KEY_1 = "topic.key.message";
     public static final String TOPIC_QUEUE_2 = "topic.queue_2";
-    private static final String TOPIC_KEY_2 = "topic.key.#";
+    public static final String TOPIC_KEY_2 = "topic.key.#";
     public static final String TOPIC_KEY_3 = "topic.key.msg";
     public static final String TOPIC_EXCHANGE = "topic.exchange";
 
     @Bean
     public Queue topicQueue1() {
-        return new Queue(TOPIC_QUEUE_1);
+        return QueueBuilder.durable(TOPIC_QUEUE_1).build();
     }
 
     @Bean
     public Queue topicQueue2() {
-        return new Queue(TOPIC_QUEUE_2);
+        return QueueBuilder.durable(TOPIC_QUEUE_2).build();
     }
 
     @Bean
-    public TopicExchange topicExchange() {
-        return new TopicExchange(TOPIC_EXCHANGE);
+    public Exchange topicExchange() {
+        return ExchangeBuilder.topicExchange(TOPIC_EXCHANGE).build();
     }
 
     @Bean
     public Binding topicBinding1() {
-        return BindingBuilder.bind(topicQueue1()).to(topicExchange()).with(TOPIC_KEY_1);
+        return BindingBuilder.bind(topicQueue1()).to(topicExchange()).with(TOPIC_KEY_1).noargs();
     }
 
     @Bean
     public Binding topicBinding2() {
-        return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with(TOPIC_KEY_2);
+        return BindingBuilder.bind(topicQueue2()).to(topicExchange()).with(TOPIC_KEY_2).noargs();
     }
 }

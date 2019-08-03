@@ -1,9 +1,6 @@
 package com.lnnk.rabbitmq.direct.config;
 
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,26 +22,26 @@ public class DirectConfig {
 
     @Bean
     public Queue directQueue1() {
-        return new Queue(DIRECT_QUEUE_1);
+        return QueueBuilder.durable(DIRECT_QUEUE_1).build();
     }
 
     @Bean
     public Queue directQueue2() {
-        return new Queue(DIRECT_QUEUE_2);
+        return QueueBuilder.durable(DIRECT_QUEUE_2).build();
     }
 
     @Bean
-    public DirectExchange directExchange() {
-        return new DirectExchange(DIRECT_EXCHANGE);
+    public Exchange directExchange() {
+        return ExchangeBuilder.directExchange(DIRECT_EXCHANGE).build();
     }
 
     @Bean
     public Binding directBinding1() {
-        return BindingBuilder.bind(directQueue1()).to(directExchange()).with(DIRECT_KEY_1);
+        return BindingBuilder.bind(directQueue1()).to(directExchange()).with(DIRECT_KEY_1).noargs();
     }
 
     @Bean
     public Binding directBinding2() {
-        return BindingBuilder.bind(directQueue2()).to(directExchange()).with(DIRECT_KEY_2);
+        return BindingBuilder.bind(directQueue2()).to(directExchange()).with(DIRECT_KEY_2).noargs();
     }
 }

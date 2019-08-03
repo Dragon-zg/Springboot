@@ -21,12 +21,12 @@ public class DirectConsumer1 {
 
     @RabbitHandler
     public void handler(AmqpMessage amqpMessage) {
-        log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
+        log.info("参数类型AmqpMessage, 队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(amqpMessage));
     }
 
 
     @RabbitHandler
     public void handlerString(String message) {
-        log.info("队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(message));
+        log.info("参数类型string, 队列名字: {}, 消费内容: {}", DirectConfig.DIRECT_QUEUE_1, JSONUtil.toJsonStr(message));
     }
 }

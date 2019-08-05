@@ -24,12 +24,12 @@ public class DeadLetterConfig {
     /**
      * 死信队列 交换机标识符
      */
-    private static final String DEAD_LETTER_QUEUE_KEY = "x-dead-letter-exchange";
+    private static final String X_DEAD_LETTER_EXCHANGE = "x-dead-letter-exchange";
 
     /**
      * 死信队列交换机绑定键标识符
      */
-    private static final String DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
+    private static final String X_DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
 
     /**
      * 设置消息的过期时间,单位是毫秒
@@ -55,9 +55,9 @@ public class DeadLetterConfig {
     public Queue deadLetterQueue() {
         Map<String, Object> args = new HashMap<>(2);
         // x-dead-letter-exchange 声明死信后转发的交换机
-        args.put(DEAD_LETTER_QUEUE_KEY, DirectConfig.DIRECT_EXCHANGE);
+        args.put(X_DEAD_LETTER_EXCHANGE, DirectConfig.DIRECT_EXCHANGE);
         // x-dead-letter-routing-key  声明死信后转发的路由键
-        args.put(DEAD_LETTER_ROUTING_KEY, DirectConfig.DIRECT_KEY_1);
+        args.put(X_DEAD_LETTER_ROUTING_KEY, DirectConfig.DIRECT_KEY_1);
         // 设置消息的过期时间,单位是毫秒
         args.put(X_MESSAGE_TTL, 5000);
         return QueueBuilder.durable(DL_QUEUE).withArguments(args).build();

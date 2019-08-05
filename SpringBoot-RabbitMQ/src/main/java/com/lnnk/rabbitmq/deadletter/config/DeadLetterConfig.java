@@ -1,5 +1,6 @@
 package com.lnnk.rabbitmq.deadletter.config;
 
+import com.lnnk.rabbitmq.direct.config.DirectConfig;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +19,7 @@ public class DeadLetterConfig {
 
     public static final String DL_EXCHANGE = "DL_EXCHANGE";
     public static final String DL_KEY = "DL_KEY";
-    public static final String DL_QUEUE = "DL_QUEUE";
-    public static final String REDIRECT_QUEUE = "REDIRECT_QUEUE";
-    public static final String REDIRECT_KEY = "REDIRECT_KEY";
+    private static final String DL_QUEUE = "DL_QUEUE";
 
     /**
      * 死信队列 交换机标识符
@@ -31,6 +30,11 @@ public class DeadLetterConfig {
      * 死信队列交换机绑定键标识符
      */
     private static final String DEAD_LETTER_ROUTING_KEY = "x-dead-letter-routing-key";
+
+    /**
+     * 设置消息的过期时间,单位是毫秒
+     */
+    private static final String X_MESSAGE_TTL = "x-message-ttl";
 
 
     /**
@@ -43,28 +47,20 @@ public class DeadLetterConfig {
 
     /**
      * 声明一个死信队列.
-     * x-dead-letter-exchange   对应  死信交换机
-     * x-dead-letter-routing-key  对应 死信队列
+     * x-dead-letter-exchange   声明死信后转发的交换机
+     * x-dead-letter-routing-key  DirectConfig
      * x-message-ttl 设置消息的过期时间
      */
     @Bean
     public Queue deadLetterQueue() {
         Map<String, Object> args = new HashMap<>(2);
-        // x-dead-letter-exchange 声明  死信交换机
-        args.put(DEAD_LETTER_QUEUE_KEY, DL_EXCHANGE);
-        // x-dead-letter-routing-key  声明 死信路由键
-        args.put(DEAD_LETTER_ROUTING_KEY, REDIRECT_KEY);
+        // x-dead-letter-exchange 声明死信后转发的交换机
+        args.put(DEAD_LETTER_QUEUE_KEY, DirectConfig.DIRECT_EXCHANGE);
+        // x-dead-letter-routing-key  声明死信后转发的路由键
+        args.put(DEAD_LETTER_ROUTING_KEY, DirectConfig.DIRECT_KEY_1);
         // 设置消息的过期时间,单位是毫秒
-        args.put("x-message-ttl", 5000);
+        args.put(X_MESSAGE_TTL, 5000);
         return QueueBuilder.durable(DL_QUEUE).withArguments(args).build();
-    }
-
-    /**
-     * 定义死信队列转发队列.
-     */
-    @Bean
-    public Queue redirectQueue() {
-        return QueueBuilder.durable(REDIRECT_QUEUE).build();
     }
 
     /**
@@ -74,15 +70,5 @@ public class DeadLetterConfig {
     public Binding deadLetterBinding() {
         return BindingBuilder.bind(deadLetterQueue()).to(deadLetterExchange()).with(DL_KEY).noargs();
 
-    }
-
-    /**
-     * 死信路由通过 REDIRECT_KEY 绑定键绑定到死信队列上.
-     *
-     * @return the binding
-     */
-    @Bean
-    public Binding redirectBinding() {
-        return BindingBuilder.bind(redirectQueue()).to(deadLetterExchange()).with(REDIRECT_KEY).noargs();
     }
 }

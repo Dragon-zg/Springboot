@@ -34,7 +34,7 @@ public class RabbitMqConfig {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(messageConverter);
         // 设置RabbitTemplate的Mandatory属性为true
-        rabbitTemplate.setMandatory(connectionFactory.isPublisherReturns());
+        rabbitTemplate.setMandatory(true);
         // 为RabbitTemplate设置ReturnCallback(发送失败返回)
         rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
             log.warn("replyCode(回复代码): {}, replyText(回复描述): {}, exchange(交换机): {}, routingKey(路由键): {}, properties(属性): {}, body(内容): {}",

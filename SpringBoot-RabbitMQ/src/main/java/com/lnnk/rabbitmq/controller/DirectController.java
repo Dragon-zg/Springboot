@@ -41,4 +41,10 @@ public class DirectController {
     public void sendQueue2(@RequestBody AmqpMessage amqpMessage) {
         directProvider.sendQueue2(amqpMessage);
     }
+
+    @ApiOperation("发送失败回调测试")
+    @PostMapping("/returnCallback")
+    public void returnCallback() {
+        directProvider.returnCallback();
+    }
 }

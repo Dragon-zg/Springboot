@@ -47,6 +47,9 @@ public class PersonServiceImpl implements PersonService {
         return person;
     }
 
+    /**
+     * 如果fallback方法的参数和原方法参数个数不一致，则会出现FallbackDefinitionException: fallback method wasn't found
+     */
     public Person fallbackMethodSemaphore(String arg, Throwable throwable) {
         log.info("熔断降级, arg: {}, throwable: {}", arg, throwable);
         throw new CustomizedException(ExceptionCode.MELT_DOWNGRADE);
@@ -89,6 +92,9 @@ public class PersonServiceImpl implements PersonService {
         return person;
     }
 
+    /**
+     * 如果fallback方法的参数和原方法参数个数不一致，则会出现FallbackDefinitionException: fallback method wasn't found
+     */
     public Person fallbackMethodThread(String arg) {
         log.info("熔断降级, arg: {}", arg);
         throw new CustomizedException(ExceptionCode.MELT_DOWNGRADE);

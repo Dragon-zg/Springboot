@@ -21,7 +21,11 @@ public enum ExceptionCode {
     /**
      * 数据不存在! 300
      */
-    DATA_NOT_EXIST(300, "数据不存在!")
+    DATA_NOT_EXIST(300, "数据不存在!"),
+    /**
+     * 熔断降级! 400
+     */
+    MELT_DOWNGRADE(400, "熔断降级!")
 
     ;
 

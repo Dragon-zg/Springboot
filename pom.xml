@@ -32,6 +32,7 @@
         <module>SpringBoot-RabbitMQ</module>
         <!-- webservice -->
         <module>SpringBoot-Webservice</module>
+        <!-- 熔断机制 -->
         <module>SpringBoot-Hystrix</module>
     </modules>
 

@@ -2,30 +2,33 @@ package com.lnnk.web.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.ContextLoader;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 /**
+ * 获取spring上下文,bean实例工具类
  *
  * @author Lnnk
- * @date 2018/8/15 13:20
  **/
 @SuppressWarnings("unchecked")
-public class SpringContextUtils {
+@Component
+public class SpringContextUtils implements ApplicationContextAware {
+    // Spring应用上下文环境
+    private static ApplicationContext applicationContext;
 
-    private static ApplicationContext getContext() {
-        return ContextLoader.getCurrentWebApplicationContext();
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        SpringContextUtils.applicationContext = applicationContext;
     }
 
     public static <T> T getBean(String name) throws BeansException {
-        ApplicationContext context = getContext();
-        return (T) context.getBean(name);
+        return (T) applicationContext.getBean(name);
     }
 
     public static <T> T getBean(Class<T> cls) {
-        ApplicationContext context = getContext();
-        return getBean(cls, context);
+        return getBean(cls, applicationContext);
     }
 
     public static <T> T getBean(Class<T> cls, ApplicationContext ctx) {

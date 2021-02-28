@@ -2,8 +2,8 @@
 
 <configuration status="OFF">
     <Properties>
-        <Property name="LOG_HOME">${sys:user.home}/deploy/logs/SpringBoot-Example</Property>
-        <Property name="LOG_NAME">example.log</Property>
+        <Property name="LOG_HOME">${sys:user.home}/deploy/logs/SpringBoot-Mongo</Property>
+        <Property name="LOG_NAME">mongo.log</Property>
         <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %M-%L - %m%n</Property>
     </Properties>
     <appenders>

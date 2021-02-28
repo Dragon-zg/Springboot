@@ -1,6 +1,7 @@
 package com.lnnk.mybatis.generate;
 
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -23,6 +24,14 @@ import java.util.*;
  */
 public class SuperGenerator {
 
+    private static final String TEMPLATE_PATH = "/templates/mapper.xml.vm";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/bbc?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String DRIVERNAME = "com.mysql.jdbc.Driver";
+//    private static final String DRIVERNAME = "com.mysql.cj.jdbc.Driver";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "123456";
+
+
     /**
      * 获取TemplateConfig
      *
@@ -37,19 +46,18 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected InjectionConfig getInjectionConfig(String relativePath) {
+    protected InjectionConfig getInjectionConfig(String rootPath) {
         return new InjectionConfig() {
             @Override
             public void initMap() {
                 Map<String, Object> map = new HashMap<>();
                 this.setMap(map);
             }
-        }.setFileOutConfigList(Collections.<FileOutConfig>singletonList(new FileOutConfig(
-                "/templates/mapper.xml.vm") {
+        }.setFileOutConfigList(Collections.<FileOutConfig>singletonList(new FileOutConfig(TEMPLATE_PATH) {
             // 自定义输出文件目录
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return getResourcePath(relativePath) + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                return getResourcePath(rootPath) + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         }));
     }
@@ -61,9 +69,9 @@ public class SuperGenerator {
      */
     protected PackageConfig getPackageConfig() {
         return new PackageConfig()
-                .setParent("com.lnnk.mybatis")
+                .setParent("com.seedeer.project")
                 .setController("controller")
-                .setEntity("model.entity")
+                .setEntity("domain.entity")
                 .setMapper("mapper")
                 .setService("service")
                 .setServiceImpl("service.impl");
@@ -75,19 +83,20 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected StrategyConfig getStrategyConfig(String tableName) {
+    protected StrategyConfig getStrategyConfig(String[] tableNames) {
         List<TableFill> tableFillList = getTableFills();
-        return new StrategyConfig()
+        StrategyConfig strategyConfig = new StrategyConfig()
                 // 全局大写命名
                 .setCapitalMode(false)
                 // 去除前缀
-                .setTablePrefix("mybatis_")
+//                .setTablePrefix("bbc_")
                 // 表名生成策略
                 .setNaming(NamingStrategy.underline_to_camel)
-                // 需要生成的表
-                .setInclude(tableName)
+//                .setExclude()
                 //自定义实体父类
-                .setSuperEntityClass("com.lnnk.mybatis.model.base.BaseEntity")
+                .setSuperEntityClass("com.seedeer.project.domain.base.BaseEntity")
+                //定义基础的Entity类，公共字段
+                .setSuperEntityColumns("create_user", "create_time", "update_user", "update_time", "delete_flag")
                 // 自定义实体，公共字段
 //                .setSuperEntityColumns("id")
                 .setTableFillList(tableFillList)
@@ -100,14 +109,23 @@ public class SuperGenerator {
                 // 自定义 service 接口父类
 //                .setSuperServiceClass("org.crown.framework.service.BaseService")
                 // 【实体】是否生成字段常量（默认 false）
-                .setEntityColumnConstant(true)
+                .setEntityColumnConstant(false)
                 // 【实体】是否为构建者模型（默认 false）
                 .setEntityBuilderModel(false)
+                // 逻辑删除属性名称
+//                .setLogicDeleteFieldName("delete_flag")
                 // 【实体】是否为lombok模型（默认 false）<a href="https://projectlombok.org/">document</a>
-                .setEntityLombokModel(true)
+                .setEntityLombokModel(false)
                 // Boolean类型字段是否移除is前缀处理
                 .setEntityBooleanColumnRemoveIsPrefix(true)
+                // 是否生成实体时，生成字段注解
+                .setEntityTableFieldAnnotationEnable(true)
                 .setRestControllerStyle(true);
+        if (null != tableNames && tableNames.length > 0) {
+            // 需要生成的表
+            strategyConfig.setInclude(tableNames);
+        }
+        return strategyConfig;
     }
 
     /**
@@ -118,10 +136,10 @@ public class SuperGenerator {
     protected List<TableFill> getTableFills() {
         // 自定义需要填充的字段
         List<TableFill> tableFillList = new ArrayList<>();
-//        tableFillList.add(new TableFill("createTime", FieldFill.INSERT));
-//        tableFillList.add(new TableFill("updateTime", FieldFill.INSERT_UPDATE));
-//        tableFillList.add(new TableFill("createUid", FieldFill.INSERT));
-//        tableFillList.add(new TableFill("updateUid", FieldFill.INSERT_UPDATE));
+        tableFillList.add(new TableFill("createTime", FieldFill.INSERT));
+        tableFillList.add(new TableFill("createUser", FieldFill.INSERT));
+        tableFillList.add(new TableFill("updateTime", FieldFill.INSERT_UPDATE));
+        tableFillList.add(new TableFill("updateUser", FieldFill.INSERT_UPDATE));
         return tableFillList;
     }
 
@@ -155,10 +173,10 @@ public class SuperGenerator {
                         return super.processTypeConvert(globalConfig, fieldType);
                     }
                 })
-                .setDriverName("com.mysql.cj.jdbc.Driver")
-                .setUsername("root")
-                .setPassword("123456")
-                .setUrl("jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&useSSL=false&allowPublicKeyRetrieval=true");
+                .setDriverName(DRIVERNAME)
+                .setUsername(USERNAME)
+                .setPassword(PASSWORD)
+                .setUrl(URL);
     }
 
     /**
@@ -166,32 +184,34 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected GlobalConfig getGlobalConfig(String relativePath) {
+    protected GlobalConfig getGlobalConfig(String rootPath) {
         return new GlobalConfig()
                 //输出目录
-                .setOutputDir(getJavaPath(relativePath))
+                .setOutputDir(getJavaPath(rootPath))
                 // 是否覆盖文件
                 .setFileOverride(false)
+                //swagger
+                .setSwagger2(true)
                 // 开启 activeRecord 模式
                 .setActiveRecord(false)
                 // XML 二级缓存
                 .setEnableCache(false)
                 // XML ResultMap
-                .setBaseResultMap(false)
+                .setBaseResultMap(true)
                 // XML columList
-                .setBaseColumnList(false)
+                .setBaseColumnList(true)
                 //是否生成 kotlin 代码
                 .setKotlin(false)
                 .setOpen(false)
                 //作者
-                .setAuthor("lnnk")
+                .setAuthor("wangqiang")
                 //自定义文件命名，注意 %s 会自动填充表实体属性！
                 .setEntityName("%s")
                 .setMapperName("%sMapper")
                 .setXmlName("%sMapper")
                 .setServiceName("I%sService")
                 .setServiceImplName("%sServiceImpl")
-                .setControllerName("%sRestController");
+                .setControllerName("%sController");
     }
 
 
@@ -210,10 +230,8 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected String getJavaPath(String relativePath) {
-        String javaPath = getRootPath() + relativePath + "/src/main/java";
-        System.err.println(" Generator Java Path:【 " + javaPath + " 】");
-        return javaPath;
+    protected String getJavaPath(String rootPath) {
+        return (null != rootPath ? rootPath : getRootPath()) + "/src/main/java";
     }
 
     /**
@@ -221,10 +239,8 @@ public class SuperGenerator {
      *
      * @return
      */
-    protected String getResourcePath(String relativePath) {
-        String resourcePath = getRootPath() + relativePath + "/src/main/resources";
-        System.err.println(" Generator Resource Path:【 " + resourcePath + " 】");
-        return resourcePath;
+    protected String getResourcePath(String rootPath) {
+        return (null != rootPath ? rootPath : getRootPath()) + "/src/main/resources";
     }
 
     /**
@@ -233,18 +249,18 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected AutoGenerator getAutoGenerator(String tableName, String relativePath) {
+    protected AutoGenerator getAutoGenerator(String[] tableNames, String rootPath) {
         return new AutoGenerator()
                 // 全局配置
-                .setGlobalConfig(getGlobalConfig(relativePath))
+                .setGlobalConfig(getGlobalConfig(rootPath))
                 // 数据源配置
                 .setDataSource(getDataSourceConfig())
                 // 策略配置
-                .setStrategy(getStrategyConfig(tableName))
+                .setStrategy(getStrategyConfig(tableNames))
                 // 包配置
                 .setPackageInfo(getPackageConfig())
                 // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
-                .setCfg(getInjectionConfig(relativePath))
+                .setCfg(getInjectionConfig(rootPath))
                 .setTemplate(getTemplateConfig());
     }
 

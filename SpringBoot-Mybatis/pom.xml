@@ -12,7 +12,7 @@
     <artifactId>SpringBoot-Mybatis</artifactId>
 
     <properties>
-        <mybatis.plus.version>3.1.1</mybatis.plus.version>
+        <mybatis.plus.version>3.3.1</mybatis.plus.version>
         <p6spy.version>3.8.2</p6spy.version>
     </properties>
 

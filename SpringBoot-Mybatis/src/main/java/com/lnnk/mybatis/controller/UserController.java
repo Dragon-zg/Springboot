@@ -8,15 +8,18 @@ import com.lnnk.mybatis.model.dto.UserDTO;
 import com.lnnk.mybatis.model.dto.UserPageDTO;
 import com.lnnk.mybatis.model.entity.User;
 import com.lnnk.mybatis.model.vo.UserVO;
+import com.lnnk.mybatis.page.PageUtils;
 import com.lnnk.mybatis.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -49,6 +52,15 @@ public class UserController {
                 .eq(null != userPageDTO.getGender(), "gender", userPageDTO.getGender());
         return userService.page(new Page<>(current, size), wrapper)
                 .convert(user -> new UserVO().convertFrom(user));
+    }
+
+    @ApiOperation(value = "分页列表")
+    @GetMapping(value = {"/page2"})
+    public Page<User> page2(Page<User> page, WebRequest request) {
+        Map<String, Object> params = PageUtils.getParametersStartingWith(request, "search_");
+        QueryWrapper<User> queryWrapper = PageUtils.bySearchFilter(params);
+        return userService.page(page, queryWrapper.orderByDesc("id"));
+
     }
 
     @ApiOperation(value = "列表")

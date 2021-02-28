@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_outer_classname = "MessageBuf";
+// 生成文件命令  protoc ./MessageBuf.proto --java_out=./
+message JMTransfer {
+  string version = 1;//接口版本号
+  string deviceId = 2;//设备uuid
+  string content = 3;//内容
+}

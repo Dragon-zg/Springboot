@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+//option java_package = "com.lnnk.netty.codec";
 option java_outer_classname = "MessageBuf";
 // 生成文件命令  protoc ./MessageBuf.proto --java_out=./
 message JMTransfer {

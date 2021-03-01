@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @author Lnnk
  * @date 2021/2/28 10:10
  **/
-public class ClientTestMain {
+public class ClientTestMain1 {
 
     public static void main(String[] args) throws Exception {
         EventLoopGroup workerGroup = new NioEventLoopGroup();

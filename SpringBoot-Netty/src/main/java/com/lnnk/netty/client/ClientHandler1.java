@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
  * @author Lnnk
  * @date 2021/2/28 10:06
  **/
-public class ClientHandler extends SimpleChannelInboundHandler<MessageBuf.JMTransfer> {
+public class ClientHandler1 extends SimpleChannelInboundHandler<MessageBuf.JMTransfer> {
 
 
     /**
@@ -62,7 +62,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<MessageBuf.JMTran
 
     public MessageLite build() {
         return MessageBuf.JMTransfer.newBuilder()
-                .setVersion("0").setDeviceId(IdUtil.fastSimpleUUID()).setContent("client...").build();
+                .setVersion("1").setDeviceId(IdUtil.fastSimpleUUID()).setContent("client1...").build();
     }
 
 }

@@ -2,8 +2,8 @@ package com.lnnk;
 
 import com.lnnk.netty.server.NettyServer;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
 /**
  * 在IOC的容器的启动过程，当所有的bean都已经处理完成之后，spring ioc容器会有一个发布事件的动作。
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Lnnk
  * @date 2021/2/28 17:29
  **/
-@Component
+@Configuration
 public class NettyBooter implements ApplicationListener<ContextRefreshedEvent> {
 
     private final NettyServer nettyServer;

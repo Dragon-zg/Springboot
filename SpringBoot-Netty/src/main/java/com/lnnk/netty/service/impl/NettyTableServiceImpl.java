@@ -6,6 +6,8 @@ import com.lnnk.netty.service.NettyTableService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @author Lnnk
  * @date 2021/2/28 16:47
@@ -30,5 +32,10 @@ public class NettyTableServiceImpl implements NettyTableService {
         if (null != nettyTableRepository) {
             nettyTableRepository.save(nettyTable);
         }
+    }
+
+    @Override
+    public List<NettyTable> list() {
+        return nettyTableRepository.findAll();
     }
 }

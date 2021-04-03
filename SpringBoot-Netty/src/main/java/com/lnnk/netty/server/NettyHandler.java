@@ -33,6 +33,9 @@ public class NettyHandler extends SimpleChannelInboundHandler<MessageBuf.JMTrans
     protected void channelRead0(ChannelHandlerContext ctx, MessageBuf.JMTransfer msg) throws Exception {
         if (null != msg) {
             logger.debug("remoteAddress:{}, version: {}, deviceId: {}", ctx.channel().remoteAddress(), msg.getVersion(), msg.getDeviceId());
+            if ("1".equals(msg.getVersion())) {
+                Thread.sleep(10000);
+            }
             NettyTable nettyTable = new NettyTable();
             nettyTable.setContent(msg.getContent());
             nettyTableService.save(nettyTable);

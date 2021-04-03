@@ -43,7 +43,7 @@ public class ClientTestMain1 {
                                     .addLast(new ProtobufDecoder(MessageBuf.JMTransfer.getDefaultInstance()))
                                     .addLast(new ProtobufVarint32LengthFieldPrepender())
                                     .addLast(new ProtobufEncoder())
-                                    .addLast(new ClientHandler());
+                                    .addLast(new ClientHandler1());
                         }
                     });
             ChannelFuture future = bootstrap.connect(new InetSocketAddress("127.0.0.1", 9999));

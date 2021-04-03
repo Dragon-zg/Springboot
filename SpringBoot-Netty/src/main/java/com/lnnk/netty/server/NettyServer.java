@@ -3,6 +3,7 @@ package com.lnnk.netty.server;
 import com.lnnk.netty.config.NettyConfig;
 import com.lnnk.netty.service.NettyTableService;
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -12,6 +13,8 @@ import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PreDestroy;
 
 /**
  * @author Lnnk
@@ -46,19 +49,22 @@ public class NettyServer {
                     //SO_KEEPALIVE=true的时候,服务端可以探测客户端的连接是否还存活着,如果客户端因为断电或者网络问题或者客户端挂掉了等,那么服务端的连接可以关闭掉,释放资源
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childHandler(new NettyInitialzer(nettyTableService));
-            bootstrap.bind(nettyConfig.getInetHost(), nettyConfig.getInetPort())
+            ChannelFuture future = bootstrap.bind(nettyConfig.getInetHost(), nettyConfig.getInetPort())
                     // 同步返回
-                    .sync()
-                    // 当通道关闭时继续向后执行,这是一个阻塞方法
-                    .channel().closeFuture().sync();
+                    .sync();
+            if (future.isSuccess()) {
+                logger.info("start netty server start successful! host:{}, post: {}", nettyConfig.getInetHost(), nettyConfig.getInetPort());
+            } else {
+                logger.info("start netty server start failed!");
+            }
         } catch (Exception e) {
             logger.error("Server start fail!", e);
         }
 
     }
 
+    @PreDestroy
     public void shutdown() {
-        logger.info("shutdown tcp server ...");
         // 释放线程池资源
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();

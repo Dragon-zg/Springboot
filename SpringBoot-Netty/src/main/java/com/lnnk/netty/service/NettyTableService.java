@@ -2,6 +2,8 @@ package com.lnnk.netty.service;
 
 import com.lnnk.netty.entity.NettyTable;
 
+import java.util.List;
+
 /**
  * NettyTableService
  *
@@ -14,4 +16,6 @@ public interface NettyTableService {
      * 保存信息
      */
     void save(NettyTable nettyTable);
+
+    List<NettyTable> list();
 }

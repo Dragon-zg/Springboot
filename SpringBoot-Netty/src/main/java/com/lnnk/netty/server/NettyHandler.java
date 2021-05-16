@@ -1,5 +1,6 @@
 package com.lnnk.netty.server;
 
+import cn.hutool.core.util.IdUtil;
 import com.lnnk.netty.codec.MessageBuf;
 import com.lnnk.netty.entity.NettyTable;
 import com.lnnk.netty.service.NettyTableService;
@@ -33,12 +34,10 @@ public class NettyHandler extends SimpleChannelInboundHandler<MessageBuf.JMTrans
     protected void channelRead0(ChannelHandlerContext ctx, MessageBuf.JMTransfer msg) throws Exception {
         if (null != msg) {
             logger.debug("remoteAddress:{}, version: {}, deviceId: {}", ctx.channel().remoteAddress(), msg.getVersion(), msg.getDeviceId());
-            if ("1".equals(msg.getVersion())) {
-                Thread.sleep(10000);
-            }
             NettyTable nettyTable = new NettyTable();
             nettyTable.setContent(msg.getContent());
             nettyTableService.save(nettyTable);
+            ctx.channel().writeAndFlush(build());
         }
     }
 
@@ -99,5 +98,10 @@ public class NettyHandler extends SimpleChannelInboundHandler<MessageBuf.JMTrans
         System.out.println("server --------------> exceptionCaught");
         logger.error("异常信息", cause);
         ctx.channel().close();
+    }
+
+    public MessageBuf.JMTransfer build() {
+        return MessageBuf.JMTransfer.newBuilder()
+                .setVersion("server").setDeviceId(IdUtil.fastSimpleUUID()).setContent("server...").build();
     }
 }
